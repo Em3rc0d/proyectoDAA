@@ -44,6 +44,8 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        jPanel1.setBackground(new java.awt.Color(192, 206, 161));
+
         jLabel1.setText("Registrar Cita");
 
         jLabel2.setText("Paciente:");
