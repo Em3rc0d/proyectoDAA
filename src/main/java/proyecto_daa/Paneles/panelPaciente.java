@@ -41,8 +41,18 @@ public class panelPaciente extends javax.swing.JFrame {
         });
 
         btnRegistrarCita.setText("Registrar Cita");
+        btnRegistrarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarCitaActionPerformed(evt);
+            }
+        });
 
         btnRevisarCita.setText("Visualizar Cita");
+        btnRevisarCita.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRevisarCitaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -88,6 +98,18 @@ public class panelPaciente extends javax.swing.JFrame {
         new panelRegistrarPaciente().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
+
+    private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
+        // TODO add your handling code here:
+        new panelRegistrarCita().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnRegistrarCitaActionPerformed
+
+    private void btnRevisarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRevisarCitaActionPerformed
+        // TODO add your handling code here:
+        new panelMostrarCita().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnRevisarCitaActionPerformed
 
     /**
      * @param args the command line arguments

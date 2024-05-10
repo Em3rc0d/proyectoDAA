@@ -78,11 +78,17 @@
           <Properties>
             <Property name="text" type="java.lang.String" value="Registrar Cita"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRegistrarCitaActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnRevisarCita">
           <Properties>
             <Property name="text" type="java.lang.String" value="Visualizar Cita"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnRevisarCitaActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -1,9 +1,9 @@
 package proyecto_daa.Entidades;
 
 public abstract class Usuario {
-    protected String nombre;
-    protected String apellido;
-    protected int numTelefono;
+    public String nombre;
+    public String apellido;
+    public int numTelefono;
 
     public Usuario(String nombre, String apellido, int numTelefono) {
         this.nombre = nombre;
