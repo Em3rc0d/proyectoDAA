@@ -170,7 +170,9 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         String especialidad = txtEspecialidad.getText();
         String horarioD = cbHorarioD.getSelectedItem().toString();
         gm.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
-        JOptionPane.showMessageDialog(null, "Medico registrado con exito");
+        System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad + " " + horarioD);
+        new panelMedico().setVisible(true);
+        setVisible(false);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
