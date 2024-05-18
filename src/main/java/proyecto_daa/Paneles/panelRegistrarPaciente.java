@@ -54,8 +54,36 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
         jLabel4.setText("Num. Teléfono:");
 
         btnRegistrarHistorialM.setText("Registrar Historial Médico");
+        btnRegistrarHistorialM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarHistorialMActionPerformed(evt);
+            }
+        });
 
         btnRegistrarPaciente.setText("Registrar Paciente");
+        btnRegistrarPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarPacienteActionPerformed(evt);
+            }
+        });
+
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+
+        txtNumTel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNumTelActionPerformed(evt);
+            }
+        });
 
         jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registroPaciente.png"))); // NOI18N
         jLabel6.setText("jLabel6");
@@ -138,6 +166,28 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtNumTelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNumTelActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNumTelActionPerformed
+
+    private void btnRegistrarHistorialMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarHistorialMActionPerformed
+        // TODO add your handling code here:
+        new panelHistorialMedico().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnRegistrarHistorialMActionPerformed
+
+    private void btnRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPacienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarPacienteActionPerformed
 
     /**
      * @param args the command line arguments

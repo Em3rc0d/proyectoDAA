@@ -32,15 +32,15 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         cbPaciente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         cbMedico = new javax.swing.JComboBox<>();
-        jComboBox1 = new javax.swing.JComboBox<>();
-        jLabel4 = new javax.swing.JLabel();
         btnRegPaciente = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
         btnRegCita = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTextArea1 = new javax.swing.JTextArea();
+        txtDetalle = new javax.swing.JTextArea();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        cbHorarioD = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,19 +51,20 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         jLabel2.setText("Paciente:");
 
         cbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbPaciente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbPacienteActionPerformed(evt);
+            }
+        });
 
         jLabel3.setText("Medico:");
 
         cbMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        jComboBox1.addActionListener(new java.awt.event.ActionListener() {
+        cbMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBox1ActionPerformed(evt);
+                cbMedicoActionPerformed(evt);
             }
         });
-
-        jLabel4.setText("Especialidad:");
 
         btnRegPaciente.setText("Registrar Paciente");
         btnRegPaciente.addActionListener(new java.awt.event.ActionListener() {
@@ -81,14 +82,18 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             }
         });
 
-        jTextArea1.setColumns(20);
-        jTextArea1.setRows(5);
-        jScrollPane1.setViewportView(jTextArea1);
+        txtDetalle.setColumns(20);
+        txtDetalle.setRows(5);
+        jScrollPane1.setViewportView(txtDetalle);
 
         jLabel6.setText("Detalle de Cita:");
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registroCita.png"))); // NOI18N
         jLabel7.setText("jLabel7");
+
+        jLabel4.setText("Horario Disponible:");
+
+        cbHorarioD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,26 +109,26 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel3)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(jLabel5)
                                         .addGap(24, 24, 24)
                                         .addComponent(btnRegPaciente))
-                                    .addComponent(jLabel6)
-                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(cbHorarioD, javax.swing.GroupLayout.PREFERRED_SIZE, 154, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addGap(18, 18, 18)
                                 .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(cbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(jLabel2)
-                                            .addComponent(jLabel4))
-                                        .addGap(56, 56, 56)
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                            .addComponent(jComboBox1, 0, 150, Short.MAX_VALUE)
-                                            .addComponent(cbPaciente, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                        .addComponent(jLabel2)
+                                        .addGap(79, 79, 79)
+                                        .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnRegCita)
                                 .addGap(43, 43, 43)))))
@@ -141,26 +146,26 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                     .addComponent(btnRegCita))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel4))
-                        .addGap(18, 18, 18)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
-                        .addGap(18, 18, 18)
+                        .addGap(13, 13, 13)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel4)
+                            .addComponent(cbHorarioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel5)
                             .addComponent(btnRegPaciente))
-                        .addGap(18, 18, 18)
+                        .addGap(12, 12, 12)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 186, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,19 +182,23 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox1ActionPerformed
-
     private void btnRegPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPacienteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnRegPacienteActionPerformed
 
     private void btnRegCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegCitaActionPerformed
         // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegCitaActionPerformed
+
+    private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
+        // TODO add your handling code here:
         new panelRegistrarPaciente().setVisible(true);
         setVisible(false);
-    }//GEN-LAST:event_btnRegCitaActionPerformed
+    }//GEN-LAST:event_cbPacienteActionPerformed
+
+    private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMedicoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbMedicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -229,9 +238,9 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegCita;
     private javax.swing.JButton btnRegPaciente;
+    private javax.swing.JComboBox<String> cbHorarioD;
     private javax.swing.JComboBox<String> cbMedico;
     private javax.swing.JComboBox<String> cbPaciente;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -241,6 +250,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTextArea jTextArea1;
+    private javax.swing.JTextArea txtDetalle;
     // End of variables declaration//GEN-END:variables
 }

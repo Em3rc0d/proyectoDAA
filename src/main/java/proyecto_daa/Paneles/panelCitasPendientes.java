@@ -8,12 +8,12 @@ package proyecto_daa.Paneles;
  *
  * @author farid
  */
-public class panelMedico extends javax.swing.JFrame {
+public class panelCitasPendientes extends javax.swing.JFrame {
 
     /**
      * Creates new form panelMedico
      */
-    public panelMedico() {
+    public panelCitasPendientes() {
         initComponents();
     }
 
@@ -27,29 +27,34 @@ public class panelMedico extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        txtMedico = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrarMedico = new javax.swing.JButton();
-        btnCitasPendientes = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        cbMedico = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(192, 206, 161));
 
+        txtMedico.setColumns(20);
+        txtMedico.setRows(5);
+        jScrollPane1.setViewportView(txtMedico);
+
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menú Médico");
+        jLabel1.setText("Listado de Citas Pendientes");
+        jLabel1.setToolTipText("");
+        jLabel1.setFocusable(false);
+        jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel1.setVerifyInputWhenFocusTarget(false);
 
-        btnRegistrarMedico.setText("Registrar");
-        btnRegistrarMedico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarMedicoActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("Médico:");
 
-        btnCitasPendientes.setText("Visualizar Citas Pendientes");
-        btnCitasPendientes.addActionListener(new java.awt.event.ActionListener() {
+        cbMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnCitasPendientesActionPerformed(evt);
+                cbMedicoActionPerformed(evt);
             }
         });
 
@@ -57,34 +62,36 @@ public class panelMedico extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(52, 52, 52)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnRegistrarMedico))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(96, 96, 96)
-                        .addComponent(btnCitasPendientes)))
-                .addContainerGap(107, Short.MAX_VALUE))
+                        .addComponent(jLabel2)
+                        .addGap(41, 41, 41)
+                        .addComponent(cbMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(15, 15, 15)
+                .addGap(19, 19, 19)
                 .addComponent(jLabel1)
-                .addGap(39, 39, 39)
-                .addComponent(btnRegistrarMedico)
-                .addGap(38, 38, 38)
-                .addComponent(btnCitasPendientes)
-                .addContainerGap(68, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(cbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(8, 8, 8))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -94,17 +101,9 @@ public class panelMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnCitasPendientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCitasPendientesActionPerformed
+    private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMedicoActionPerformed
         // TODO add your handling code here:
-        new panelCitasPendientes().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnCitasPendientesActionPerformed
-
-    private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicoActionPerformed
-        // TODO add your handling code here:
-        new panelRegistrarMedico().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
+    }//GEN-LAST:event_cbMedicoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -123,28 +122,31 @@ public class panelMedico extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(panelMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(panelCitasPendientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(panelMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(panelCitasPendientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(panelMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(panelCitasPendientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(panelMedico.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(panelCitasPendientes.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelMedico().setVisible(true);
+                new panelCitasPendientes().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnCitasPendientes;
-    private javax.swing.JButton btnRegistrarMedico;
+    private javax.swing.JComboBox<String> cbMedico;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTextArea txtMedico;
     // End of variables declaration//GEN-END:variables
 }
