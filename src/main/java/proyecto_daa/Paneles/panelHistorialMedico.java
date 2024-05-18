@@ -1,5 +1,10 @@
 package proyecto_daa.Paneles;
 
+import javax.swing.JOptionPane;
+
+import proyecto_daa.Entidades.HistorialMedico;
+import proyecto_daa.Entidades.Paciente;
+
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
@@ -10,12 +15,13 @@ package proyecto_daa.Paneles;
  * @author farid
  */
 public class panelHistorialMedico extends javax.swing.JFrame {
-
+    private Paciente paciente;
     /**
      * Creates new form panelHistorialMedico
      */
-    public panelHistorialMedico() {
+    public panelHistorialMedico(Paciente paciente) {
         initComponents();
+        this.paciente = paciente;
     }
 
     /**
@@ -67,6 +73,11 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         jLabel7.setText("Tratamientos Anteriores:");
 
         btnRegistrar.setText("Registrar");
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registrarHistorialMedico.png"))); // NOI18N
         jLabel8.setText("jLabel8");
@@ -160,6 +171,27 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        String tipoSangre = cbTipoSangre.getSelectedItem().toString();
+        int contactoEmerg = Integer.parseInt(txtContacEmerg.getText());
+        String antecedentesMedicos = txtAntecMedic.getText();
+        String alergias = txtAlergias.getText();
+        String medicamentos = txtMedicamentos.getText();
+        String tratAnteriores = txtTratAnteriores.getText();
+
+        // Crear un nuevo objeto HistorialMedico
+        HistorialMedico historialMedico = new HistorialMedico(tipoSangre, contactoEmerg, antecedentesMedicos, alergias, medicamentos, tratAnteriores);
+
+        // Asociar el historial médico con el paciente
+        paciente.setHistorialMedico(historialMedico);
+
+        // Aquí deberías guardar el paciente y su historial médico en tu base de datos o estructura de datos
+
+        JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
+        setVisible(false);
+        new panelRegistrarPaciente().setVisible(true);
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -190,7 +222,7 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelHistorialMedico().setVisible(true);
+                new panelHistorialMedico(null).setVisible(true);
             }
         });
     }

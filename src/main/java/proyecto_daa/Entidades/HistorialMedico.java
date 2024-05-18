@@ -1,7 +1,6 @@
 package proyecto_daa.Entidades;
 
 public class HistorialMedico {
-    private int idHistorial;
     private String tipoSangre;
     private int contactoEmergencia;
     private String antecMedicos;
@@ -9,22 +8,13 @@ public class HistorialMedico {
     private String medicamentos;
     private String tratamientosAnteriores;
 
-    public HistorialMedico(int idHistorial, String tipoSangre, int contactoEmergencia, String antecMedicos, String alergias, String medicamentos, String tratamientosAnteriores) {
-        this.idHistorial = idHistorial;
+    public HistorialMedico(String tipoSangre, int contactoEmergencia, String antecMedicos, String alergias, String medicamentos, String tratamientosAnteriores) {
         this.tipoSangre = tipoSangre;
         this.contactoEmergencia = contactoEmergencia;
         this.antecMedicos = antecMedicos;
         this.alergias = alergias;
         this.medicamentos = medicamentos;
         this.tratamientosAnteriores = tratamientosAnteriores;
-    }
-
-    public int getIdHistorial() {
-        return idHistorial;
-    }
-
-    public void setIdHistorial(int idHistorial) {
-        this.idHistorial = idHistorial;
     }
 
     public String getTipoSangre() {
@@ -79,7 +69,6 @@ public class HistorialMedico {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("HistorialMedico{");
-        sb.append("idHistorial=").append(idHistorial);
         sb.append(", tipoSangre=").append(tipoSangre);
         sb.append(", contactoEmergencia=").append(contactoEmergencia);
         sb.append(", antecMedicos=").append(antecMedicos);

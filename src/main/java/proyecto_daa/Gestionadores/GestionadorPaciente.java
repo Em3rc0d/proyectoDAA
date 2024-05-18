@@ -13,8 +13,9 @@ public class GestionadorPaciente {
         this.tail = null;
     }
 
-    public void insertarPaciente(String nombre, String apellido, int numTelefono, int idPaciente, HistorialMedico historialMedico) {
-        Paciente p = new Paciente(nombre, apellido, numTelefono, idPaciente, historialMedico);
+    public void insertarPaciente(String nombre, String apellido, int numTelefono, HistorialMedico historialMedico) {
+        Paciente p = new Paciente(nombre, apellido, numTelefono);
+        p.setHistorialMedico(historialMedico);
         NodoPaciente np = new NodoPaciente(p);
         if(head == null) {
             head = np;
