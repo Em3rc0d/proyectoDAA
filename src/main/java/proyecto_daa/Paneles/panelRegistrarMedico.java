@@ -1,6 +1,7 @@
 package proyecto_daa.Paneles;
 
 import javax.swing.JOptionPane;
+import proyecto_daa.Entidades.Turno;
 
 import proyecto_daa.Gestionadores.*;
 
@@ -26,8 +27,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        cbHorarioD = new javax.swing.JComboBox<>();
         txtEspecialidad = new javax.swing.JTextField();
         txtNumTel = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
@@ -35,6 +34,8 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         btnRegistrarMedico = new javax.swing.JButton();
         jLabel7 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
+        jLabel8 = new javax.swing.JLabel();
+        cbTurno = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,10 +52,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         jLabel4.setText("Número Teléfono:");
 
         jLabel5.setText("Especialidad:");
-
-        jLabel6.setText("Horario Disponible:");
-
-        cbHorarioD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
         txtEspecialidad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,6 +76,10 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
             }
         });
 
+        jLabel8.setText("Turno:");
+
+        cbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde" }));
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -91,22 +92,22 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
                         .addComponent(btnBack))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(btnRegistrarMedico)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtEspecialidad)
-                                .addComponent(txtNumTel)
-                                .addComponent(txtApellido)
-                                .addComponent(txtNombre)
-                                .addComponent(cbHorarioD, 0, 143, Short.MAX_VALUE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(btnRegistrarMedico)
+                            .addComponent(txtApellido)
+                            .addComponent(txtNumTel)
+                            .addComponent(txtEspecialidad)
+                            .addComponent(cbTurno, 0, 166, Short.MAX_VALUE)
+                            .addComponent(txtNombre))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
         );
@@ -137,14 +138,14 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
                             .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(cbHorarioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRegistrarMedico))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(27, 27, 27)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -171,8 +172,9 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         String apellido = txtApellido.getText();
         int numTel = Integer.parseInt(txtNumTel.getText());
         String especialidad = txtEspecialidad.getText();
-        String horarioD = cbHorarioD.getSelectedItem().toString();
-        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
+        String categoria = cbTurno.getSelectedItem().toString();
+        Turno turno = new Turno(categoria);
+        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, turno, null);
         System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
         System.out.println(arbolMedico.listarMedicos());
         new panelMedico(arbolMedico, arbolPaciente).setVisible(true);
@@ -219,14 +221,14 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRegistrarMedico;
-    private javax.swing.JComboBox<String> cbHorarioD;
+    private javax.swing.JComboBox<String> cbTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JTextField txtEspecialidad;
