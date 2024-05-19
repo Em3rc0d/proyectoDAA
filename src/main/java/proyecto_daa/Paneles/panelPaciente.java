@@ -4,16 +4,24 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.GestionadorPaciente;
+
 /**
  *
  * @author farid
  */
 public class panelPaciente extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelPaciente
-     */
+    GestionadorPaciente arbolPaciente;
+    
     public panelPaciente() {
+        arbolPaciente = new GestionadorPaciente();;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public panelPaciente(GestionadorPaciente arbolPaciente) {
+        this.arbolPaciente = arbolPaciente;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -120,13 +128,14 @@ public class panelPaciente extends javax.swing.JFrame {
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarPaciente().setVisible(true);
+        new panelRegistrarPaciente(arbolPaciente).setVisible(true);
         setVisible(false);
+        System.out.println(arbolPaciente.listarPacientes());
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarCita().setVisible(true);
+        new panelRegistrarCita(arbolPaciente).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
@@ -138,7 +147,7 @@ public class panelPaciente extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelInicial().setVisible(true);
+        new panelInicial(arbolPaciente).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

@@ -4,6 +4,8 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.GestionadorMedico;
+
 
 /**
  *
@@ -11,9 +13,7 @@ package proyecto_daa.Paneles;
  */
 public class panelCitasPendientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelMedico
-     */
+    GestionadorMedico arbolMedico;
     public panelCitasPendientes() {
         initComponents();
         setLocationRelativeTo(null);
@@ -121,7 +121,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelMedico().setVisible(true);
+        new panelMedico(arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

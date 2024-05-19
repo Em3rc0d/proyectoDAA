@@ -4,15 +4,17 @@ import proyecto_daa.Entidades.Medico;
 
 public class NodoMedico {
     public Medico medico;
-    public NodoMedico next;
-    
+    public NodoMedico izquierda, derecha;
+
     public NodoMedico(Medico medico) {
         this.medico = medico;
-        this.next = null;
+        this.izquierda = null;
+        this.derecha = null;
     }
     
     @Override
     public String toString() {
         return medico.toString();
     }
+    
 }

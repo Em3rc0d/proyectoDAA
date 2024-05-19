@@ -4,16 +4,26 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.*;
+
 /**
  *
  * @author farid
  */
 public class panelRegistrarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelRegistrarCita
-     */
-    public panelRegistrarCita() {
+    GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
+    
+    public panelRegistrarCita(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
+        this.arbolPaciente = arbolPaciente;
+        this.arbolMedico = arbolMedico;
+        initComponents();
+        setLocationRelativeTo(null);
+    }
+    
+    public panelRegistrarCita(GestionadorPaciente arbolPaciente) {
+        this.arbolPaciente = arbolPaciente;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -205,7 +215,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarPaciente().setVisible(true);
+        new panelRegistrarPaciente(arbolPaciente).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_cbPacienteActionPerformed
 
@@ -249,7 +259,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelRegistrarCita().setVisible(true);
+                //new panelRegistrarCita().setVisible(true);
             }
         });
     }

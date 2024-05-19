@@ -35,6 +35,11 @@ public abstract class Usuario {
         this.numTelefono = numTelefono;
     }
 
+    @Override
+    public String toString() {
+        return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", numTelefono=" + numTelefono + "]";
+    }
+
     
     
 }

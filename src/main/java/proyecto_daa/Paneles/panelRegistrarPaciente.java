@@ -6,11 +6,12 @@ import proyecto_daa.Gestionadores.GestionadorPaciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
 public class panelRegistrarPaciente extends javax.swing.JFrame {
+    
+    //GestionadorPaciente arbolPaciente;
+    GestionadorPaciente arbolPaciente = new GestionadorPaciente();
 
-    GestionadorPaciente gp = new GestionadorPaciente();
-    NodoPaciente np;
-
-    public panelRegistrarPaciente() {
+    public panelRegistrarPaciente(GestionadorPaciente arbolPaciente) {
+        this.arbolPaciente = arbolPaciente;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -182,13 +183,13 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
         Paciente nuevoPaciente = new Paciente(nombre, apellido, numTel);
 
         // Mostrar el panel del historial médico y pasarle el paciente
-        new panelHistorialMedico(nuevoPaciente).setVisible(true);
+        new panelHistorialMedico(nuevoPaciente, arbolPaciente).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarPacienteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente().setVisible(true);
+        new panelPaciente(arbolPaciente).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -218,7 +219,7 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelRegistrarPaciente().setVisible(true);
+                //new panelRegistrarPaciente().setVisible(true);
             }
         });
     }

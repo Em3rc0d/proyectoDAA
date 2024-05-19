@@ -7,9 +7,10 @@ import proyecto_daa.Nodos.NodoMedico;
 
 public class panelRegistrarMedico extends javax.swing.JFrame {
 
-    GestionadorMedico gm = new GestionadorMedico();
-    NodoMedico nm;
-    public panelRegistrarMedico() {
+    GestionadorMedico arbolMedico = new GestionadorMedico();
+    
+    public panelRegistrarMedico(GestionadorMedico arbolMedico) {
+        this.arbolMedico = arbolMedico;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -170,15 +171,16 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         int numTel = Integer.parseInt(txtNumTel.getText());
         String especialidad = txtEspecialidad.getText();
         String horarioD = cbHorarioD.getSelectedItem().toString();
-        gm.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
-        System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad + " " + horarioD);
-        new panelMedico().setVisible(true);
+        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
+        System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
+        System.out.println(arbolMedico.listarMedicos());
+        new panelMedico(arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelMedico().setVisible(true);
+        new panelMedico(arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -208,7 +210,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelRegistrarMedico().setVisible(true);
+                //new panelRegistrarMedico().setVisible(true);
             }
         });
     }

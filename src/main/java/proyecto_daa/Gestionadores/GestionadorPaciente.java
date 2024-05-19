@@ -1,6 +1,5 @@
 package proyecto_daa.Gestionadores;
 
-import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
@@ -11,9 +10,7 @@ public class GestionadorPaciente {
         this.raiz = null;
     }
 
-    public void insertarPaciente(String nombre, String apellido, int numTelefono, HistorialMedico historialMedico) {
-        Paciente p = new Paciente(nombre, apellido, numTelefono);
-        p.setHistorialMedico(historialMedico);
+    public void insertarPaciente(Paciente p) {
         raiz = insertarRecursivo(raiz, p);
     }
 

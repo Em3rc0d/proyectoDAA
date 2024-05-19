@@ -1,11 +1,13 @@
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.GestionadorMedico;
+
 public class panelMedico extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelMedico
-     */
-    public panelMedico() {
+    GestionadorMedico arbolMedico;
+    
+    public panelMedico(GestionadorMedico arbolMedico) {
+        this.arbolMedico = arbolMedico;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -110,7 +112,7 @@ public class panelMedico extends javax.swing.JFrame {
 
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarMedicoActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarMedico().setVisible(true);
+        new panelRegistrarMedico(arbolMedico).setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
@@ -158,7 +160,7 @@ public class panelMedico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelMedico().setVisible(true);
+                //new panelMedico().setVisible(true);
             }
         });
     }

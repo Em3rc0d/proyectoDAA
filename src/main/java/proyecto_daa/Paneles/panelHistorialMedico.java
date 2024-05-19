@@ -4,6 +4,7 @@ import javax.swing.JOptionPane;
 
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Gestionadores.GestionadorPaciente;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -16,10 +17,12 @@ import proyecto_daa.Entidades.Paciente;
  */
 public class panelHistorialMedico extends javax.swing.JFrame {
     private Paciente paciente;
+    GestionadorPaciente arbolPacientes = new GestionadorPaciente();
     /**
      * Creates new form panelHistorialMedico
      */
-    public panelHistorialMedico(Paciente paciente) {
+    public panelHistorialMedico(Paciente paciente, GestionadorPaciente arbolPacientes) {
+        this.arbolPacientes = arbolPacientes;
         initComponents();
         setLocationRelativeTo(null);
         this.paciente = paciente;
@@ -185,12 +188,15 @@ public class panelHistorialMedico extends javax.swing.JFrame {
 
         // Asociar el historial médico con el paciente
         paciente.setHistorialMedico(historialMedico);
-
+        //System.out.println(paciente.toString());
         // Aquí deberías guardar el paciente y su historial médico en tu base de datos o estructura de datos
-
+        
+        arbolPacientes.insertarPaciente(paciente);
+        System.out.println(arbolPacientes.listarPacientes());
+        
         JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
         setVisible(false);
-        new panelRegistrarPaciente().setVisible(true);
+        new panelRegistrarPaciente(arbolPacientes).setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
@@ -223,7 +229,7 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelHistorialMedico(null).setVisible(true);
+                //new panelHistorialMedico(null).setVisible(true);
             }
         });
     }
