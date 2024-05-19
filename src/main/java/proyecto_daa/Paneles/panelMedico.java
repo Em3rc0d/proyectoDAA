@@ -7,6 +7,7 @@ public class panelMedico extends javax.swing.JFrame {
      */
     public panelMedico() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

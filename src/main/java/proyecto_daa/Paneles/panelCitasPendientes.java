@@ -16,6 +16,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
      */
     public panelCitasPendientes() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

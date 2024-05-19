@@ -15,6 +15,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
      */
     public panelRegistrarCita() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

@@ -7,6 +7,7 @@ public class panelInicial extends javax.swing.JFrame {
      */
     public panelInicial() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

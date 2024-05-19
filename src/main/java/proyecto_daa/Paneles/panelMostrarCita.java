@@ -15,6 +15,7 @@ public class panelMostrarCita extends javax.swing.JFrame {
      */
     public panelMostrarCita() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

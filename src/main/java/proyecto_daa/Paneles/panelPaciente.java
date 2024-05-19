@@ -15,6 +15,7 @@ public class panelPaciente extends javax.swing.JFrame {
      */
     public panelPaciente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

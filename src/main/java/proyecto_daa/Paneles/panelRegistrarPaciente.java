@@ -12,6 +12,7 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
 
     public panelRegistrarPaciente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

@@ -11,6 +11,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
     NodoMedico nm;
     public panelRegistrarMedico() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     @SuppressWarnings("unchecked")

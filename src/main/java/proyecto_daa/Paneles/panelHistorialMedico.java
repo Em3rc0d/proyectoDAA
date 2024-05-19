@@ -21,6 +21,7 @@ public class panelHistorialMedico extends javax.swing.JFrame {
      */
     public panelHistorialMedico(Paciente paciente) {
         initComponents();
+        setLocationRelativeTo(null);
         this.paciente = paciente;
     }
 
