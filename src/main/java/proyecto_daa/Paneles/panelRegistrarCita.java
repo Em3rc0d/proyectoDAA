@@ -21,12 +21,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
     }
-    
-    public panelRegistrarCita(GestionadorPaciente arbolPaciente) {
-        this.arbolPaciente = arbolPaciente;
-        initComponents();
-        setLocationRelativeTo(null);
-    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -215,7 +209,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarPaciente(arbolPaciente).setVisible(true);
+        new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_cbPacienteActionPerformed
 
@@ -225,7 +219,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente().setVisible(true);
+        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

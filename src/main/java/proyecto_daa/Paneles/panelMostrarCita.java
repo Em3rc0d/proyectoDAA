@@ -4,15 +4,16 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.*;
 /**
  *
  * @author farid
  */
 public class panelMostrarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelMostrarCita
-     */
+    GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
+    
     public panelMostrarCita() {
         initComponents();
         setLocationRelativeTo(null);
@@ -118,7 +119,7 @@ public class panelMostrarCita extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente().setVisible(true);
+        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

@@ -1,17 +1,16 @@
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
-import proyecto_daa.Gestionadores.GestionadorPaciente;
-import proyecto_daa.Nodos.NodoPaciente;
+import proyecto_daa.Gestionadores.*;
 
 public class panelRegistrarPaciente extends javax.swing.JFrame {
     
-    //GestionadorPaciente arbolPaciente;
-    GestionadorPaciente arbolPaciente = new GestionadorPaciente();
+    GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
 
-    public panelRegistrarPaciente(GestionadorPaciente arbolPaciente) {
+    public panelRegistrarPaciente(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
         this.arbolPaciente = arbolPaciente;
+        this.arbolMedico = arbolMedico;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -183,13 +182,13 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
         Paciente nuevoPaciente = new Paciente(nombre, apellido, numTel);
 
         // Mostrar el panel del historial médico y pasarle el paciente
-        new panelHistorialMedico(nuevoPaciente, arbolPaciente).setVisible(true);
+        new panelHistorialMedico(nuevoPaciente, arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarPacienteActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente(arbolPaciente).setVisible(true);
+        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

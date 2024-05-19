@@ -4,7 +4,7 @@ import javax.swing.JOptionPane;
 
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
-import proyecto_daa.Gestionadores.GestionadorPaciente;
+import proyecto_daa.Gestionadores.*;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -17,12 +17,13 @@ import proyecto_daa.Gestionadores.GestionadorPaciente;
  */
 public class panelHistorialMedico extends javax.swing.JFrame {
     private Paciente paciente;
-    GestionadorPaciente arbolPacientes = new GestionadorPaciente();
-    /**
-     * Creates new form panelHistorialMedico
-     */
-    public panelHistorialMedico(Paciente paciente, GestionadorPaciente arbolPacientes) {
-        this.arbolPacientes = arbolPacientes;
+    GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
+    
+
+    public panelHistorialMedico(Paciente paciente, GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
+        this.arbolPaciente = arbolPaciente;
+        this.arbolMedico = arbolMedico;
         initComponents();
         setLocationRelativeTo(null);
         this.paciente = paciente;
@@ -191,12 +192,12 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         //System.out.println(paciente.toString());
         // Aquí deberías guardar el paciente y su historial médico en tu base de datos o estructura de datos
         
-        arbolPacientes.insertarPaciente(paciente);
-        System.out.println(arbolPacientes.listarPacientes());
+        arbolPaciente.insertarPaciente(paciente);
+        System.out.println(arbolPaciente.listarPacientes());
         
         JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
         setVisible(false);
-        new panelRegistrarPaciente(arbolPacientes).setVisible(true);
+        new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
     }//GEN-LAST:event_btnRegistrarActionPerformed
 
     /**

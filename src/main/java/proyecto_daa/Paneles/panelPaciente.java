@@ -4,7 +4,7 @@
  */
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Gestionadores.GestionadorPaciente;
+import proyecto_daa.Gestionadores.*;
 
 /**
  *
@@ -13,15 +13,17 @@ import proyecto_daa.Gestionadores.GestionadorPaciente;
 public class panelPaciente extends javax.swing.JFrame {
 
     GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
     
-    public panelPaciente() {
-        arbolPaciente = new GestionadorPaciente();;
-        initComponents();
-        setLocationRelativeTo(null);
-    }
+//    public panelPaciente() {
+//        arbolPaciente = new GestionadorPaciente();;
+//        initComponents();
+//        setLocationRelativeTo(null);
+//    }
     
-    public panelPaciente(GestionadorPaciente arbolPaciente) {
+    public panelPaciente(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
         this.arbolPaciente = arbolPaciente;
+        this.arbolMedico = arbolMedico;
         initComponents();
         setLocationRelativeTo(null);
     }
@@ -128,14 +130,14 @@ public class panelPaciente extends javax.swing.JFrame {
 
     private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarPaciente(arbolPaciente).setVisible(true);
+        new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
         System.out.println(arbolPaciente.listarPacientes());
     }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarCita(arbolPaciente).setVisible(true);
+        new panelRegistrarCita(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
@@ -147,7 +149,7 @@ public class panelPaciente extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelInicial(arbolPaciente).setVisible(true);
+        new panelInicial(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
@@ -181,7 +183,7 @@ public class panelPaciente extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelPaciente().setVisible(true);
+                //new panelPaciente().setVisible(true);
             }
         });
     }
