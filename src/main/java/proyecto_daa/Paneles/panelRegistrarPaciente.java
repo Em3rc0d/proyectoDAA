@@ -162,6 +162,7 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
+        //pruebita nomas
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
