@@ -5,33 +5,44 @@ import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
 public class GestionadorPaciente {
-    public NodoPaciente head;
-    public NodoPaciente tail;
+    public NodoPaciente raiz;
 
     public GestionadorPaciente() {
-        this.head = null;
-        this.tail = null;
+        this.raiz = null;
     }
 
     public void insertarPaciente(String nombre, String apellido, int numTelefono, HistorialMedico historialMedico) {
         Paciente p = new Paciente(nombre, apellido, numTelefono);
         p.setHistorialMedico(historialMedico);
-        NodoPaciente np = new NodoPaciente(p);
-        if(head == null) {
-            head = np;
-        } else {
-            tail.next = np;
+        raiz = insertarRecursivo(raiz, p);
+    }
+
+    private NodoPaciente insertarRecursivo(NodoPaciente nodo, Paciente paciente) {
+        if (nodo == null) {
+            nodo = new NodoPaciente(paciente);
+            return nodo;
         }
-        tail = np;
+
+        if (paciente.getApellido().compareTo(nodo.paciente.getApellido()) < 0) {
+            nodo.izquierda = insertarRecursivo(nodo.izquierda, paciente);
+        } else {
+            nodo.derecha = insertarRecursivo(nodo.derecha, paciente);
+        }
+
+        return nodo;
     }
 
     public String listarPacientes() {
-        String msj = "";
-        NodoPaciente np = head;
-        while(np != null) {
-            msj += np.paciente.toString() + "\n";
-            np = np.next;
+        StringBuilder msj = new StringBuilder();
+        listarRecursivo(raiz, msj);
+        return msj.toString();
+    }
+
+    private void listarRecursivo(NodoPaciente nodo, StringBuilder msj) {
+        if (nodo != null) {
+            listarRecursivo(nodo.izquierda, msj);
+            msj.append(nodo.paciente.toString()).append("\n");
+            listarRecursivo(nodo.derecha, msj);
         }
-        return msj;
     }
 }

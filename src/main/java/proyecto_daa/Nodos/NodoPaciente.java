@@ -4,11 +4,12 @@ import proyecto_daa.Entidades.Paciente;
 
 public class NodoPaciente {
     public Paciente paciente;
-    public NodoPaciente next;
+    public NodoPaciente izquierda, derecha;
 
     public NodoPaciente(Paciente paciente) {
         this.paciente = paciente;
-        this.next = null;
+        this.izquierda = null;
+        this.derecha = null;
     }
 
     @Override
