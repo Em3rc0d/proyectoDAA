@@ -119,7 +119,7 @@ public class panelMostrarCita extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
+        new panelPaciente().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

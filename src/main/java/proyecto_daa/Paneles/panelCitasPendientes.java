@@ -15,6 +15,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
     GestionadorMedico arbolMedico;
     GestionadorPaciente arbolPaciente;
+    
     public panelCitasPendientes() {
         initComponents();
         setLocationRelativeTo(null);
@@ -122,7 +123,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelMedico(arbolMedico, arbolPaciente).setVisible(true);
+        new panelMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

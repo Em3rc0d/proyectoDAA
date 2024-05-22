@@ -1,10 +1,14 @@
 package proyecto_daa.Paneles;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import javax.swing.JOptionPane;
 
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Gestionadores.*;
+import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -15,19 +19,29 @@ import proyecto_daa.Gestionadores.*;
  *
  * @author farid
  */
-public class panelHistorialMedico extends javax.swing.JFrame {
+public class panelHistorialMedico extends javax.swing.JFrame implements Serializable{
+
     private Paciente paciente;
     GestionadorPaciente arbolPaciente;
-    GestionadorMedico arbolMedico;
     
 
-    public panelHistorialMedico(Paciente paciente, GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
-        this.arbolPaciente = arbolPaciente;
-        this.arbolMedico = arbolMedico;
+    public panelHistorialMedico(Paciente paciente) {
         initComponents();
         setLocationRelativeTo(null);
         this.paciente = paciente;
+        
+        // Manejar la carga del árbol desde el archivo en el constructor
+        try {
+            arbolPaciente = ManejoArchivos.cargar("arbolPacientes.txt");
+            if (arbolPaciente == null) {
+                arbolPaciente = new GestionadorPaciente();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            arbolPaciente = new GestionadorPaciente();
+            e.printStackTrace();
+        }
     }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -80,7 +94,15 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarActionPerformed(evt);
+                try {
+                    btnRegistrarActionPerformed(evt);
+                } catch (ClassNotFoundException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         });
 
@@ -176,29 +198,37 @@ public class panelHistorialMedico extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) throws ClassNotFoundException, IOException {
         String tipoSangre = cbTipoSangre.getSelectedItem().toString();
         int contactoEmerg = Integer.parseInt(txtContacEmerg.getText());
         String antecedentesMedicos = txtAntecMedic.getText();
         String alergias = txtAlergias.getText();
         String medicamentos = txtMedicamentos.getText();
         String tratAnteriores = txtTratAnteriores.getText();
-
-        // Crear un nuevo objeto HistorialMedico
+    
         HistorialMedico historialMedico = new HistorialMedico(tipoSangre, contactoEmerg, antecedentesMedicos, alergias, medicamentos, tratAnteriores);
-
-        // Asociar el historial médico con el paciente
+    
         paciente.setHistorialMedico(historialMedico);
-        //System.out.println(paciente.toString());
-        // Aquí deberías guardar el paciente y su historial médico en tu base de datos o estructura de datos
-        
+    
         arbolPaciente.insertarPaciente(paciente);
-        System.out.println(arbolPaciente.listarPacientes());
-        
+    
+        try {
+            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+            System.out.println("Árbol de pacientes guardado con éxito.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar el árbol de pacientes.");
+            e.printStackTrace();
+        }
+    
+        // Mostrar un mensaje de confirmación
         JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
         setVisible(false);
-        new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
-    }//GEN-LAST:event_btnRegistrarActionPerformed
+    
+        // Mostrar el formulario para registrar un nuevo paciente
+        System.out.println(arbolPaciente.listarPacientes());
+        new panelRegistrarPaciente().setVisible(true);
+    }
+    //GEN-LAST:event_btnRegistrarActionPerformed
 
     /**
      * @param args the command line arguments
