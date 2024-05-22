@@ -43,4 +43,19 @@ public class GestionadorMedico {
             listarRecursivo(nodo.derecha, msj);
         }
     }
+    public Medico obtenerMedico(int idMedico){
+        return obtenerRecursivo(raiz, idMedico);
+    }
+    private Medico obtenerRecursivo(NodoMedico nodo, int idMedico){
+        if(nodo == null){
+            return null;
+        }
+        if(idMedico == nodo.medico.getIdMedico()){
+            return nodo.medico;
+        }
+        if(idMedico < nodo.medico.getIdMedico()){
+            return obtenerRecursivo(nodo.izquierda, idMedico);
+        }
+        return obtenerRecursivo(nodo.derecha, idMedico);
+    }
 }   

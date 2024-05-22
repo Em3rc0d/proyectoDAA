@@ -14,6 +14,7 @@ public class panelPaciente extends javax.swing.JFrame {
 
     GestionadorPaciente arbolPaciente;
     GestionadorMedico arbolMedico;
+    GestionadorCitaMedica arbolCita;
     
 //    public panelPaciente() {
 //        arbolPaciente = new GestionadorPaciente();;
@@ -136,7 +137,7 @@ public class panelPaciente extends javax.swing.JFrame {
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarCita(arbolPaciente, arbolMedico).setVisible(true);
+        new panelRegistrarCita(arbolPaciente, arbolMedico, arbolCita).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 
