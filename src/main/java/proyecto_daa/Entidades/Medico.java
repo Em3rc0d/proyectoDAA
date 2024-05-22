@@ -1,6 +1,8 @@
 package proyecto_daa.Entidades;
 
-public class Medico extends Usuario{
+import java.io.Serializable;
+
+public class Medico extends Usuario implements Serializable{
     private int idMedico;
     private String especialidad;
     private Turno turno;

@@ -23,8 +23,6 @@ public class panelInicial extends javax.swing.JFrame {
     public panelInicial(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
         this.arbolPaciente = arbolPaciente;
         this.arbolMedico = arbolMedico;
-        initComponents();
-        setLocationRelativeTo(null);
     }
 
     /**
@@ -120,13 +118,13 @@ public class panelInicial extends javax.swing.JFrame {
 
     private void btnMedicoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMedicoActionPerformed
 
-        new panelMedico(arbolMedico, arbolPaciente).setVisible(true);
+        new panelMedico().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnMedicoActionPerformed
 
     private void btnPacienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPacienteActionPerformed
 
-        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
+        new panelPaciente().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnPacienteActionPerformed
     

@@ -25,10 +25,14 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     GestionadorMedico arbolMedico;
     GestionadorCitaMedica arbolCita;
     
+<<<<<<< HEAD
     public panelRegistrarCita(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico, GestionadorCitaMedica arbolCita) {
         this.arbolPaciente = arbolPaciente;
         this.arbolMedico = arbolMedico;
         this.arbolCita = arbolCita;
+=======
+    public panelRegistrarCita() {
+>>>>>>> d6e61435bf866817117e4c9d628b04d6e6eb9222
         initComponents();
         setLocationRelativeTo(null);
         cbMedico.removeAllItems();
@@ -220,7 +224,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void btnRegPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegPacienteActionPerformed
         // TODO add your handling code here:
-        new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
+        //new panelRegistrarPaciente(arbolPaciente, arbolMedico).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegPacienteActionPerformed
 
@@ -314,7 +318,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelPaciente(arbolPaciente, arbolMedico).setVisible(true);
+        new panelPaciente().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

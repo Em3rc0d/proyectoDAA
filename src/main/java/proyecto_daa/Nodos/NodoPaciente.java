@@ -1,8 +1,10 @@
 package proyecto_daa.Nodos;
 
+import java.io.Serializable;
+
 import proyecto_daa.Entidades.Paciente;
 
-public class NodoPaciente {
+public class NodoPaciente implements Serializable{
     public Paciente paciente;
     public NodoPaciente izquierda, derecha;
 

@@ -1,6 +1,8 @@
 package proyecto_daa.Entidades;
 
-public abstract class Usuario {
+import java.io.Serializable;
+
+public abstract class Usuario implements Serializable{
     public String nombre;
     public String apellido;
     public int numTelefono;
@@ -9,6 +11,9 @@ public abstract class Usuario {
         this.nombre = nombre;
         this.apellido = apellido;
         this.numTelefono = numTelefono;
+    }
+
+    public Usuario() {
     }
 
     public String getNombre() {

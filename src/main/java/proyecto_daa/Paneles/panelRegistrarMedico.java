@@ -1,20 +1,32 @@
 package proyecto_daa.Paneles;
 
+import java.io.IOException;
+import java.io.Serializable;
+
 import javax.swing.JOptionPane;
 import proyecto_daa.Entidades.Turno;
 
 import proyecto_daa.Gestionadores.*;
+import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
-public class panelRegistrarMedico extends javax.swing.JFrame {
+public class panelRegistrarMedico extends javax.swing.JFrame implements Serializable{
 
     GestionadorMedico arbolMedico;
-    GestionadorPaciente arbolPaciente;
     
-    public panelRegistrarMedico(GestionadorMedico arbolMedico, GestionadorPaciente arbolPaciente) {
-        this.arbolMedico = arbolMedico;
-        this.arbolPaciente = arbolPaciente;
+    public panelRegistrarMedico() {
         initComponents();
         setLocationRelativeTo(null);
+
+        try {
+            arbolMedico = ManejoArchivos.cargar("arbolMedicos.txt");
+            if (arbolMedico == null) {
+                arbolMedico = new GestionadorMedico();
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            arbolMedico = new GestionadorMedico();
+            e.printStackTrace();
+        }
+
     }
 
     @SuppressWarnings("unchecked")
@@ -167,23 +179,31 @@ public class panelRegistrarMedico extends javax.swing.JFrame {
     }//GEN-LAST:event_txtEspecialidadActionPerformed
 
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicoActionPerformed
-        // TODO add your handling code here:
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         int numTel = Integer.parseInt(txtNumTel.getText());
         String especialidad = txtEspecialidad.getText();
-        String categoria = cbTurno.getSelectedItem().toString();
-        Turno turno = new Turno(categoria);
-        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, turno, null);
+        // String horarioD = cbHorarioD.getSelectedItem().toString();
+        
+        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
+        
+        try {
+            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
+            System.out.println("Árbol de medicos guardado con éxito.");
+        } catch (IOException e) {
+            System.out.println("Error al guardar el árbol de medico.");
+            e.printStackTrace();
+        }
+
         System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
         System.out.println(arbolMedico.listarMedicos());
-        new panelMedico(arbolMedico, arbolPaciente).setVisible(true);
+        new panelMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
-        new panelMedico(arbolMedico, arbolPaciente).setVisible(true);
+        new panelMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 
