@@ -45,4 +45,4 @@ public class GestionadorMedico implements Serializable{
             listarRecursivo(nodo.derecha, msj);
         }
     }
-}
+}   
