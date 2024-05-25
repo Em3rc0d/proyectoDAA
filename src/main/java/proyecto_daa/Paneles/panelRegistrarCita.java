@@ -209,6 +209,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void btnRegPacienteActionPerformed(java.awt.event.ActionEvent evt) {
         new panelRegistrarPaciente().setVisible(true);
+        setVisible(false);
     }
 
     private void btnRegCitaActionPerformed(java.awt.event.ActionEvent evt) {
@@ -357,7 +358,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelRegistrarCita().setVisible(true);
+                // new panelRegistrarCita().setVisible(true);
             }
         });
     }

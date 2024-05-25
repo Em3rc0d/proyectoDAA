@@ -224,7 +224,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelRegistrarMedico().setVisible(true);
+                // new panelRegistrarMedico().setVisible(true);
             }
         });
     }
