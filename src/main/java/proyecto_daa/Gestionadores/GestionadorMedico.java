@@ -1,12 +1,13 @@
 package proyecto_daa.Gestionadores;
-
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Turno;
 import proyecto_daa.Nodos.NodoMedico;
 
-public class GestionadorMedico implements Serializable{
+public class GestionadorMedico implements Serializable {
     public NodoMedico raiz;
 
     public GestionadorMedico() {
@@ -45,19 +46,36 @@ public class GestionadorMedico implements Serializable{
             listarRecursivo(nodo.derecha, msj);
         }
     }
-    public Medico obtenerMedico(int idMedico){
+
+    public Medico obtenerMedico(int idMedico) {
         return obtenerRecursivo(raiz, idMedico);
     }
-    private Medico obtenerRecursivo(NodoMedico nodo, int idMedico){
-        if(nodo == null){
+
+    private Medico obtenerRecursivo(NodoMedico nodo, int idMedico) {
+        if (nodo == null) {
             return null;
         }
-        if(idMedico == nodo.medico.getIdMedico()){
+        if (idMedico == nodo.medico.getIdMedico()) {
             return nodo.medico;
         }
-        if(idMedico < nodo.medico.getIdMedico()){
+        if (idMedico < nodo.medico.getIdMedico()) {
             return obtenerRecursivo(nodo.izquierda, idMedico);
         }
         return obtenerRecursivo(nodo.derecha, idMedico);
     }
-}   
+
+    // Nuevo método para obtener una lista de todos los médicos
+    public List<Medico> getListaMedicos() {
+        List<Medico> medicos = new ArrayList<>();
+        agregarMedicosALista(raiz, medicos);
+        return medicos;
+    }
+
+    private void agregarMedicosALista(NodoMedico nodo, List<Medico> lista) {
+        if (nodo != null) {
+            agregarMedicosALista(nodo.izquierda, lista);
+            lista.add(nodo.medico);
+            agregarMedicosALista(nodo.derecha, lista);
+        }
+    }
+}

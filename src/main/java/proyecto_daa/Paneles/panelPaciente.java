@@ -130,7 +130,7 @@ public class panelPaciente extends javax.swing.JFrame {
         // TODO add your handling code here:
         new panelRegistrarCita(arbolPaciente, arbolMedico, arbolCita).setVisible(true);
         //Cual?
-        new panelRegistrarCita().setVisible(true);
+        new panelRegistrarCita(arbolPaciente, arbolMedico, arbolCita).setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarCitaActionPerformed
 

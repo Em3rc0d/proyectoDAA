@@ -1,11 +1,9 @@
 package proyecto_daa.Gestionadores;
-
 import java.io.Serializable;
-
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
-public class GestionadorPaciente implements Serializable{
+public class GestionadorPaciente implements Serializable {
     public NodoPaciente raiz;
 
     public GestionadorPaciente() {
