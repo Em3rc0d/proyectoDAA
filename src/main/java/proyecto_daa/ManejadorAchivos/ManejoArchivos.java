@@ -34,4 +34,18 @@ public class ManejoArchivos {
         File archivo = new File(nombreArchivo);
         return archivo.exists();
     }
+
+    public static <T extends Serializable> T cargarArbol(String nombreArchivo, T arbolVacio) {
+        T arbolCargado;
+        try {
+            arbolCargado = cargar(nombreArchivo);
+            if (arbolCargado == null) {
+                arbolCargado = arbolVacio;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            arbolCargado = arbolVacio;
+            e.printStackTrace();
+        }
+        return arbolCargado;
+    }
 }

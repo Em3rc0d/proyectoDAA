@@ -9,6 +9,7 @@ public class panelInicial extends javax.swing.JFrame {
 
     GestionadorPaciente arbolPaciente;
     GestionadorMedico arbolMedico;
+    
     public panelInicial() {
         arbolPaciente = new GestionadorPaciente();
         arbolMedico = new GestionadorMedico();
@@ -20,11 +21,6 @@ public class panelInicial extends javax.swing.JFrame {
         
     }
     
-    public panelInicial(GestionadorPaciente arbolPaciente, GestionadorMedico arbolMedico) {
-        this.arbolPaciente = arbolPaciente;
-        this.arbolMedico = arbolMedico;
-    }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -11,21 +11,13 @@ import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
 public class panelRegistrarMedico extends javax.swing.JFrame implements Serializable{
 
-    GestionadorMedico arbolMedico;
+    GestionadorMedico arbolMedico = new GestionadorMedico();
     
     public panelRegistrarMedico() {
         initComponents();
         setLocationRelativeTo(null);
 
-        try {
-            arbolMedico = ManejoArchivos.cargar("arbolMedicos.txt");
-            if (arbolMedico == null) {
-                arbolMedico = new GestionadorMedico();
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            arbolMedico = new GestionadorMedico();
-            e.printStackTrace();
-        }
+        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
 
     }
 
@@ -196,7 +188,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         }
 
         System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
-        System.out.println(arbolMedico.listarMedicos());
         new panelMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
@@ -233,7 +224,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new panelRegistrarMedico().setVisible(true);
+                new panelRegistrarMedico().setVisible(true);
             }
         });
     }

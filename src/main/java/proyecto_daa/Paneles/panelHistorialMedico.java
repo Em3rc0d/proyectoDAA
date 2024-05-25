@@ -22,24 +22,15 @@ import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 public class panelHistorialMedico extends javax.swing.JFrame implements Serializable{
 
     private Paciente paciente;
-    GestionadorPaciente arbolPaciente;
+    GestionadorPaciente arbolPaciente = new GestionadorPaciente();
     
 
     public panelHistorialMedico(Paciente paciente) {
         initComponents();
         setLocationRelativeTo(null);
         this.paciente = paciente;
-        
-        // Manejar la carga del árbol desde el archivo en el constructor
-        try {
-            arbolPaciente = ManejoArchivos.cargar("arbolPacientes.txt");
-            if (arbolPaciente == null) {
-                arbolPaciente = new GestionadorPaciente();
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            arbolPaciente = new GestionadorPaciente();
-            e.printStackTrace();
-        }
+
+        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
     }
     
 
@@ -260,7 +251,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                //new panelHistorialMedico(null).setVisible(true);
+                //new panelHistorialMedico().setVisible(true);
             }
         });
     }

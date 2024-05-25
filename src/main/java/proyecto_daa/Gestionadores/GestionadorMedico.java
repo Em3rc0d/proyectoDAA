@@ -8,6 +8,7 @@ import proyecto_daa.Entidades.Turno;
 import proyecto_daa.Nodos.NodoMedico;
 
 public class GestionadorMedico implements Serializable {
+
     public NodoMedico raiz;
 
     public GestionadorMedico() {
