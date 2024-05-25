@@ -175,9 +175,10 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         String apellido = txtApellido.getText();
         int numTel = Integer.parseInt(txtNumTel.getText());
         String especialidad = txtEspecialidad.getText();
-        // String horarioD = cbHorarioD.getSelectedItem().toString();
+        String turno = cbTurno.getSelectedItem().toString();
+        Turno turno2 = new Turno(turno);
         
-        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, null, null);
+        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, turno2, null);
         
         try {
             ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);

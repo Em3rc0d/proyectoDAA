@@ -1,6 +1,8 @@
 package proyecto_daa.Paneles;
 
 import java.util.Date;
+import java.util.List;
+
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.Turno;
@@ -20,8 +22,10 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
 
-        cbMedico.removeAllItems();
-        cbPaciente.removeAllItems();
+        // cbMedico.removeAllItems();
+        agregarMedicosALista();
+        // cbPaciente.removeAllItems();
+        agregarPacientesALista();
         cbHorarioD.removeAllItems();
     }
 
@@ -216,14 +220,30 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         // Obtener el objeto seleccionado del JComboBox
         Object selectedPaciente = cbPaciente.getSelectedItem();
         Object selectedMedico = cbMedico.getSelectedItem();
-        Object selectedHorario = cbHorarioD.getSelectedItem();
-    
-        // Verificar que los objetos sean de los tipos esperados
-        if (selectedPaciente instanceof Paciente && selectedMedico instanceof Medico && selectedHorario instanceof Date) {
+        String selectedHorario = cbHorarioD.getSelectedItem().toString();
+
+        if (selectedPaciente == null || selectedMedico == null || selectedHorario == null) {
+            // Manejar el caso en que uno de los objetos no este seleccionado
+            System.out.println("Uno o más objetos no han sido seleccionados.");
+            return;
+        }
+
+        // Verificar si los objetos seleccionados son del tipo esperado
+        if (!(selectedPaciente instanceof Paciente) || !(selectedMedico instanceof Medico) || !(selectedHorario instanceof String)) {
+            // Manejar el caso en que uno de los objetos no sea del tipo esperado
+            System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
+            return;
+        }
+
+        // Obtener los objetos seleccionados
+        if (selectedPaciente instanceof Paciente && selectedMedico instanceof Medico) {
             Paciente paciente = (Paciente) selectedPaciente;
             Medico medico = (Medico) selectedMedico;
             String horario = selectedHorario.toString();
-    
+            String[] partes = horario.split(" - ");
+            String horaInicio = partes[0]; 
+            String horaFin = partes[1];  
+            
             int idCita;
             if (arbolCita.raiz == null) {
                 idCita = 1;
@@ -232,7 +252,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             }
     
             // Insertar la nueva cita médica
-            arbolCita.insertarCitaMedica(idCita, paciente, medico, horario, horario, "Pendiente");
+            arbolCita.insertarCitaMedica(idCita, paciente, medico, horaInicio, horaFin, "Pendiente");
         } else {
             // Manejar el caso en que uno de los objetos no sea del tipo esperado
             System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
@@ -240,82 +260,45 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     }
         
     private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
-        // TODO add your handling code here:
-        cbPaciente.removeAllItems();
-        String listaPacientes = arbolPaciente.listarPacientes();
-        String[] pacientes = listaPacientes.split("\n");
-        if (pacientes.length > 0 && !listaPacientes.isEmpty()) {
-            for (String paciente : pacientes) {
-                if (!paciente.trim().isEmpty()) {
-                    try {
-                        String[] infoPaciente = paciente.split(", ");
-                        String nombre = infoPaciente[0].substring(infoPaciente[0].indexOf('=') + 1).trim();
-                        String apellido = infoPaciente[1].substring(infoPaciente[1].indexOf('=') + 1).trim();
-                        cbPaciente.addItem(nombre + " " + apellido);
-                    } catch (Exception e) {
-                        System.out.println("Error al registrar el paciente: " + e.getMessage());
-                    }
-                }
-            }
-        }else{
-            cbPaciente.addItem("No hay pacientes registrados");
-        }
+        // // TODO add your handling code here:
+        // cbPaciente.removeAllItems();
+        // String listaPacientes = arbolPaciente.listarPacientes();
+        // String[] pacientes = listaPacientes.split("\n");
+        // if (pacientes.length > 0 && !listaPacientes.isEmpty()) {
+        //     for (String paciente : pacientes) {
+        //         if (!paciente.trim().isEmpty()) {
+        //             try {
+        //                 String[] infoPaciente = paciente.split(", ");
+        //                 String nombre = infoPaciente[0].substring(infoPaciente[0].indexOf('=') + 1).trim();
+        //                 String apellido = infoPaciente[1].substring(infoPaciente[1].indexOf('=') + 1).trim();
+        //                 cbPaciente.addItem(nombre + " " + apellido);
+        //             } catch (Exception e) {
+        //                 System.out.println("Error al registrar el paciente: " + e.getMessage());
+        //             }
+        //         }
+        //     }
+        // }else{
+        //     cbPaciente.addItem("No hay pacientes registrados");
+        // }
     }//GEN-LAST:event_cbPacienteActionPerformed
 
     private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {
-        // Limpiar los elementos existentes en el JComboBox
-        cbMedico.removeAllItems();
-        // Obtener la lista de médicos como un String
-        String listaMedicos = arbolMedico.listarMedicos();
-        System.out.println(listaMedicos);
-        // Dividir la lista de médicos en un array usando el carácter de nueva línea como delimitador
-        String[] medicos = listaMedicos.split("\n");
-        if (medicos.length > 0 && !listaMedicos.isEmpty()) {
-            // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
-            for (String medico : medicos) {
-                if (!medico.trim().isEmpty()) {
-                    try {
-                        // Dividir la información del médico en un array usando la coma como delimitador
-                        String[] infoMedico = medico.split(", ");
-                        // Asegurarse de que el array tiene la cantidad esperada de elementos
-                        if (infoMedico.length >= 5) {
-                            // Tomar el nombre, apellido y especialidad del médico del array
-                            String nombre = infoMedico[0].substring(infoMedico[0].indexOf('=') + 1).trim();
-                            String apellido = infoMedico[1].substring(infoMedico[1].indexOf('=') + 1).trim();
-                            String especialidad = infoMedico[4].substring(infoMedico[4].indexOf(':') + 2).trim(); // Cambiar el índice de inicio para especialidad
-                            // Agregar el nombre, apellido y especialidad al JComboBox
-                            cbMedico.addItem(nombre + " " + apellido + " - " + especialidad);
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Error parsing medico: " + medico);
-                        e.printStackTrace();
-                    }
-                }
-            }
-        } else {
-            cbMedico.addItem("No contamos con médicos registrados");
-        }  
-    }
+        // Obtener el médico seleccionado del JComboBox
+        Object selectedMedicoObj = cbMedico.getSelectedItem();
+        if (selectedMedicoObj != null) {
+            String selectedMedico = selectedMedicoObj.toString();
+            System.out.println("Medico seleccionado: " + selectedMedico);
+            // Encontrar el índice del primer guion ("-")
+            int primerGuionIndex = selectedMedico.indexOf('-');
 
-    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        // TODO add your handling code here:
-        new panelPaciente().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnBackActionPerformed
+            // Encontrar el índice del segundo guion ("-"), comenzando desde el índice después del primer guion
+            int segundoGuionIndex = selectedMedico.indexOf('-', primerGuionIndex + 1);
 
-    private void cbHorarioDActionPerformed(java.awt.event.ActionEvent evt) {
-        // Obtener el objeto seleccionado del JComboBox de médicos
-        Object selectedMedico = cbMedico.getSelectedItem();
-    
-        // Verificar que el objeto seleccionado es de tipo Medico
-        if (selectedMedico instanceof Medico) {
-            Medico medico = (Medico) selectedMedico;
-    
             // Obtener el turno del médico
-            Turno turno = medico.getTurno();
-    
-            // Agregar elementos al JComboBox dependiendo del turno del médico
-            if (turno.getCategoria().equals("manana")) {
+            String turno = selectedMedico.substring(segundoGuionIndex + 1).trim();
+            cbHorarioD.removeAllItems();
+            System.out.println("Turno: " + turno);
+            if(turno.equals("Mañana")){
                 cbHorarioD.addItem("8:00 - 8:30");
                 cbHorarioD.addItem("8:30 - 9:00");
                 cbHorarioD.addItem("9:00 - 9:30");
@@ -324,7 +307,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                 cbHorarioD.addItem("10:30 - 11:00");
                 cbHorarioD.addItem("11:00 - 11:30");
                 cbHorarioD.addItem("11:30 - 12:00");
-            } else{
+            }else if(turno.equals("Tarde")){
                 cbHorarioD.addItem("14:00 - 14:30");
                 cbHorarioD.addItem("14:30 - 15:00");
                 cbHorarioD.addItem("15:00 - 15:30");
@@ -333,10 +316,67 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                 cbHorarioD.addItem("16:30 - 17:00");
                 cbHorarioD.addItem("17:00 - 17:30");
                 cbHorarioD.addItem("17:30 - 18:00");
-            } 
+            }
         } else {
-            System.out.println("El objeto seleccionado no es un médico.");
+            System.out.println("No se ha seleccionado ningún médico.");
         }
+
+    }
+    //agregao
+    public void agregarPacientesALista() {
+        // Limpiar los elementos existentes en el JComboBox
+        cbPaciente.removeAllItems();
+        // Obtener la lista de pacientes como objetos Paciente  
+        List<Paciente> listaPacientes = arbolPaciente.getListaPacientes();
+        if (!listaPacientes.isEmpty()) {
+            // Agregar cada paciente (solo nombre y apellido) al JComboBox
+            for (Paciente paciente : listaPacientes) {
+                try {
+                    String nombre = paciente.getNombre();
+                    String apellido = paciente.getApellido();
+                    // Agregar el nombre y apellido al JComboBox
+                    cbPaciente.addItem(nombre + " " + apellido);
+                } catch (Exception e) {
+                    System.out.println("Error parsing paciente: " + paciente);
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+    public void agregarMedicosALista() {
+        // Limpiar los elementos existentes en el JComboBox
+        cbMedico.removeAllItems();
+
+        // Obtener la lista de médicos como objetos Medico
+        List<Medico> listaMedicos = arbolMedico.getListaMedicos();
+
+        if (!listaMedicos.isEmpty()) {
+            // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
+            for (Medico medico : listaMedicos) {
+                try {
+                    String nombre = medico.getNombre();
+                    String apellido = medico.getApellido();
+                    String especialidad = medico.getEspecialidad();
+                    String turno = medico.getTurno().getCategoria();
+                    // Agregar el nombre, apellido y especialidad al JComboBox
+                    cbMedico.addItem(nombre + " " + apellido + " - " + especialidad + " - " + turno);
+                } catch (Exception e) {
+                    System.out.println("Error parsing medico: " + medico);
+                    e.printStackTrace();
+                }
+            }
+        } else {
+            cbMedico.addItem("No contamos con médicos registrados");
+        }
+    }
+    private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
+        // TODO add your handling code here:
+        new panelPaciente().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnBackActionPerformed
+
+    private void cbHorarioDActionPerformed(java.awt.event.ActionEvent evt) {
+        
     }
     
     public static void main(String args[]) {
@@ -358,7 +398,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         }
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // new panelRegistrarCita().setVisible(true);
+                new panelRegistrarCita().setVisible(true);
             }
         });
     }

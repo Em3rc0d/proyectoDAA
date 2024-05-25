@@ -1,5 +1,8 @@
 package proyecto_daa.Gestionadores;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
@@ -40,6 +43,18 @@ public class GestionadorPaciente implements Serializable {
             listarRecursivo(nodo.izquierda, msj);
             msj.append(nodo.paciente.toString()).append("\n");
             listarRecursivo(nodo.derecha, msj);
+        }
+    }
+    public List<Paciente> getListaPacientes() {
+        List<Paciente> pacientes = new ArrayList<>();
+        agregarPacientesALista(raiz, pacientes);
+        return pacientes;
+    }
+    private void agregarPacientesALista(NodoPaciente nodo, List<Paciente> pacientes) {
+        if (nodo != null) {
+            agregarPacientesALista(nodo.izquierda, pacientes);
+            pacientes.add(nodo.paciente);
+            agregarPacientesALista(nodo.derecha, pacientes);
         }
     }
 }
