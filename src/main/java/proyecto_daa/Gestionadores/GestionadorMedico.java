@@ -15,8 +15,8 @@ public class GestionadorMedico implements Serializable {
         this.raiz = null;
     }
 
-    public void insertarMedico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno, int horarioDisponible[]) {
-        Medico m = new Medico(nombre, apellido, numTelefono, idMedico, especialidad, turno, horarioDisponible);
+    public void insertarMedico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno) {
+        Medico m = new Medico(nombre, apellido, numTelefono, idMedico, especialidad, turno);
         raiz = insertarRecursivo(raiz, m);
     }
 
@@ -79,4 +79,22 @@ public class GestionadorMedico implements Serializable {
             agregarMedicosALista(nodo.derecha, lista);
         }
     }
+
+    public Medico obtenerMedicoPorId(int idMedico) {
+        return obtenerRecursivoPorId(raiz, idMedico);
+    }
+    
+    private Medico obtenerRecursivoPorId(NodoMedico nodo, int idMedico) {
+        if (nodo == null) {
+            return null;
+        }
+        if (idMedico == nodo.medico.getIdMedico()) {
+            return nodo.medico;
+        }
+        if (idMedico < nodo.medico.getIdMedico()) {
+            return obtenerRecursivoPorId(nodo.izquierda, idMedico);
+        }
+        return obtenerRecursivoPorId(nodo.derecha, idMedico);
+    }    
+
 }

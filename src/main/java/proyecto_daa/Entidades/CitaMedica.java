@@ -2,21 +2,19 @@ package proyecto_daa.Entidades;
 
 import java.util.Date;
 
+import proyecto_daa.Nodos.NodoHorario;
+
 public class CitaMedica {
     private int idCita;
     private Paciente paciente;
     private Medico medico;
-    private String horaInicio;
-    private String horaFin;
+    private NodoHorario horario;
     private String estadoCita;
 
-    public CitaMedica(int idCita, Paciente paciente, Medico medico, String horaInicio, String horaFin, String estadoCita) {
-        this.idCita = idCita;
+    public CitaMedica(Paciente paciente, Medico medico, NodoHorario horario, String estadoCita) {
         this.paciente = paciente;
         this.medico = medico;
-        this.horaInicio = horaInicio;
-        this.horaFin = horaFin;
-        this.estadoCita = estadoCita;
+        this.horario = horario;
     }
 
     public int getIdCita() {
@@ -43,31 +41,15 @@ public class CitaMedica {
         this.medico = medico;
     }
 
-    public String getHoraInicio() {
-        return horaInicio;
+    public NodoHorario getHorario() {
+        return horario;
     }
 
-    public void setHoraInicio(String horaInicio) {
-        this.horaInicio = horaInicio;
-    }
-
-    public String getHoraFin() {
-        return horaFin;
-    }
-
-    public void setHoraFin(String horaFin) {
-        this.horaFin = horaFin;
-    }   
-
-    public String getEstadoCita() {
-        return estadoCita;
-    }   
-
-    public void setEstadoCita(String estadoCita) {
-        this.estadoCita = estadoCita;
+    public void setHorario(NodoHorario horario) {
+        this.horario = horario;
     }
 
     public String toString() {
-        return "idCita: " + idCita + ", paciente: " + paciente + ", medico: " + medico + ", horaInicio: " + horaInicio + ", horaFin: " + horaFin + ", estadoCita: " + estadoCita;
+        return "idCita: " + idCita + ", paciente: " + paciente + ", medico: " + medico + "horario" + horario + ", estadoCita: " + estadoCita;
     }
 }

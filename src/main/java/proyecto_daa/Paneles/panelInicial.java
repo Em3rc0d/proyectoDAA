@@ -6,19 +6,10 @@ import proyecto_daa.Entidades.Turno;
 import proyecto_daa.Gestionadores.*;
 
 public class panelInicial extends javax.swing.JFrame {
-
-    GestionadorPaciente arbolPaciente;
-    GestionadorMedico arbolMedico;
     
     public panelInicial() {
-        arbolPaciente = new GestionadorPaciente();
-        arbolMedico = new GestionadorMedico();
         initComponents();
         setLocationRelativeTo(null);
-        Paciente paciente = new Paciente( "Farid", "Perez", 123456789);
-        arbolPaciente.insertarPaciente(paciente);
-        arbolMedico.insertarMedico("Luis", "Perez", 123456789, 123456789, "Cardiologo", new Turno("Manana"), null);
-        
     }
     
     /**

@@ -178,7 +178,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         String turno = cbTurno.getSelectedItem().toString();
         Turno turno2 = new Turno(turno);
         
-        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, turno2, null);
+        arbolMedico.insertarMedico(nombre, apellido, numTel, numTel, especialidad, turno2);
         
         try {
             ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
@@ -225,7 +225,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                // new panelRegistrarMedico().setVisible(true);
+                new panelRegistrarMedico().setVisible(true);
             }
         });
     }

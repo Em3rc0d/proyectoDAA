@@ -2,22 +2,26 @@ package proyecto_daa.Entidades;
 
 import java.io.Serializable;
 
-public class Medico extends Usuario implements Serializable{
+import proyecto_daa.Horarios.ListaHorarios;
+
+public class Medico extends Usuario implements Serializable {
+    private static int contadorMedico = 0; // Contador para asignar el idPaciente
     private int idMedico;
     private String especialidad;
     private Turno turno;
-    private int horarioDisponible[] ;
+    private ListaHorarios listaHorarios;
 
-    public Medico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno, int horarioDisponible[]) {
+    public Medico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno) {
         super(nombre, apellido, numTelefono);
         this.idMedico = idMedico;
         this.especialidad = especialidad;
         this.turno = turno;
-        this.horarioDisponible = horarioDisponible;
+        this.listaHorarios = new ListaHorarios(turno.getCategoria());
+        this.idMedico = ++contadorMedico;
     }
 
-    public String toString() {
-        return super.toString() + ", idMedico: " + idMedico + ", especialidad: " + especialidad + ", turno: " + turno + ", horarioDisponible: " + horarioDisponible;
+    public ListaHorarios getListaHorarios() {
+        return listaHorarios;
     }
 
     public int getIdMedico() {
@@ -32,10 +36,6 @@ public class Medico extends Usuario implements Serializable{
         return turno;
     }
 
-    public int[] getHorarioDisponible() {
-        return horarioDisponible;
-    }
-
     public void setIdMedico(int idMedico) {
         this.idMedico = idMedico;
     }
@@ -48,8 +48,8 @@ public class Medico extends Usuario implements Serializable{
         this.turno = turno;
     }
 
-    public void setHorarioDisponible(int[] horarioDisponible) {
-        this.horarioDisponible = horarioDisponible;
+    @Override
+    public String toString() {
+        return super.toString() + ", idMedico: " + idMedico + ", especialidad: " + especialidad + ", turno: " + turno;
     }
-
 }

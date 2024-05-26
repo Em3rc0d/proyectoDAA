@@ -1,13 +1,17 @@
 package proyecto_daa.Paneles;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
+import javax.swing.JLabel;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.Turno;
 import proyecto_daa.Gestionadores.*;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
+import proyecto_daa.Nodos.NodoHorario;
 
 public class panelRegistrarCita extends javax.swing.JFrame {
 
@@ -22,9 +26,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
 
-        // cbMedico.removeAllItems();
         agregarMedicosALista();
-        // cbPaciente.removeAllItems();
         agregarPacientesALista();
         cbHorarioD.removeAllItems();
     }
@@ -218,45 +220,59 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     private void btnRegCitaActionPerformed(java.awt.event.ActionEvent evt) {
         // Obtener el objeto seleccionado del JComboBox
-        Object selectedPaciente = cbPaciente.getSelectedItem();
-        Object selectedMedico = cbMedico.getSelectedItem();
-        String selectedHorario = cbHorarioD.getSelectedItem().toString();
+        int idPaciente = obtenerIdPacienteSeleccionado();
+        Paciente paciente = arbolPaciente.buscarPacientePorId(idPaciente);
+        System.out.println(paciente);
 
-        if (selectedPaciente == null || selectedMedico == null || selectedHorario == null) {
-            // Manejar el caso en que uno de los objetos no este seleccionado
-            System.out.println("Uno o más objetos no han sido seleccionados.");
-            return;
-        }
+        int idMedico = obtenerIdMedicoSeleccionado();
+        Medico medico = arbolMedico.obtenerMedicoPorId(idMedico);
+        System.out.println(medico);
 
-        // Verificar si los objetos seleccionados son del tipo esperado
-        if (!(selectedPaciente instanceof Paciente) || !(selectedMedico instanceof Medico) || !(selectedHorario instanceof String)) {
-            // Manejar el caso en que uno de los objetos no sea del tipo esperado
-            System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
-            return;
-        }
+        int i = cbHorarioD.getSelectedIndex();
+        NodoHorario horarioSeleccionado = medico.getListaHorarios().seleccionarHorariosDisponibles(i);
+        System.out.println(horarioSeleccionado);
 
-        // Obtener los objetos seleccionados
-        if (selectedPaciente instanceof Paciente && selectedMedico instanceof Medico) {
-            Paciente paciente = (Paciente) selectedPaciente;
-            Medico medico = (Medico) selectedMedico;
-            String horario = selectedHorario.toString();
-            String[] partes = horario.split(" - ");
-            String horaInicio = partes[0]; 
-            String horaFin = partes[1];  
+
+
+        // Object selectedPaciente = cbPaciente.getSelectedItem();
+        // Object selectedMedico = cbMedico.getSelectedItem();
+        // String selectedHorario = cbHorarioD.getSelectedItem().toString();
+
+        // if (selectedPaciente == null || selectedMedico == null || selectedHorario == null) {
+        //     // Manejar el caso en que uno de los objetos no este seleccionado
+        //     System.out.println("Uno o más objetos no han sido seleccionados.");
+        //     return;
+        // }
+
+        // // Verificar si los objetos seleccionados son del tipo esperado
+        // if (!(selectedPaciente instanceof Paciente) || !(selectedMedico instanceof Medico) || !(selectedHorario instanceof String)) {
+        //     // Manejar el caso en que uno de los objetos no sea del tipo esperado
+        //     System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
+        //     return;
+        // }
+
+        // // Obtener los objetos seleccionados
+        // if (selectedPaciente instanceof Paciente && selectedMedico instanceof Medico) {
+        //     Paciente paciente = (Paciente) selectedPaciente;
+        //     Medico medico = (Medico) selectedMedico;
+        //     String horario = selectedHorario.toString();
+        //     String[] partes = horario.split(" - ");
+        //     String horaInicio = partes[0]; 
+        //     String horaFin = partes[1];  
             
-            int idCita;
-            if (arbolCita.raiz == null) {
-                idCita = 1;
-            } else {
-                idCita = arbolCita.raiz.CitaMedica.getIdCita() + 1;
-            }
+        //     int idCita;
+        //     if (arbolCita.raiz == null) {
+        //         idCita = 1;
+        //     } else {
+        //         idCita = arbolCita.raiz.CitaMedica.getIdCita() + 1;
+        //     }
     
-            // Insertar la nueva cita médica
-            arbolCita.insertarCitaMedica(idCita, paciente, medico, horaInicio, horaFin, "Pendiente");
-        } else {
-            // Manejar el caso en que uno de los objetos no sea del tipo esperado
-            System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
-        }
+        //     // Insertar la nueva cita médica
+        //     arbolCita.insertarCitaMedica(idCita, paciente, medico, horaInicio, horaFin, "Pendiente");
+        // } else {
+        //     // Manejar el caso en que uno de los objetos no sea del tipo esperado
+        //     System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
+        // }
     }
         
     private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
@@ -283,45 +299,68 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     }//GEN-LAST:event_cbPacienteActionPerformed
 
     private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {
-        // Obtener el médico seleccionado del JComboBox
-        Object selectedMedicoObj = cbMedico.getSelectedItem();
-        if (selectedMedicoObj != null) {
-            String selectedMedico = selectedMedicoObj.toString();
-            System.out.println("Medico seleccionado: " + selectedMedico);
-            // Encontrar el índice del primer guion ("-")
-            int primerGuionIndex = selectedMedico.indexOf('-');
+        cbHorarioD.removeAllItems();
+        int idMedico = obtenerIdMedicoSeleccionado();
+        Medico medico = arbolMedico.obtenerMedicoPorId(idMedico);
+        System.out.println(medico);
 
-            // Encontrar el índice del segundo guion ("-"), comenzando desde el índice después del primer guion
-            int segundoGuionIndex = selectedMedico.indexOf('-', primerGuionIndex + 1);
-
-            // Obtener el turno del médico
-            String turno = selectedMedico.substring(segundoGuionIndex + 1).trim();
-            cbHorarioD.removeAllItems();
-            System.out.println("Turno: " + turno);
-            if(turno.equals("Mañana")){
-                cbHorarioD.addItem("8:00 - 8:30");
-                cbHorarioD.addItem("8:30 - 9:00");
-                cbHorarioD.addItem("9:00 - 9:30");
-                cbHorarioD.addItem("9:30 - 10:00");
-                cbHorarioD.addItem("10:00 - 10:30");
-                cbHorarioD.addItem("10:30 - 11:00");
-                cbHorarioD.addItem("11:00 - 11:30");
-                cbHorarioD.addItem("11:30 - 12:00");
-            }else if(turno.equals("Tarde")){
-                cbHorarioD.addItem("14:00 - 14:30");
-                cbHorarioD.addItem("14:30 - 15:00");
-                cbHorarioD.addItem("15:00 - 15:30");
-                cbHorarioD.addItem("15:30 - 16:00");
-                cbHorarioD.addItem("16:00 - 16:30");
-                cbHorarioD.addItem("16:30 - 17:00");
-                cbHorarioD.addItem("17:00 - 17:30");
-                cbHorarioD.addItem("17:30 - 18:00");
-            }
+        if (medico == null) {
+            cbHorarioD.addItem("Seleccione un médico");
         } else {
-            System.out.println("No se ha seleccionado ningún médico.");
+            NodoHorario actual = medico.getListaHorarios().getCabeza();
+            int i = 0;
+            while (actual != null) {
+                String horario = actual.getHoraInicio() + " - " + actual.getHoraFin();
+                if (actual.isDisponible()) {
+                    cbHorarioD.addItem(horario);
+                }
+                actual = actual.getSiguiente();
+            }
         }
+        
+        //comboBoxModel.getElementAt(1).setEnabled(false);
+
+        // // Obtener el médico seleccionado del JComboBox
+        // Object selectedMedicoObj = cbMedico.getSelectedItem();
+        // System.out.println(selectedMedicoObj);
+        // if (selectedMedicoObj != null) {
+        //     String selectedMedico = selectedMedicoObj.toString();
+        //     System.out.println("Medico seleccionado: " + selectedMedico);
+        //     // Encontrar el índice del primer guion ("-")
+        //     int primerGuionIndex = selectedMedico.indexOf('-');
+
+        //     // Encontrar el índice del segundo guion ("-"), comenzando desde el índice después del primer guion
+        //     int segundoGuionIndex = selectedMedico.indexOf('-', primerGuionIndex + 1);
+
+        //     // Obtener el turno del médico
+        //     String turno = selectedMedico.substring(segundoGuionIndex + 1).trim();
+        //     cbHorarioD.removeAllItems();
+        //     System.out.println("Turno: " + turno);
+        //     if(turno.equals("Mañana")){
+        //         cbHorarioD.addItem("8:00 - 8:30");
+        //         cbHorarioD.addItem("8:30 - 9:00");
+        //         cbHorarioD.addItem("9:00 - 9:30");
+        //         cbHorarioD.addItem("9:30 - 10:00");
+        //         cbHorarioD.addItem("10:00 - 10:30");
+        //         cbHorarioD.addItem("10:30 - 11:00");
+        //         cbHorarioD.addItem("11:00 - 11:30");
+        //         cbHorarioD.addItem("11:30 - 12:00");
+        //     }else if(turno.equals("Tarde")){
+        //         cbHorarioD.addItem("14:00 - 14:30");
+        //         cbHorarioD.addItem("14:30 - 15:00");
+        //         cbHorarioD.addItem("15:00 - 15:30");
+        //         cbHorarioD.addItem("15:30 - 16:00");
+        //         cbHorarioD.addItem("16:00 - 16:30");
+        //         cbHorarioD.addItem("16:30 - 17:00");
+        //         cbHorarioD.addItem("17:00 - 17:30");
+        //         cbHorarioD.addItem("17:30 - 18:00");
+        //     }
+        // } else {
+        //     System.out.println("No se ha seleccionado ningún médico.");
+        // }
 
     }
+
     //agregao
     public void agregarPacientesALista() {
         // Limpiar los elementos existentes en el JComboBox
@@ -332,10 +371,11 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             // Agregar cada paciente (solo nombre y apellido) al JComboBox
             for (Paciente paciente : listaPacientes) {
                 try {
+                    int idPaciente = paciente.getIdPaciente();
                     String nombre = paciente.getNombre();
                     String apellido = paciente.getApellido();
                     // Agregar el nombre y apellido al JComboBox
-                    cbPaciente.addItem(nombre + " " + apellido);
+                    cbPaciente.addItem(idPaciente + " " + nombre + " " + apellido);
                 } catch (Exception e) {
                     System.out.println("Error parsing paciente: " + paciente);
                     e.printStackTrace();
@@ -343,6 +383,43 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             }
         }
     }
+
+//IDS DE PACIENTE
+    private int obtenerIdPacienteSeleccionado() {
+        // Obtener el objeto seleccionado del JComboBox
+        Object selectedPaciente = cbPaciente.getSelectedItem();
+    
+        // Verificar si el objeto seleccionado es del tipo esperado
+        if (selectedPaciente instanceof String) {
+            // Obtener el idPaciente del String seleccionado en el formato "idPaciente Nombre Apellido"
+            String selectedPacienteString = (String) selectedPaciente;
+            int idPaciente = Integer.parseInt(selectedPacienteString.split(" ")[0]);
+            return idPaciente;
+        } else {
+            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
+            System.out.println("El objeto seleccionado no es del tipo esperado.");
+            return -1; // Retornar un valor predeterminado en caso de error
+        }
+    }
+
+    private int obtenerIdMedicoSeleccionado() {
+        // Obtener el objeto seleccionado del JComboBox
+        Object selectedMedico = cbMedico.getSelectedItem();
+    
+        // Verificar si el objeto seleccionado es del tipo esperado
+        if (selectedMedico instanceof String) {
+            // Obtener el idMedico del String seleccionado en el formato "idMedico Nombre Apellido"
+            String selectedMedicoString = (String) selectedMedico;
+            int idMedico = Integer.parseInt(selectedMedicoString.split(" ")[0]);
+            return idMedico;
+        } else {
+            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
+            System.out.println("El objeto seleccionado no es del tipo esperado.");
+            return -1; // Retornar un valor predeterminado en caso de error
+        }
+    }
+    
+
     public void agregarMedicosALista() {
         // Limpiar los elementos existentes en el JComboBox
         cbMedico.removeAllItems();
@@ -354,12 +431,13 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
             for (Medico medico : listaMedicos) {
                 try {
+                    int idMedico = medico.getIdMedico();
                     String nombre = medico.getNombre();
                     String apellido = medico.getApellido();
                     String especialidad = medico.getEspecialidad();
                     String turno = medico.getTurno().getCategoria();
                     // Agregar el nombre, apellido y especialidad al JComboBox
-                    cbMedico.addItem(nombre + " " + apellido + " - " + especialidad + " - " + turno);
+                    cbMedico.addItem(idMedico + " " + nombre + " " + apellido + " - " + especialidad + " - " + turno);
                 } catch (Exception e) {
                     System.out.println("Error parsing medico: " + medico);
                     e.printStackTrace();

@@ -57,4 +57,25 @@ public class GestionadorPaciente implements Serializable {
             agregarPacientesALista(nodo.derecha, pacientes);
         }
     }
+
+    public Paciente buscarPacientePorId(int idPaciente) {
+        return buscarPacientePorIdRecursivo(raiz, idPaciente);
+    }
+    
+    private Paciente buscarPacientePorIdRecursivo(NodoPaciente nodo, int idPaciente) {
+        if (nodo == null) {
+            return null; // El paciente no se encontró en el árbol
+        }
+    
+        if (nodo.paciente.getIdPaciente() == idPaciente) {
+            return nodo.paciente; // Se encontró al paciente con el Id buscado
+        } else if (idPaciente < nodo.paciente.getIdPaciente()) {
+            // El Id buscado es menor, buscar en el subárbol izquierdo
+            return buscarPacientePorIdRecursivo(nodo.izquierda, idPaciente);
+        } else {
+            // El Id buscado es mayor, buscar en el subárbol derecho
+            return buscarPacientePorIdRecursivo(nodo.derecha, idPaciente);
+        }
+    }
+    
 }
