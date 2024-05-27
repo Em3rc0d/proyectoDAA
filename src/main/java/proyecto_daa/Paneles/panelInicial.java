@@ -104,14 +104,14 @@ public class panelInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMedicoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMedicoActionPerformed
-
-        new panelMedico().setVisible(true);
+        //new panelMedico().setVisible(true);
+        new panelLoginMedico().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnMedicoActionPerformed
 
     private void btnPacienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPacienteActionPerformed
-
-        new panelPaciente().setVisible(true);
+    //new panelPaciente().setVisible(true);
+        new panelLoginPaciente().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnPacienteActionPerformed
     

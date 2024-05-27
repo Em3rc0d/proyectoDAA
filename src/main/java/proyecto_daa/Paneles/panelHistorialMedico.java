@@ -217,9 +217,9 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
     
         // Mostrar el formulario para registrar un nuevo paciente
         System.out.println(arbolPaciente.listarPacientes());
-        new panelRegistrarPaciente().setVisible(true);
+        new panelLoginPaciente().setVisible(true);
     }
-    //GEN-LAST:event_btnRegistrarActionPerformed
+                                                
 
     /**
      * @param args the command line arguments

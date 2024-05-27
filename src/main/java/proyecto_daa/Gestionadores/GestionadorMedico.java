@@ -15,8 +15,8 @@ public class GestionadorMedico implements Serializable {
         this.raiz = null;
     }
 
-    public void insertarMedico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno) {
-        Medico m = new Medico(nombre, apellido, numTelefono, idMedico, especialidad, turno);
+    public void insertarMedico(String nombre, String apellido, int numTelefono, String contrasenia, String especialidad, Turno turno) {
+        Medico m = new Medico(nombre, apellido, numTelefono, contrasenia, especialidad, turno);
         raiz = insertarRecursivo(raiz, m);
     }
 

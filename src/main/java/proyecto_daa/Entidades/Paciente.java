@@ -7,9 +7,9 @@ public class Paciente extends Usuario implements Serializable{
     private int idPaciente;
     private HistorialMedico historialMedico;
 
-    public Paciente(String nombre, String apellido, int numTelefono) {
-        super(nombre, apellido, numTelefono);
-        this.idPaciente = ++contadorPacientes; // Asignar idPaciente y aumentar el contador
+    public Paciente(String nombre, String apellido, int numTelefono, String contrasenia) {
+        super(nombre, apellido, numTelefono, contrasenia);
+        this.idPaciente = GeneradorID.getNextPacienteId();
     }
 
     public Paciente() {

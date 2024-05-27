@@ -21,7 +21,6 @@ public class panelMedico extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        btnRegistrarMedico = new javax.swing.JButton();
         btnCitasPendientes = new javax.swing.JButton();
         btnBack = new javax.swing.JButton();
 
@@ -32,13 +31,6 @@ public class panelMedico extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Menú Médico");
-
-        btnRegistrarMedico.setText("Registrar");
-        btnRegistrarMedico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarMedicoActionPerformed(evt);
-            }
-        });
 
         btnCitasPendientes.setText("Visualizar Citas Pendientes");
         btnCitasPendientes.addActionListener(new java.awt.event.ActionListener() {
@@ -58,20 +50,16 @@ public class panelMedico extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 373, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(144, 144, 144)
-                        .addComponent(btnBack))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(142, 142, 142)
-                        .addComponent(btnRegistrarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(143, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(btnCitasPendientes)
-                .addGap(99, 99, 99))
+                        .addGap(39, 39, 39)
+                        .addComponent(btnBack)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btnCitasPendientes, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addGap(101, 101, 101))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -79,12 +67,10 @@ public class panelMedico extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addComponent(jLabel1)
                 .addGap(39, 39, 39)
-                .addComponent(btnRegistrarMedico)
-                .addGap(38, 38, 38)
                 .addComponent(btnCitasPendientes)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18))
+                .addGap(79, 79, 79))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -165,7 +151,6 @@ public class panelMedico extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnCitasPendientes;
-    private javax.swing.JButton btnRegistrarMedico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
