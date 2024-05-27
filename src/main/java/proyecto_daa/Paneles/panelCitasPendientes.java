@@ -4,6 +4,8 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.*;
+
 
 /**
  *
@@ -11,9 +13,9 @@ package proyecto_daa.Paneles;
  */
 public class panelCitasPendientes extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelMedico
-     */
+    GestionadorMedico arbolMedico;
+    GestionadorPaciente arbolPaciente;
+    
     public panelCitasPendientes() {
         initComponents();
         setLocationRelativeTo(null);
@@ -156,7 +158,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelCitasPendientes().setVisible(true);
+                // new panelCitasPendientes().setVisible(true);
             }
         });
     }

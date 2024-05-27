@@ -1,15 +1,17 @@
 package proyecto_daa.Paneles;
 
-public class panelInicial extends javax.swing.JFrame {
+import proyecto_daa.Entidades.Medico;
+import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Entidades.Turno;
+import proyecto_daa.Gestionadores.*;
 
-    /**
-     * Creates new form panelInicial
-     */
+public class panelInicial extends javax.swing.JFrame {
+    
     public panelInicial() {
         initComponents();
         setLocationRelativeTo(null);
     }
-
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

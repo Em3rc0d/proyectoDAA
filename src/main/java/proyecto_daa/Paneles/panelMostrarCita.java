@@ -4,15 +4,16 @@
  */
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Gestionadores.*;
 /**
  *
  * @author farid
  */
 public class panelMostrarCita extends javax.swing.JFrame {
 
-    /**
-     * Creates new form panelMostrarCita
-     */
+    GestionadorPaciente arbolPaciente;
+    GestionadorMedico arbolMedico;
+    
     public panelMostrarCita() {
         initComponents();
         setLocationRelativeTo(null);
@@ -152,7 +153,7 @@ public class panelMostrarCita extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelMostrarCita().setVisible(true);
+                // new panelMostrarCita().setVisible(true);
             }
         });
     }

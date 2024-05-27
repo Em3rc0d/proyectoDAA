@@ -1,14 +1,17 @@
 package proyecto_daa.Nodos;
 
+import java.io.Serializable;
+
 import proyecto_daa.Entidades.Medico;
 
-public class NodoMedico {
+public class NodoMedico implements Serializable{
     public Medico medico;
-    public NodoMedico next;
-    
+    public NodoMedico izquierda, derecha;
+
     public NodoMedico(Medico medico) {
         this.medico = medico;
-        this.next = null;
+        this.izquierda = null;
+        this.derecha = null;
     }
     
     @Override

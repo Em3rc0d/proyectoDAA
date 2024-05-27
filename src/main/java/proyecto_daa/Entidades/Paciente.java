@@ -1,6 +1,10 @@
 package proyecto_daa.Entidades;
 
-public class Paciente extends Usuario{
+import java.io.Serializable;
+
+public class Paciente extends Usuario implements Serializable{
+    private static int contadorPacientes = 0; // Contador para asignar el idPaciente
+    private int idPaciente;
     private HistorialMedico historialMedico;
 
     public Paciente(String nombre, String apellido, int numTelefono, String contrasenia) {
@@ -25,8 +29,9 @@ public class Paciente extends Usuario{
     public HistorialMedico getHistorialMedico() {
         return historialMedico;
     }
+
     @Override
     public String toString() {
-        return super.toString() + ", historialMedico=" + historialMedico;
+        return super.toString() + ", idPaciente=" + idPaciente + ", historialMedico=" + historialMedico;
     }
 }

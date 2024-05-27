@@ -1,14 +1,9 @@
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
-import proyecto_daa.Gestionadores.GestionadorPaciente;
-import proyecto_daa.Nodos.NodoPaciente;
+import proyecto_daa.Gestionadores.*;
 
 public class panelRegistrarPaciente extends javax.swing.JFrame {
-
-    GestionadorPaciente gp = new GestionadorPaciente();
-    NodoPaciente np;
 
     public panelRegistrarPaciente() {
         initComponents();

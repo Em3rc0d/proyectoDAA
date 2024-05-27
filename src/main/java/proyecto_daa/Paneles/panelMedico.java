@@ -1,10 +1,9 @@
 package proyecto_daa.Paneles;
 
-public class panelMedico extends javax.swing.JFrame {
+import proyecto_daa.Gestionadores.GestionadorMedico;
 
-    /**
-     * Creates new form panelMedico
-     */
+public class panelMedico extends javax.swing.JFrame {
+    
     public panelMedico() {
         initComponents();
         setLocationRelativeTo(null);
@@ -158,7 +157,7 @@ public class panelMedico extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new panelMedico().setVisible(true);
+                // new panelMedico().setVisible(true);
             }
         });
     }
