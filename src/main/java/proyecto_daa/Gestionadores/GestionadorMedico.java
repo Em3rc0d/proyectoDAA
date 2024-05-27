@@ -13,11 +13,18 @@ public class GestionadorMedico {
         this.tail = null;
     }
 
-    public void insertarMedico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno, int horarioDisponible[]) {
-        Medico m = new Medico(nombre, apellido, numTelefono, idMedico, especialidad, turno, horarioDisponible);
-        NodoMedico nm = new NodoMedico(m);
-        if(head == null) {
-            head = nm;
+    public void insertarMedico(String nombre, String apellido, int numTelefono, String contrasenia, String especialidad, Turno turno) {
+        Medico m = new Medico(nombre, apellido, numTelefono, contrasenia, especialidad, turno);
+        raiz = insertarRecursivo(raiz, m);
+    }
+
+    private NodoMedico insertarRecursivo(NodoMedico nodo, Medico medico) {
+        if (nodo == null) {
+            return new NodoMedico(medico);
+        }
+
+        if (medico.getApellido().compareTo(nodo.medico.getApellido()) < 0) {
+            nodo.izquierda = insertarRecursivo(nodo.izquierda, medico);
         } else {
             tail.next = nm;
         }

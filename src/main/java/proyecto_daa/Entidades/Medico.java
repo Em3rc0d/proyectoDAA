@@ -6,12 +6,12 @@ public class Medico extends Usuario{
     private Turno turno;
     private int horarioDisponible[] ;
 
-    public Medico(String nombre, String apellido, int numTelefono, int idMedico, String especialidad, Turno turno, int horarioDisponible[]) {
-        super(nombre, apellido, numTelefono);
-        this.idMedico = idMedico;
+    public Medico(String nombre, String apellido, int numTelefono, String contrasenia, String especialidad, Turno turno) {
+        super(nombre, apellido, numTelefono, contrasenia);
+        this.idMedico = GeneradorId.getNextMedicoId();
         this.especialidad = especialidad;
         this.turno = turno;
-        this.horarioDisponible = horarioDisponible;
+        this.listaHorarios = new ListaHorarios(turno.getCategoria());
     }
 
     public String toString() {
