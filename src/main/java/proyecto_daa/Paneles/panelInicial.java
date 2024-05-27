@@ -66,7 +66,7 @@ public class panelInicial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnPaciente)
                                 .addGap(77, 77, 77)
@@ -84,7 +84,7 @@ public class panelInicial extends javax.swing.JFrame {
                     .addComponent(btnMedico))
                 .addGap(18, 18, 18)
                 .addComponent(jLabel1)
-                .addGap(98, 98, 98))
+                .addGap(307, 307, 307))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
