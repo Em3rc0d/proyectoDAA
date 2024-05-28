@@ -17,7 +17,7 @@ import proyecto_daa.ManejadorAchivos.ManejoArchivos;
  * @author farid
  */
 public class panelLoginMedico extends javax.swing.JFrame {
-    GestionadorMedico gm = new GestionadorMedico();
+    GestionadorMedico arbolMedico = new GestionadorMedico();
 
     /**
      * Creates new form panelLoginMedico
@@ -25,7 +25,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
     public panelLoginMedico() {
         initComponents();
         setLocationRelativeTo(null);
-        gm = ManejoArchivos.cargarArbol("arbolMedicos.txt", gm);
+        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
     }
 
     /**
@@ -168,8 +168,8 @@ public class panelLoginMedico extends javax.swing.JFrame {
             int code = Integer.parseInt(codigo.getText()); // Obtener el código ingresado
             String password = contrasenia.getText(); // Obtener la contraseña ingresada
             // Buscar al paciente por el código
-            Medico medico = gm.obtenerMedicoPorId(code);
-            ManejoArchivos.cargarArbol("arbolMedicos.txt", gm);
+            Medico medico = arbolMedico.obtenerMedicoPorId(code);
+            ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
 
             if (medico != null) { // Si se encontró al paciente
                 if (medico.getContrasenia().equals(password)) { // Verificar la contraseña

@@ -15,12 +15,12 @@ import proyecto_daa.ManejadorAchivos.ManejoArchivos;
  */
 public class panelLoginPaciente extends javax.swing.JFrame {
 
-    GestionadorPaciente gp = new GestionadorPaciente();
+    GestionadorPaciente arbolPaciente = new GestionadorPaciente();
 
     public panelLoginPaciente() {
         initComponents();
         setLocationRelativeTo(null);
-        ManejoArchivos.cargarArbol("arbolpacientes.txt", gp);
+        arbolPaciente = ManejoArchivos.cargarArbol("arbolpacientes.txt", arbolPaciente);
     }
 
     /**
@@ -49,9 +49,9 @@ public class panelLoginPaciente extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(192, 206, 161));
 
-        jLabel1.setText("Código:");
+        jLabel1.setText("C�digo:");
 
-        jLabel2.setText("Contraseña: ");
+        jLabel2.setText("Contrase�a: ");
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(0, 0, 255));
-        btnRegistrar.setText("aquí");
+        btnRegistrar.setText("aqu�");
         btnRegistrar.setToolTipText("");
         btnRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegistrar.setBorderPainted(false);
@@ -104,12 +104,16 @@ public class panelLoginPaciente extends javax.swing.JFrame {
                                     .addComponent(contrasenia, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(codigo, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(50, 50, 50)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(142, 142, 142)
+                                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(jLabel3)
+                                        .addGap(46, 46, 46)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnRegistrar, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(btnRegistrar)))
                         .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
@@ -165,7 +169,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
             int code = Integer.parseInt(codigo.getText()); // Obtener el código ingresado
             String password = contrasenia.getText(); // Obtener la contraseña ingresada
             // Buscar al paciente por el código
-            Paciente paciente = gp.buscarPacientePorId(code);
+            Paciente paciente = arbolPaciente.buscarPacientePorId(code);
 
             if (paciente != null) { // Si se encontró al paciente
                 if (paciente.getContrasenia().equals(password)) { // Verificar la contraseña

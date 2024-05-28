@@ -5,7 +5,6 @@ import java.io.Serializable;
 import proyecto_daa.Horarios.ListaHorarios;
 
 public class Medico extends Usuario implements Serializable {
-    private static int contadorMedico = 0; // Contador para asignar el idPaciente
     private int idMedico;
     private String especialidad;
     private Turno turno;

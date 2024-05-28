@@ -1,7 +1,5 @@
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Gestionadores.GestionadorMedico;
-
 public class panelMedico extends javax.swing.JFrame {
     
     public panelMedico() {

@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
-import proyecto_daa.Gestionadores.GestionadorPaciente;
 
 public class ManejoArchivos {
 
@@ -38,20 +37,6 @@ public class ManejoArchivos {
 
     public static <T extends Serializable> T cargarArbol(String nombreArchivo, T arbolVacio) {
         T arbolCargado;
-        try {
-            arbolCargado = cargar(nombreArchivo);
-            if (arbolCargado == null) {
-                arbolCargado = arbolVacio;
-            }
-        } catch (IOException | ClassNotFoundException e) {
-            arbolCargado = arbolVacio;
-            e.printStackTrace();
-        }
-        return arbolCargado;
-    }
-
-    public static GestionadorPaciente cargarArbol(String nombreArchivo, GestionadorPaciente arbolVacio) {
-        GestionadorPaciente arbolCargado;
         try {
             arbolCargado = cargar(nombreArchivo);
             if (arbolCargado == null) {

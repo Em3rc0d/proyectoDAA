@@ -156,7 +156,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         String cadena = "";
         for (NodoCitaMedica nodo : resultados) {
             Paciente paciente = nodo.CitaMedica.getPaciente();
-            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horarios" + nodo.CitaMedica.getHorario() + "\n";
+            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horario: " + nodo.CitaMedica.getHorario() + "\n";
         }
         txtMedico.setText(cadena);
     }//GEN-LAST:event_btnShowActionPerformed

@@ -1,10 +1,5 @@
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Entidades.Medico;
-import proyecto_daa.Entidades.Paciente;
-import proyecto_daa.Entidades.Turno;
-import proyecto_daa.Gestionadores.*;
-
 public class panelInicial extends javax.swing.JFrame {
     
     public panelInicial() {
