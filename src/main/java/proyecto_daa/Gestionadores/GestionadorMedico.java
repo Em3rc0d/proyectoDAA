@@ -80,21 +80,44 @@ public class GestionadorMedico implements Serializable {
         }
     }
 
-    public Medico obtenerMedicoPorId(int idMedico) {
-        return obtenerRecursivoPorId(raiz, idMedico);
-    }
+    // public Medico obtenerMedicoPorId(int idMedico) {
+    //     return obtenerRecursivoPorId(raiz, idMedico);
+    // }
     
-    private Medico obtenerRecursivoPorId(NodoMedico nodo, int idMedico) {
+    // private Medico obtenerRecursivoPorId(NodoMedico nodo, int idMedico) {
+    //     if (nodo == null) {
+    //         return null;
+    //     }
+    //     if (idMedico == nodo.medico.getIdMedico()) {
+    //         return nodo.medico;
+    //     }
+    //     if (idMedico < nodo.medico.getIdMedico()) {
+    //         return obtenerRecursivoPorId(nodo.izquierda, idMedico);
+    //     }
+    //     return obtenerRecursivoPorId(nodo.derecha, idMedico);
+    // }    
+
+        //esto parece funcionar todo bien
+
+    public Medico obtenerMedicoPorId(int idMedico) {
+        return buscarMMedicoPorIdLineal(raiz, idMedico);
+    }
+
+    private Medico buscarMMedicoPorIdLineal(NodoMedico nodo, int idMedico) {
         if (nodo == null) {
             return null;
         }
-        if (idMedico == nodo.medico.getIdMedico()) {
+
+        if (nodo.medico.getIdMedico() == idMedico) {
             return nodo.medico;
         }
-        if (idMedico < nodo.medico.getIdMedico()) {
-            return obtenerRecursivoPorId(nodo.izquierda, idMedico);
+
+        Medico medicoIzquierda = buscarMMedicoPorIdLineal(nodo.izquierda, idMedico);
+        if (medicoIzquierda != null) {
+            return medicoIzquierda;
         }
-        return obtenerRecursivoPorId(nodo.derecha, idMedico);
-    }    
+
+        return buscarMMedicoPorIdLineal(nodo.derecha, idMedico);
+    }
 
 }

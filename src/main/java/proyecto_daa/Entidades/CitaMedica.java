@@ -5,7 +5,7 @@ import java.io.Serializable;
 import proyecto_daa.Nodos.NodoHorario;
 
 public class CitaMedica implements Serializable{
-    private static int contadorCita = 0;
+    
     private int idCita;
     private Paciente paciente;
     private Medico medico;
@@ -13,7 +13,7 @@ public class CitaMedica implements Serializable{
     private String estadoCita;
 
     public CitaMedica(Paciente paciente, Medico medico, NodoHorario horario, String estadoCita) {
-        this.idCita = ++contadorCita;
+        idCita = GeneradorID.getNextCitaId();
         this.paciente = paciente;
         this.medico = medico;
         this.horario = horario;

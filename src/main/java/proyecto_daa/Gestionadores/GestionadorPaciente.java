@@ -45,11 +45,13 @@ public class GestionadorPaciente implements Serializable {
             listarRecursivo(nodo.derecha, msj);
         }
     }
+    
     public List<Paciente> getListaPacientes() {
         List<Paciente> pacientes = new ArrayList<>();
         agregarPacientesALista(raiz, pacientes);
         return pacientes;
     }
+    
     private void agregarPacientesALista(NodoPaciente nodo, List<Paciente> pacientes) {
         if (nodo != null) {
             agregarPacientesALista(nodo.izquierda, pacientes);
@@ -58,24 +60,48 @@ public class GestionadorPaciente implements Serializable {
         }
     }
 
+//    public Paciente buscarPacientePorId(int idPaciente) {
+//        return buscarPacientePorIdRecursivo(raiz, idPaciente);
+//    }
+    
+//    private Paciente buscarPacientePorIdRecursivo(NodoPaciente nodo, int idPaciente) {
+//        if (nodo == null) {
+//            return null;
+//        }
+   
+//        if (nodo.paciente.getIdPaciente() == idPaciente) {
+//            return nodo.paciente; // Se encontró al paciente con el Id buscado
+//        } else if (idPaciente < nodo.paciente.getIdPaciente()) {
+//            // El Id buscado es menor, buscar en el subárbol izquierdo
+//            return buscarPacientePorIdRecursivo(nodo.izquierda, idPaciente);
+//        } else {
+//            // El Id buscado es mayor, buscar en el subárbol derecho
+//            return buscarPacientePorIdRecursivo(nodo.derecha, idPaciente);
+//        }
+//    }
+    
+    //esto parece funcionar todo bien
+
     public Paciente buscarPacientePorId(int idPaciente) {
-        return buscarPacientePorIdRecursivo(raiz, idPaciente);
+        return buscarPacientePorIdLineal(raiz, idPaciente);
     }
-    
-    private Paciente buscarPacientePorIdRecursivo(NodoPaciente nodo, int idPaciente) {
+
+    private Paciente buscarPacientePorIdLineal(NodoPaciente nodo, int idPaciente) {
         if (nodo == null) {
-            return null; // El paciente no se encontró en el árbol
+            return null;
         }
-    
+
         if (nodo.paciente.getIdPaciente() == idPaciente) {
-            return nodo.paciente; // Se encontró al paciente con el Id buscado
-        } else if (idPaciente < nodo.paciente.getIdPaciente()) {
-            // El Id buscado es menor, buscar en el subárbol izquierdo
-            return buscarPacientePorIdRecursivo(nodo.izquierda, idPaciente);
-        } else {
-            // El Id buscado es mayor, buscar en el subárbol derecho
-            return buscarPacientePorIdRecursivo(nodo.derecha, idPaciente);
+            return nodo.paciente;
         }
+
+        Paciente pacienteIzquierda = buscarPacientePorIdLineal(nodo.izquierda, idPaciente);
+        if (pacienteIzquierda != null) {
+            return pacienteIzquierda;
+        }
+
+        return buscarPacientePorIdLineal(nodo.derecha, idPaciente);
     }
+
     
 }
