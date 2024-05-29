@@ -27,7 +27,6 @@ public class panelPaciente extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        btnRegistrarUsuario = new javax.swing.JButton();
         btnRegistrarCita = new javax.swing.JButton();
         btnRevisarCita = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
@@ -36,13 +35,6 @@ public class panelPaciente extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(192, 206, 161));
-
-        btnRegistrarUsuario.setText("Registrarse");
-        btnRegistrarUsuario.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegistrarUsuarioActionPerformed(evt);
-            }
-        });
 
         btnRegistrarCita.setText("Registrar Cita");
         btnRegistrarCita.addActionListener(new java.awt.event.ActionListener() {
@@ -78,12 +70,11 @@ public class panelPaciente extends javax.swing.JFrame {
                         .addGap(138, 138, 138)
                         .addComponent(jLabel1))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(151, 151, 151)
+                        .addGap(150, 150, 150)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(btnRevisarCita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnRegistrarUsuario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(btnRegistrarCita, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(btnBack, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(141, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -91,15 +82,13 @@ public class panelPaciente extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(17, 17, 17)
                 .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
-                .addComponent(btnRegistrarUsuario)
-                .addGap(42, 42, 42)
+                .addGap(18, 18, 18)
                 .addComponent(btnRegistrarCita)
                 .addGap(46, 46, 46)
                 .addComponent(btnRevisarCita)
                 .addGap(32, 32, 32)
                 .addComponent(btnBack)
-                .addGap(18, 18, 18))
+                .addContainerGap(93, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -115,12 +104,6 @@ public class panelPaciente extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnRegistrarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarUsuarioActionPerformed
-        // TODO add your handling code here:
-        new panelRegistrarPaciente().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnRegistrarUsuarioActionPerformed
 
     private void btnRegistrarCitaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarCitaActionPerformed
         // TODO add your handling code here:
@@ -178,7 +161,6 @@ public class panelPaciente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRegistrarCita;
-    private javax.swing.JButton btnRegistrarUsuario;
     private javax.swing.JButton btnRevisarCita;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;

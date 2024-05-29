@@ -14,7 +14,6 @@ public abstract class Usuario implements Serializable{
         this.numTelefono = numTelefono;
         this.contrasenia = contrasenia;
     }
-
     public Usuario() {
     }
 
@@ -41,7 +40,6 @@ public abstract class Usuario implements Serializable{
     public void setNumTelefono(int numTelefono) {
         this.numTelefono = numTelefono;
     }
-
     public String getContrasenia() {
         return contrasenia;
     }
@@ -49,7 +47,6 @@ public abstract class Usuario implements Serializable{
     public void setContrasenia(String contrasenia) {
         this.contrasenia = contrasenia;
     }
-    
     @Override
     public String toString() {
         return "Usuario [nombre=" + nombre + ", apellido=" + apellido + ", numTelefono=" + numTelefono +  ", contrasenia=" + contrasenia +" ]";

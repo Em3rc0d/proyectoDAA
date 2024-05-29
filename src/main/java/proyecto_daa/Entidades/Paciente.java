@@ -9,7 +9,7 @@ public class Paciente extends Usuario implements Serializable{
 
     public Paciente(String nombre, String apellido, int numTelefono, String contrasenia) {
         super(nombre, apellido, numTelefono, contrasenia);
-        this.idPaciente = GeneradorId.getNextPacienteId();
+        this.idPaciente = GeneradorID.getNextPacienteId();
     }
 
     public Paciente() {

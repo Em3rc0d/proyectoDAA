@@ -26,7 +26,7 @@ public class panelInicial extends javax.swing.JFrame {
         btnPaciente = new javax.swing.JButton();
         btnMedico = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -50,8 +50,8 @@ public class panelInicial extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Bienvenido al Sistema del Hospital Cayetano Heredia");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/HCH.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/HCH.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -66,7 +66,7 @@ public class panelInicial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 223, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btnPaciente)
                                 .addGap(77, 77, 77)
@@ -82,9 +82,9 @@ public class panelInicial extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnPaciente)
                     .addComponent(btnMedico))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(307, 307, 307))
+                .addGap(26, 26, 26)
+                .addComponent(jLabel2)
+                .addGap(508, 508, 508))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -104,14 +104,13 @@ public class panelInicial extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMedicoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnMedicoActionPerformed
-
         //new panelMedico().setVisible(true);
         new panelLoginMedico().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnMedicoActionPerformed
 
     private void btnPacienteActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnPacienteActionPerformed
-        //new panelPaciente().setVisible(true);
+    //new panelPaciente().setVisible(true);
         new panelLoginPaciente().setVisible(true);
         setVisible(false);
     }// GEN-LAST:event_btnPacienteActionPerformed
@@ -127,7 +126,7 @@ public class panelInicial extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMedico;
     private javax.swing.JButton btnPaciente;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables

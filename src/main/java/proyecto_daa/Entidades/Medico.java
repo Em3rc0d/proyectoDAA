@@ -13,7 +13,7 @@ public class Medico extends Usuario implements Serializable {
 
     public Medico(String nombre, String apellido, int numTelefono, String contrasenia, String especialidad, Turno turno) {
         super(nombre, apellido, numTelefono, contrasenia);
-        this.idMedico = GeneradorId.getNextMedicoId();
+        this.idMedico = GeneradorID.getNextMedicoId();
         this.especialidad = especialidad;
         this.turno = turno;
         this.listaHorarios = new ListaHorarios(turno.getCategoria());

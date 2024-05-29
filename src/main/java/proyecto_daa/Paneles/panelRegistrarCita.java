@@ -1,14 +1,12 @@
 package proyecto_daa.Paneles;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.io.IOException;
 import java.util.List;
 
 import javax.swing.JLabel;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
-import proyecto_daa.Entidades.Turno;
 import proyecto_daa.Gestionadores.*;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 import proyecto_daa.Nodos.NodoHorario;
@@ -17,7 +15,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
     GestionadorPaciente arbolPaciente = new GestionadorPaciente();
     GestionadorMedico arbolMedico = new GestionadorMedico();
-    GestionadorCitaMedica arbolCita;
+    GestionadorCitaMedica arbolCita = new GestionadorCitaMedica();
     
     public panelRegistrarCita() {
         initComponents();
@@ -25,6 +23,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
+        arbolCita = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCita);
 
         agregarMedicosALista();
         agregarPacientesALista();
@@ -46,8 +45,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         cbPaciente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         cbMedico = new javax.swing.JComboBox<>();
-        btnRegPaciente = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         btnRegCita = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtDetalle = new javax.swing.JTextArea();
@@ -81,15 +78,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             }
         });
 
-        btnRegPaciente.setText("Registrar Paciente");
-        btnRegPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnRegPacienteActionPerformed(evt);
-            }
-        });
-
-        jLabel5.setText("Si no encuentra su nombre: ");
-
         btnRegCita.setText("Registro Cita");
         btnRegCita.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -108,7 +96,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
         jLabel4.setText("Horario Disponible:");
 
-        // cbHorarioD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbHorarioD.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         cbHorarioD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbHorarioDActionPerformed(evt);
@@ -132,14 +120,9 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 336, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(btnRegCita, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGap(85, 85, 85)
-                                .addComponent(btnRegPaciente))
+                            .addComponent(btnRegCita, javax.swing.GroupLayout.PREFERRED_SIZE, 148, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel6))
-                        .addGap(12, 12, 12)
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel3)
                     .addComponent(jLabel4)
@@ -183,20 +166,14 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                     .addComponent(cbHorarioD, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(btnRegPaciente))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnRegCita)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(15, 15, 15))))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -232,47 +209,19 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         NodoHorario horarioSeleccionado = medico.getListaHorarios().seleccionarHorariosDisponibles(i);
         System.out.println(horarioSeleccionado);
 
+        String descripcion = txtDetalle.getText();
 
+        arbolCita.insertarCitaMedica(paciente, medico, horarioSeleccionado, descripcion);
 
-        // Object selectedPaciente = cbPaciente.getSelectedItem();
-        // Object selectedMedico = cbMedico.getSelectedItem();
-        // String selectedHorario = cbHorarioD.getSelectedItem().toString();
-
-        // if (selectedPaciente == null || selectedMedico == null || selectedHorario == null) {
-        //     // Manejar el caso en que uno de los objetos no este seleccionado
-        //     System.out.println("Uno o más objetos no han sido seleccionados.");
-        //     return;
-        // }
-
-        // // Verificar si los objetos seleccionados son del tipo esperado
-        // if (!(selectedPaciente instanceof Paciente) || !(selectedMedico instanceof Medico) || !(selectedHorario instanceof String)) {
-        //     // Manejar el caso en que uno de los objetos no sea del tipo esperado
-        //     System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
-        //     return;
-        // }
-
-        // // Obtener los objetos seleccionados
-        // if (selectedPaciente instanceof Paciente && selectedMedico instanceof Medico) {
-        //     Paciente paciente = (Paciente) selectedPaciente;
-        //     Medico medico = (Medico) selectedMedico;
-        //     String horario = selectedHorario.toString();
-        //     String[] partes = horario.split(" - ");
-        //     String horaInicio = partes[0]; 
-        //     String horaFin = partes[1];  
-            
-        //     int idCita;
-        //     if (arbolCita.raiz == null) {
-        //         idCita = 1;
-        //     } else {
-        //         idCita = arbolCita.raiz.CitaMedica.getIdCita() + 1;
-        //     }
-    
-        //     // Insertar la nueva cita médica
-        //     arbolCita.insertarCitaMedica(idCita, paciente, medico, horaInicio, horaFin, "Pendiente");
-        // } else {
-        //     // Manejar el caso en que uno de los objetos no sea del tipo esperado
-        //     System.out.println("Uno o más objetos seleccionados no son del tipo esperado.");
-        // }
+        try {
+            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
+            ManejoArchivos.guardar("arbolCitas.txt", arbolCita);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println("AQUIVIENEEE!");
+        System.out.println(arbolCita.toString());
     }
         
     private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
@@ -317,48 +266,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                 actual = actual.getSiguiente();
             }
         }
-        
-        //comboBoxModel.getElementAt(1).setEnabled(false);
-
-        // // Obtener el médico seleccionado del JComboBox
-        // Object selectedMedicoObj = cbMedico.getSelectedItem();
-        // System.out.println(selectedMedicoObj);
-        // if (selectedMedicoObj != null) {
-        //     String selectedMedico = selectedMedicoObj.toString();
-        //     System.out.println("Medico seleccionado: " + selectedMedico);
-        //     // Encontrar el índice del primer guion ("-")
-        //     int primerGuionIndex = selectedMedico.indexOf('-');
-
-        //     // Encontrar el índice del segundo guion ("-"), comenzando desde el índice después del primer guion
-        //     int segundoGuionIndex = selectedMedico.indexOf('-', primerGuionIndex + 1);
-
-        //     // Obtener el turno del médico
-        //     String turno = selectedMedico.substring(segundoGuionIndex + 1).trim();
-        //     cbHorarioD.removeAllItems();
-        //     System.out.println("Turno: " + turno);
-        //     if(turno.equals("Mañana")){
-        //         cbHorarioD.addItem("8:00 - 8:30");
-        //         cbHorarioD.addItem("8:30 - 9:00");
-        //         cbHorarioD.addItem("9:00 - 9:30");
-        //         cbHorarioD.addItem("9:30 - 10:00");
-        //         cbHorarioD.addItem("10:00 - 10:30");
-        //         cbHorarioD.addItem("10:30 - 11:00");
-        //         cbHorarioD.addItem("11:00 - 11:30");
-        //         cbHorarioD.addItem("11:30 - 12:00");
-        //     }else if(turno.equals("Tarde")){
-        //         cbHorarioD.addItem("14:00 - 14:30");
-        //         cbHorarioD.addItem("14:30 - 15:00");
-        //         cbHorarioD.addItem("15:00 - 15:30");
-        //         cbHorarioD.addItem("15:30 - 16:00");
-        //         cbHorarioD.addItem("16:00 - 16:30");
-        //         cbHorarioD.addItem("16:30 - 17:00");
-        //         cbHorarioD.addItem("17:00 - 17:30");
-        //         cbHorarioD.addItem("17:30 - 18:00");
-        //     }
-        // } else {
-        //     System.out.println("No se ha seleccionado ningún médico.");
-        // }
-
     }
 
     //agregao
@@ -484,7 +391,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnRegCita;
-    private javax.swing.JButton btnRegPaciente;
     private javax.swing.JComboBox<String> cbHorarioD;
     private javax.swing.JComboBox<String> cbMedico;
     private javax.swing.JComboBox<String> cbPaciente;
@@ -492,7 +398,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;

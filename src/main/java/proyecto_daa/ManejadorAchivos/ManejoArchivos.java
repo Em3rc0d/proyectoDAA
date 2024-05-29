@@ -8,11 +8,12 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import proyecto_daa.Gestionadores.GestionadorPaciente;
 
 public class ManejoArchivos {
+
     public static <T extends Serializable> void guardar(String nombreArchivo, T objeto) throws IOException {
-        try (FileOutputStream archivo = new FileOutputStream(nombreArchivo);
-             ObjectOutputStream salida = new ObjectOutputStream(archivo)) {
+        try (FileOutputStream archivo = new FileOutputStream(nombreArchivo); ObjectOutputStream salida = new ObjectOutputStream(archivo)) {
             salida.writeObject(objeto);
         } catch (IOException e) {
             throw new IOException("Error al guardar el archivo: " + nombreArchivo, e);
@@ -48,4 +49,19 @@ public class ManejoArchivos {
         }
         return arbolCargado;
     }
+
+    public static GestionadorPaciente cargarArbol(String nombreArchivo, GestionadorPaciente arbolVacio) {
+        GestionadorPaciente arbolCargado;
+        try {
+            arbolCargado = cargar(nombreArchivo);
+            if (arbolCargado == null) {
+                arbolCargado = arbolVacio;
+            }
+        } catch (IOException | ClassNotFoundException e) {
+            arbolCargado = arbolVacio;
+            e.printStackTrace();
+        }
+        return arbolCargado;
+    }
+
 }
