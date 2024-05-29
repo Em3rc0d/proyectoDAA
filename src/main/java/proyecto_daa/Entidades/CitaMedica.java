@@ -1,5 +1,4 @@
 package proyecto_daa.Entidades;
-
 import java.io.Serializable;
 
 import proyecto_daa.Nodos.NodoHorario;

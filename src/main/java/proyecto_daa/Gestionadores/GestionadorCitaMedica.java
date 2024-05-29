@@ -71,21 +71,40 @@ public class GestionadorCitaMedica implements Serializable{
         buscarTodosPorIdMedicoRecursivo(raiz, idMedico, resultados);
         return resultados;
     }
-
+    
     private void buscarTodosPorIdMedicoRecursivo(NodoCitaMedica nodo, int idMedico, List<NodoCitaMedica> resultados) {
         if (nodo == null) {
             return;
         }
-        // Si el idMedico buscado es menor, no hay coincidencias en el subárbol izquierdo
-        if (idMedico < nodo.CitaMedica.getMedico().getIdMedico()) {
-            return;
-        }
-        // Si el idMedico buscado es igual, agregar el nodo actual a los resultados
-        if (idMedico == nodo.CitaMedica.getMedico().getIdMedico()) {
+
+        if (nodo.CitaMedica.getMedico().getIdMedico() == idMedico) {
             resultados.add(nodo);
         }
-        // Buscar en el subárbol derecho, ya que los nodos con el mismo idMedico están allí
+
+        buscarTodosPorIdMedicoRecursivo(nodo.izquierda, idMedico, resultados);
+
         buscarTodosPorIdMedicoRecursivo(nodo.derecha, idMedico, resultados);
+    }
+
+        
+    public List<NodoCitaMedica> buscarTodosPorPaciente(int idPaciente) {
+        List<NodoCitaMedica> resultados = new ArrayList<>();
+        buscarTodosPorPacienteRecursivo(raiz, idPaciente, resultados);
+        return resultados;
+    }
+
+    private void buscarTodosPorPacienteRecursivo(NodoCitaMedica nodo, int idPaciente, List<NodoCitaMedica> resultados) {
+        if (nodo == null) {
+            return;
+        }
+        // Verificar si el paciente de la cita coincide con el paciente buscado
+        if (nodo.CitaMedica.getPaciente().getIdPaciente() == idPaciente) {
+            resultados.add(nodo);
+        }
+        // Buscar en el subárbol izquierdo
+        buscarTodosPorPacienteRecursivo(nodo.izquierda, idPaciente, resultados);
+        // Buscar en el subárbol derecho
+        buscarTodosPorPacienteRecursivo(nodo.derecha, idPaciente, resultados);
     }
 
 }
