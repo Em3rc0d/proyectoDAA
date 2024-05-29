@@ -7,26 +7,31 @@ import javax.swing.JLabel;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Entidades.UsuarioActual;
 import proyecto_daa.Gestionadores.*;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 import proyecto_daa.Nodos.NodoHorario;
 
 public class panelRegistrarCita extends javax.swing.JFrame {
 
-    GestionadorPaciente arbolPaciente = new GestionadorPaciente();
     GestionadorMedico arbolMedico = new GestionadorMedico();
     GestionadorCitaMedica arbolCita = new GestionadorCitaMedica();
+    Paciente paciente;
     
     public panelRegistrarCita() {
         initComponents();
         setLocationRelativeTo(null);
 
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
         arbolCita = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCita);
 
+        UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
+        paciente = (Paciente) usuarioActual.getUsuarioActual();
+        
+        txtPacienteActual.setText(paciente.nombre + paciente.apellido + paciente.getIdPaciente());
+        
         agregarMedicosALista();
-        agregarPacientesALista();
+        //agregarPacientesALista();
         cbHorarioD.removeAllItems();
     }
 
@@ -42,7 +47,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbPaciente = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
         cbMedico = new javax.swing.JComboBox<>();
         btnRegCita = new javax.swing.JButton();
@@ -53,6 +57,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         cbHorarioD = new javax.swing.JComboBox<>();
         btnBack = new javax.swing.JButton();
+        txtPacienteActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,13 +66,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         jLabel1.setText("Registrar Cita");
 
         jLabel2.setText("Paciente:");
-
-        cbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPacienteActionPerformed(evt);
-            }
-        });
 
         jLabel3.setText("Medico:");
 
@@ -110,6 +108,8 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             }
         });
 
+        txtPacienteActual.setText("Paciente");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -129,18 +129,19 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                     .addComponent(jLabel2))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbPaciente, 0, 319, Short.MAX_VALUE)
-                    .addComponent(cbMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(cbHorarioD, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(71, 71, 71))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(166, 166, 166)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addContainerGap())
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtPacienteActual)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(cbMedico, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbHorarioD, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 280, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(71, 71, 71))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -152,10 +153,10 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(btnBack)))
-                .addGap(25, 25, 25)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPacienteActual))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -173,7 +174,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(33, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -196,10 +197,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     }
 
     private void btnRegCitaActionPerformed(java.awt.event.ActionEvent evt) {
-        // Obtener el objeto seleccionado del JComboBox
-        int idPaciente = obtenerIdPacienteSeleccionado();
-        Paciente paciente = arbolPaciente.buscarPacientePorId(idPaciente);
-        System.out.println(paciente);
 
         int idMedico = obtenerIdMedicoSeleccionado();
         Medico medico = arbolMedico.obtenerMedicoPorId(idMedico);
@@ -224,29 +221,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         System.out.println(arbolCita.toString());
     }
         
-    private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
-        // // TODO add your handling code here:
-        // cbPaciente.removeAllItems();
-        // String listaPacientes = arbolPaciente.listarPacientes();
-        // String[] pacientes = listaPacientes.split("\n");
-        // if (pacientes.length > 0 && !listaPacientes.isEmpty()) {
-        //     for (String paciente : pacientes) {
-        //         if (!paciente.trim().isEmpty()) {
-        //             try {
-        //                 String[] infoPaciente = paciente.split(", ");
-        //                 String nombre = infoPaciente[0].substring(infoPaciente[0].indexOf('=') + 1).trim();
-        //                 String apellido = infoPaciente[1].substring(infoPaciente[1].indexOf('=') + 1).trim();
-        //                 cbPaciente.addItem(nombre + " " + apellido);
-        //             } catch (Exception e) {
-        //                 System.out.println("Error al registrar el paciente: " + e.getMessage());
-        //             }
-        //         }
-        //     }
-        // }else{
-        //     cbPaciente.addItem("No hay pacientes registrados");
-        // }
-    }//GEN-LAST:event_cbPacienteActionPerformed
-
     private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {
         cbHorarioD.removeAllItems();
         int idMedico = obtenerIdMedicoSeleccionado();
@@ -269,45 +243,45 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     }
 
     //agregao
-    public void agregarPacientesALista() {
-        // Limpiar los elementos existentes en el JComboBox
-        cbPaciente.removeAllItems();
-        // Obtener la lista de pacientes como objetos Paciente  
-        List<Paciente> listaPacientes = arbolPaciente.getListaPacientes();
-        if (!listaPacientes.isEmpty()) {
-            // Agregar cada paciente (solo nombre y apellido) al JComboBox
-            for (Paciente paciente : listaPacientes) {
-                try {
-                    int idPaciente = paciente.getIdPaciente();
-                    String nombre = paciente.getNombre();
-                    String apellido = paciente.getApellido();
-                    // Agregar el nombre y apellido al JComboBox
-                    cbPaciente.addItem(idPaciente + " " + nombre + " " + apellido);
-                } catch (Exception e) {
-                    System.out.println("Error parsing paciente: " + paciente);
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+//    public void agregarPacientesALista() {
+//        // Limpiar los elementos existentes en el JComboBox
+//        cbPaciente.removeAllItems();
+//        // Obtener la lista de pacientes como objetos Paciente  
+//        List<Paciente> listaPacientes = arbolPaciente.getListaPacientes();
+//        if (!listaPacientes.isEmpty()) {
+//            // Agregar cada paciente (solo nombre y apellido) al JComboBox
+//            for (Paciente paciente : listaPacientes) {
+//                try {
+//                    int idPaciente = paciente.getIdPaciente();
+//                    String nombre = paciente.getNombre();
+//                    String apellido = paciente.getApellido();
+//                    // Agregar el nombre y apellido al JComboBox
+//                    cbPaciente.addItem(idPaciente + " " + nombre + " " + apellido);
+//                } catch (Exception e) {
+//                    System.out.println("Error parsing paciente: " + paciente);
+//                    e.printStackTrace();
+//                }
+//            }
+//        }
+//    }
 
 //IDS DE PACIENTE
-    private int obtenerIdPacienteSeleccionado() {
-        // Obtener el objeto seleccionado del JComboBox
-        Object selectedPaciente = cbPaciente.getSelectedItem();
-    
-        // Verificar si el objeto seleccionado es del tipo esperado
-        if (selectedPaciente instanceof String) {
-            // Obtener el idPaciente del String seleccionado en el formato "idPaciente Nombre Apellido"
-            String selectedPacienteString = (String) selectedPaciente;
-            int idPaciente = Integer.parseInt(selectedPacienteString.split(" ")[0]);
-            return idPaciente;
-        } else {
-            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
-            System.out.println("El objeto seleccionado no es del tipo esperado.");
-            return -1; // Retornar un valor predeterminado en caso de error
-        }
-    }
+//    private int obtenerIdPacienteSeleccionado() {
+//        // Obtener el objeto seleccionado del JComboBox
+//        Object selectedPaciente = cbPaciente.getSelectedItem();
+//    
+//        // Verificar si el objeto seleccionado es del tipo esperado
+//        if (selectedPaciente instanceof String) {
+//            // Obtener el idPaciente del String seleccionado en el formato "idPaciente Nombre Apellido"
+//            String selectedPacienteString = (String) selectedPaciente;
+//            int idPaciente = Integer.parseInt(selectedPacienteString.split(" ")[0]);
+//            return idPaciente;
+//        } else {
+//            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
+//            System.out.println("El objeto seleccionado no es del tipo esperado.");
+//            return -1; // Retornar un valor predeterminado en caso de error
+//        }
+//    }
 
     private int obtenerIdMedicoSeleccionado() {
         // Obtener el objeto seleccionado del JComboBox
@@ -393,7 +367,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     private javax.swing.JButton btnRegCita;
     private javax.swing.JComboBox<String> cbHorarioD;
     private javax.swing.JComboBox<String> cbMedico;
-    private javax.swing.JComboBox<String> cbPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -403,5 +376,6 @@ public class panelRegistrarCita extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtDetalle;
+    private javax.swing.JLabel txtPacienteActual;
     // End of variables declaration//GEN-END:variables
 }
