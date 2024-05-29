@@ -48,8 +48,9 @@
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
-                          <Component id="cbMedico" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="txtMedicoActual" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="77" max="-2" attributes="0"/>
                       </Group>
                       <Component id="jScrollPane1" pref="276" max="32767" attributes="0"/>
                       <Component id="jLabel1" max="32767" attributes="0"/>
@@ -71,10 +72,10 @@
                       <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnBack" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace max="32767" attributes="0"/>
+                  <EmptySpace pref="12" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbMedico" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="txtMedicoActual" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
@@ -125,24 +126,6 @@
             <Property name="text" type="java.lang.String" value="M&#xe9;dico:"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbMedico">
-          <Properties>
-            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="4">
-                <StringItem index="0" value="Item 1"/>
-                <StringItem index="1" value="Item 2"/>
-                <StringItem index="2" value="Item 3"/>
-                <StringItem index="3" value="Item 4"/>
-              </StringArray>
-            </Property>
-          </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbMedicoActionPerformed"/>
-          </Events>
-          <AuxValues>
-            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
-          </AuxValues>
-        </Component>
         <Component class="javax.swing.JButton" name="btnBack">
           <Properties>
             <Property name="text" type="java.lang.String" value="Retornar"/>
@@ -158,6 +141,11 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnShowActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JLabel" name="txtMedicoActual">
+          <Properties>
+            <Property name="text" type="java.lang.String" value="MedicoActual"/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>

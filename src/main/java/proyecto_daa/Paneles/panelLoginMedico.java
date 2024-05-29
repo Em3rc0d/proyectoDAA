@@ -8,7 +8,7 @@ package proyecto_daa.Paneles;
 import javax.swing.JOptionPane;
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
-
+import proyecto_daa.Entidades.UsuarioActual;
 import proyecto_daa.Gestionadores.GestionadorMedico;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
@@ -174,8 +174,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
             if (medico != null) { // Si se encontró al paciente
                 if (medico.getContrasenia().equals(password)) { // Verificar la contraseña
                     JOptionPane.showMessageDialog(null, "Bienvenido Dr. " + medico.getNombre());
-                    // Aquí deberías abrir el formulario correspondiente al panelPaciente
-                    // Por ejemplo:
+                    UsuarioActual.getInstance().setUsuarioActual(medico);
                     new panelMedico().setVisible(true);
                     setVisible(false);
                 } else {

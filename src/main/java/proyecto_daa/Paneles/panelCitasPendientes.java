@@ -7,6 +7,7 @@ package proyecto_daa.Paneles;
 import java.util.List;
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Entidades.UsuarioActual;
 import proyecto_daa.Gestionadores.*;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 import proyecto_daa.Nodos.NodoCitaMedica;
@@ -24,9 +25,10 @@ public class panelCitasPendientes extends javax.swing.JFrame {
     public panelCitasPendientes() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
+        //arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
         arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
-        agregarMedicosALista();
+        //agregarMedicosALista();
+        mostrarCitas();
     }
 
     /**
@@ -43,9 +45,9 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         txtMedico = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbMedico = new javax.swing.JComboBox<>();
         btnBack = new javax.swing.JButton();
         btnShow = new javax.swing.JButton();
+        txtMedicoActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -63,14 +65,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerifyInputWhenFocusTarget(false);
 
-        jLabel2.setText("M�dico:");
-
-        cbMedico.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbMedico.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbMedicoActionPerformed(evt);
-            }
-        });
+        jLabel2.setText("M�dico:");
 
         btnBack.setText("Retornar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -86,6 +81,8 @@ public class panelCitasPendientes extends javax.swing.JFrame {
             }
         });
 
+        txtMedicoActual.setText("MedicoActual");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -95,8 +92,9 @@ public class panelCitasPendientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addGap(41, 41, 41)
-                        .addComponent(cbMedico, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(txtMedicoActual)
+                        .addGap(77, 77, 77))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -112,10 +110,10 @@ public class panelCitasPendientes extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(btnBack))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbMedico, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMedicoActual))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -140,10 +138,6 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbMedicoActionPerformed
-        
-    }//GEN-LAST:event_cbMedicoActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         new panelMedico().setVisible(true);
@@ -151,61 +145,85 @@ public class panelCitasPendientes extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-        int idMedico = obtenerIdMedicoSeleccionado();
-        List<NodoCitaMedica> resultados = arbolCitaMedica.buscarTodosPorIdMedico(idMedico);
-        String cadena = "";
-        for (NodoCitaMedica nodo : resultados) {
-            Paciente paciente = nodo.CitaMedica.getPaciente();
-            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horario: " + nodo.CitaMedica.getHorario() + "\n";
-        }
-        txtMedico.setText(cadena);
+//        int idMedico = obtenerIdMedicoSeleccionado();
+//        List<NodoCitaMedica> resultados = arbolCitaMedica.buscarTodosPorIdMedico(idMedico);
+//        String cadena = "";
+//        for (NodoCitaMedica nodo : resultados) {
+//            Paciente paciente = nodo.CitaMedica.getPaciente();
+//            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horario: " + nodo.CitaMedica.getHorario() + "\n";
+//        }
+//        txtMedico.setText(cadena);
+
     }//GEN-LAST:event_btnShowActionPerformed
 
-    
-    public void agregarMedicosALista() {
-        // Limpiar los elementos existentes en el JComboBox
-        cbMedico.removeAllItems();
+    private void mostrarCitas(){
+        // Obtener el usuario actual desde el singleton
+        UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
+        Medico medico = (Medico) usuarioActual.getUsuarioActual();
 
-        // Obtener la lista de médicos como objetos Medico
-        List<Medico> listaMedicos = arbolMedico.getListaMedicos();
+        txtMedicoActual.setText(medico.nombre + " " + medico.apellido);
+        
+        // Obtener las citas pendientes del m�dico
+        List<NodoCitaMedica> citasPendientes = arbolCitaMedica.buscarTodosPorIdMedico(medico.getIdMedico());
 
-        if (!listaMedicos.isEmpty()) {
-            // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
-            for (Medico medico : listaMedicos) {
-                try {
-                    int idMedico = medico.getIdMedico();
-                    String nombre = medico.getNombre();
-                    String apellido = medico.getApellido();
-                    //String especialidad = medico.getEspecialidad();
-                    //String turno = medico.getTurno().getCategoria();
-                    // Agregar el nombre, apellido y especialidad al JComboBox
-                    cbMedico.addItem(idMedico + " " + nombre + " " + apellido); // + " - " + especialidad + " - " + turno);
-                } catch (Exception e) {
-                    System.out.println("Error parsing medico: " + medico);
-                    e.printStackTrace();
-                }
-            }
-        } else {
-            cbMedico.addItem("No contamos con médicos registrados");
+        StringBuilder cadena = new StringBuilder();
+        int i = 1;
+        for (NodoCitaMedica nodo : citasPendientes) {
+            Paciente paciente = nodo.CitaMedica.getPaciente();
+            cadena.append(i++ + ". " + "Paciente: ").append(paciente.getNombre())
+                    .append(" ").append(paciente.getApellido())
+                    .append(" - Horario: ").append(nodo.CitaMedica.getHorario())
+                    .append("\n");
         }
+        txtMedico.setText(cadena.toString());
     }
     
-    private int obtenerIdMedicoSeleccionado() {
-        // Obtener el objeto seleccionado del JComboBox
-        Object selectedMedico = cbMedico.getSelectedItem();
     
-        // Verificar si el objeto seleccionado es del tipo esperado
-        if (selectedMedico instanceof String) {
-            // Obtener el idMedico del String seleccionado en el formato "idMedico Nombre Apellido"
-            String selectedMedicoString = (String) selectedMedico;
-            int idMedico = Integer.parseInt(selectedMedicoString.split(" ")[0]);
-            return idMedico;
-        } else {
-            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
-            System.out.println("El objeto seleccionado no es del tipo esperado.");
-            return -1; // Retornar un valor predeterminado en caso de error
-        }
-    }
+    
+//    public void agregarMedicosALista() {
+//        // Limpiar los elementos existentes en el JComboBox
+//        cbMedico.removeAllItems();
+//
+//        // Obtener la lista de médicos como objetos Medico
+//        List<Medico> listaMedicos = arbolMedico.getListaMedicos();
+//
+//        if (!listaMedicos.isEmpty()) {
+//            // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
+//            for (Medico medico : listaMedicos) {
+//                try {
+//                    int idMedico = medico.getIdMedico();
+//                    String nombre = medico.getNombre();
+//                    String apellido = medico.getApellido();
+//                    //String especialidad = medico.getEspecialidad();
+//                    //String turno = medico.getTurno().getCategoria();
+//                    // Agregar el nombre, apellido y especialidad al JComboBox
+//                    cbMedico.addItem(idMedico + " " + nombre + " " + apellido); // + " - " + especialidad + " - " + turno);
+//                } catch (Exception e) {
+//                    System.out.println("Error parsing medico: " + medico);
+//                    e.printStackTrace();
+//                }
+//            }
+//        } else {
+//            cbMedico.addItem("No contamos con médicos registrados");
+//        }
+//    }
+    
+//    private int obtenerIdMedicoSeleccionado() {
+//        // Obtener el objeto seleccionado del JComboBox
+//        Object selectedMedico = cbMedico.getSelectedItem();
+//    
+//        // Verificar si el objeto seleccionado es del tipo esperado
+//        if (selectedMedico instanceof String) {
+//            // Obtener el idMedico del String seleccionado en el formato "idMedico Nombre Apellido"
+//            String selectedMedicoString = (String) selectedMedico;
+//            int idMedico = Integer.parseInt(selectedMedicoString.split(" ")[0]);
+//            return idMedico;
+//        } else {
+//            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
+//            System.out.println("El objeto seleccionado no es del tipo esperado.");
+//            return -1; // Retornar un valor predeterminado en caso de error
+//        }
+//    }
     
     /**
      * @param args the command line arguments
@@ -246,11 +264,11 @@ public class panelCitasPendientes extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnShow;
-    private javax.swing.JComboBox<String> cbMedico;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtMedico;
+    private javax.swing.JLabel txtMedicoActual;
     // End of variables declaration//GEN-END:variables
 }
