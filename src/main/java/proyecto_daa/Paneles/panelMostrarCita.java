@@ -4,19 +4,36 @@
  */
 package proyecto_daa.Paneles;
 
-import proyecto_daa.Gestionadores.*;
+import java.util.List;
+
+import proyecto_daa.Entidades.Medico;
+import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Entidades.UsuarioActual;
+import proyecto_daa.Gestionadores.GestionadorCitaMedica;
+import proyecto_daa.ManejadorAchivos.ManejoArchivos;
+import proyecto_daa.Nodos.NodoCitaMedica;
 /**
  *
  * @author farid
  */
 public class panelMostrarCita extends javax.swing.JFrame {
 
-    GestionadorPaciente arbolPaciente;
-    GestionadorMedico arbolMedico;
+    GestionadorCitaMedica arbolCitaMedica = new GestionadorCitaMedica();
+    Paciente paciente;
     
     public panelMostrarCita() {
         initComponents();
         setLocationRelativeTo(null);
+
+        arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
+
+        UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
+        paciente = (Paciente) usuarioActual.getUsuarioActual();
+        
+        txtPacienteActual.setText(paciente.nombre + " " + paciente.apellido + " " + paciente.getIdPaciente());
+        
+        mostrarCitas();
+
     }
 
     /**
@@ -31,10 +48,10 @@ public class panelMostrarCita extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        cbPaciente = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         txtCita = new javax.swing.JTextArea();
         btnBack = new javax.swing.JButton();
+        txtPacienteActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -45,15 +62,9 @@ public class panelMostrarCita extends javax.swing.JFrame {
 
         jLabel2.setText("Paciente:");
 
-        cbPaciente.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-        cbPaciente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbPacienteActionPerformed(evt);
-            }
-        });
-
         txtCita.setColumns(20);
         txtCita.setRows(5);
+        txtCita.setFocusable(false);
         jScrollPane1.setViewportView(txtCita);
 
         btnBack.setText("Retornar");
@@ -63,17 +74,19 @@ public class panelMostrarCita extends javax.swing.JFrame {
             }
         });
 
+        txtPacienteActual.setText("PacienteActual");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(38, 38, 38)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 191, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(135, 135, 135)
+                        .addComponent(txtPacienteActual))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 312, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(50, Short.MAX_VALUE))
             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -93,10 +106,10 @@ public class panelMostrarCita extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(cbPaciente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPacienteActual))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(31, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -113,15 +126,29 @@ public class panelMostrarCita extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbPacienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbPacienteActionPerformed
-
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         new panelPaciente().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
+
+    private void mostrarCitas(){
+        txtPacienteActual.setText(paciente.nombre + " " + paciente.apellido);
+        
+        List<NodoCitaMedica> citasPendientes = arbolCitaMedica.buscarTodosPorPaciente(paciente.getIdPaciente());
+
+        StringBuilder cadena = new StringBuilder();
+        int i = 1;
+        for (NodoCitaMedica nodo : citasPendientes) {
+            Medico medico = nodo.CitaMedica.getMedico();
+            System.out.println("ga" + medico);
+            cadena.append(i++ + ". " + "Medico: ").append(medico.getNombre())
+                    .append(" ").append(medico.getApellido())
+                    .append(" - Horario: ").append(nodo.CitaMedica.getHorario())
+                    .append("\n");
+        }
+        txtCita.setText(cadena.toString());
+    }
 
     /**
      * @param args the command line arguments
@@ -160,11 +187,11 @@ public class panelMostrarCita extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JComboBox<String> cbPaciente;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea txtCita;
+    private javax.swing.JLabel txtPacienteActual;
     // End of variables declaration//GEN-END:variables
 }
