@@ -3,6 +3,8 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.w3c.dom.Node;
+
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoPaciente;
 
@@ -32,19 +34,19 @@ public class GestionadorPaciente implements Serializable {
         return nodo;
     }
 
-    public String listarPacientes() {
-        StringBuilder msj = new StringBuilder();
-        listarRecursivo(raiz, msj);
-        return msj.toString();
-    }
-
-    private void listarRecursivo(NodoPaciente nodo, StringBuilder msj) {
-        if (nodo != null) {
-            listarRecursivo(nodo.izquierda, msj);
-            msj.append(nodo.paciente.toString()).append("\n");
-            listarRecursivo(nodo.derecha, msj);
-        }
-    }
+//    public String listarPacientes() {
+//        StringBuilder msj = new StringBuilder();
+//        listarRecursivo(raiz, msj);
+//        return msj.toString();
+//    }
+//
+//    private void listarRecursivo(NodoPaciente nodo, StringBuilder msj) {
+//        if (nodo != null) {
+//            listarRecursivo(nodo.izquierda, msj);
+//            msj.append(nodo.paciente.toString()).append("\n");
+//            listarRecursivo(nodo.derecha, msj);
+//        }
+//    }
     
     public List<Paciente> getListaPacientes() {
         List<Paciente> pacientes = new ArrayList<>();
@@ -83,25 +85,62 @@ public class GestionadorPaciente implements Serializable {
     //esto parece funcionar todo bien
 
     public Paciente buscarPacientePorId(int idPaciente) {
+        return buscarPacientePorIdLineal(raiz, idPaciente).paciente;
+    }
+
+    public NodoPaciente buscarPacientePorIdNodo(int idPaciente) {
         return buscarPacientePorIdLineal(raiz, idPaciente);
     }
 
-    private Paciente buscarPacientePorIdLineal(NodoPaciente nodo, int idPaciente) {
+    private NodoPaciente buscarPacientePorIdLineal(NodoPaciente nodo, int idPaciente) {
         if (nodo == null) {
             return null;
         }
 
         if (nodo.paciente.getIdPaciente() == idPaciente) {
-            return nodo.paciente;
+            return nodo;
         }
 
-        Paciente pacienteIzquierda = buscarPacientePorIdLineal(nodo.izquierda, idPaciente);
-        if (pacienteIzquierda != null) {
-            return pacienteIzquierda;
+        NodoPaciente nodoIzquierda = buscarPacientePorIdLineal(nodo.izquierda, idPaciente);
+        if (nodoIzquierda != null) {
+            return nodoIzquierda;
         }
 
         return buscarPacientePorIdLineal(nodo.derecha, idPaciente);
     }
 
-    
+    public void modificarPaciente(int idPaciente, Paciente paciente){
+        Paciente pacienteAModificar = buscarPacientePorId(idPaciente);
+        pacienteAModificar = paciente;
+    }
+
+    public void eliminarPaciente(int idPaciente){
+
+        NodoPaciente nodo = buscarPacientePorIdNodo(idPaciente);
+
+        if(nodo.izquierda == null && nodo.derecha == null)
+            nodo = null;
+        else if(nodo.izquierda == null || nodo.derecha == null){
+            if(nodo.izquierda==null)
+                nodo = nodo.derecha;
+            else
+                nodo = nodo.izquierda;
+        }else{
+            //dos hijos
+            NodoPaciente nodoDerecha = nodo.derecha;
+            nodo = nodo.izquierda;
+            NodoPaciente aux = nodo;
+            while(true){
+                if (nodo.derecha!=null)
+                    aux = nodoDerecha.derecha;
+                else{
+                    aux.derecha = nodoDerecha;
+                    break;
+                }
+                return;
+            }
+
+        }
+    }
+
 }
