@@ -21,7 +21,6 @@ public class panelInicial extends javax.swing.JFrame {
         btnPaciente = new javax.swing.JButton();
         btnMedico = new javax.swing.JButton();
         titulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
         btnAdmin = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -46,9 +45,6 @@ public class panelInicial extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Bienvenido al Sistema del Hospital Cayetano Heredia");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/HCH.jpg"))); // NOI18N
-        jLabel1.setText("jLabel1");
-
         btnAdmin.setText("Admin");
         btnAdmin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -66,10 +62,6 @@ public class panelInicial extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addComponent(titulo, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE)
                         .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 224, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(126, 126, 126))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addComponent(btnPaciente)
@@ -89,9 +81,7 @@ public class panelInicial extends javax.swing.JFrame {
                     .addComponent(btnPaciente)
                     .addComponent(btnMedico)
                     .addComponent(btnAdmin))
-                .addGap(18, 18, 18)
-                .addComponent(jLabel1)
-                .addGap(32, 32, 32))
+                .addGap(202, 202, 202))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -139,7 +129,6 @@ public class panelInicial extends javax.swing.JFrame {
     private javax.swing.JButton btnAdmin;
     private javax.swing.JButton btnMedico;
     private javax.swing.JButton btnPaciente;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titulo;
     // End of variables declaration//GEN-END:variables
