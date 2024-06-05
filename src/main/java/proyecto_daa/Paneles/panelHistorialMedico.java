@@ -57,8 +57,8 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
         txtAlergias = new javax.swing.JTextField();
         txtMedicamentos = new javax.swing.JTextField();
         txtTratAnteriores = new javax.swing.JTextField();
-        btnRegistrar = new javax.swing.JButton();
         jLabel8 = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,23 +82,15 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
 
         jLabel7.setText("Tratamientos Anteriores:");
 
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registrarHistorialMedico.png"))); // NOI18N
+        jLabel8.setText("jLabel8");
+
         btnRegistrar.setText("Registrar");
         btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                try {
-                    btnRegistrarActionPerformed(evt);
-                } catch (ClassNotFoundException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
+                btnRegistrarActionPerformed(evt);
             }
         });
-
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registrarHistorialMedico.png"))); // NOI18N
-        jLabel8.setText("jLabel8");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -132,7 +124,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
                         .addGap(36, 36, 36)
                         .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(219, 219, 219)
+                        .addGap(205, 205, 205)
                         .addComponent(btnRegistrar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -170,9 +162,9 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel7)
                             .addComponent(txtTratAnteriores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnRegistrar)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -189,7 +181,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) throws ClassNotFoundException, IOException {
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
         String tipoSangre = cbTipoSangre.getSelectedItem().toString();
         int contactoEmerg = Integer.parseInt(txtContacEmerg.getText());
         String antecedentesMedicos = txtAntecMedic.getText();
@@ -205,7 +197,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
     
         try {
             ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
-            System.out.println("�?rbol de pacientes guardado con éxito.");
+            System.out.println("�?rbol de pacientes guardado con éxito.");
         } catch (IOException e) {
             System.out.println("Error al guardar el árbol de pacientes.");
             e.printStackTrace();
@@ -218,8 +210,8 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
         // Mostrar el formulario para registrar un nuevo paciente
         //System.out.println(arbolPaciente.listarPacientes());
         new panelLoginPaciente().setVisible(true);
-    }
-                                                
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+                                               
 
     /**
      * @param args the command line arguments

@@ -89,7 +89,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
         jLabel6.setText("Detalle de Cita:");
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registroCita.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registroCita.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel4.setText("Horario Disponible:");

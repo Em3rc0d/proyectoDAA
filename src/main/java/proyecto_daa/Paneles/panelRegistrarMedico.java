@@ -72,7 +72,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registrarMedico.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registrarMedico.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel8.setText("Turno:");
