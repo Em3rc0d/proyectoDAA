@@ -1,8 +1,11 @@
 package proyecto_daa.Paneles;
 
+import java.io.IOException;
+
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.UsuarioActual;
+import proyecto_daa.Gestionadores.GestionadorCitaMedica;
 import proyecto_daa.Gestionadores.GestionadorPaciente;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
@@ -10,6 +13,7 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
 
     private Paciente pacienteActual;
     private GestionadorPaciente arbolPaciente;
+    private GestionadorCitaMedica arbolCitaMedica;
     
     public panelAdminPacienteModificar() {
         initComponents();
@@ -18,6 +22,8 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
         llenarDatos(pacienteActual);
         arbolPaciente = new GestionadorPaciente();
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
+        arbolCitaMedica = new GestionadorCitaMedica();
+        arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
     }
 
     /**
@@ -68,7 +74,7 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
 
         jLabel3.setText("Contacto Emergencia:");
 
-        jLabel4.setText("Antecedentes Médicos:");
+        jLabel4.setText("Antecedentes Mï¿½dicos:");
 
         jLabel5.setText("Alergias");
 
@@ -252,9 +258,15 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
         int numTelf = Integer.parseInt(txtNumTelf.getText());
         
         HistorialMedico historial = new HistorialMedico("A", contacEmerg, AntecMedic, Alergias, Medicamentos, TratAnteriores);
-        Paciente PacienteModificado = new Paciente(nombre, apellido, numTelf, pacienteActual.getContrasenia());
-        PacienteModificado.setHistorialMedico(historial);
-        arbolPaciente.modificarPaciente(pacienteActual.getIdPaciente(), PacienteModificado);
+        arbolPaciente.modificarPaciente(pacienteActual.getIdPaciente(), nombre, apellido, numTelf, historial);
+        arbolCitaMedica.modificarPaciente(pacienteActual.getIdPaciente(), nombre, apellido, numTelf, historial);
+        try {
+            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+            ManejoArchivos.guardar("arbolCitas.txt", arbolCitaMedica);
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }//GEN-LAST:event_btnModificarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

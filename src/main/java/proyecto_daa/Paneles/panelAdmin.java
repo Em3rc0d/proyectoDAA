@@ -28,7 +28,7 @@ public class panelAdmin extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Menú Admin");
+        jLabel1.setText("Menï¿½ Admin");
 
         btnPacientes.setText("Pacientes");
         btnPacientes.addActionListener(new java.awt.event.ActionListener() {
@@ -98,7 +98,7 @@ public class panelAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnPacientesActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
-        new panelAdmin().setVisible(true);
+        new panelInicial().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
 

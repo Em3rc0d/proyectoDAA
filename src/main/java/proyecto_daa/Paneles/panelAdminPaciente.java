@@ -1,5 +1,8 @@
 package proyecto_daa.Paneles;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.UsuarioActual;
@@ -159,7 +162,18 @@ public class panelAdminPaciente extends javax.swing.JFrame {
     }//GEN-LAST:event_btnBackActionPerformed
 
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
-        // TODO add your handling code here:
+        pacienteActual = (Paciente) UsuarioActual.getInstance().getUsuarioActual();
+        if(pacienteActual!=null){
+            arbolPaciente.eliminarNodoPorPaciente(pacienteActual.apellido);
+            System.out.println("Se debio haber eliminado");
+            System.out.println(arbolPaciente.listarPacientes());
+        }
+        try {
+            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+        } catch (IOException ex) {
+            Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        UsuarioActual.getInstance().setUsuarioActual(null);
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

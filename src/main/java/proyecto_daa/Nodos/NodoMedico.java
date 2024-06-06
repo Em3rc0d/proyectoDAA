@@ -4,18 +4,10 @@ import java.io.Serializable;
 
 import proyecto_daa.Entidades.Medico;
 
-public class NodoMedico implements Serializable{
-    public Medico medico;
-    public NodoMedico izquierda, derecha;
+public class NodoMedico extends NodoAVL<Medico> implements Serializable{
 
     public NodoMedico(Medico medico) {
-        this.medico = medico;
-        this.izquierda = null;
-        this.derecha = null;
+        super(medico);
     }
     
-    @Override
-    public String toString() {
-        return medico.toString();
-    }
 }

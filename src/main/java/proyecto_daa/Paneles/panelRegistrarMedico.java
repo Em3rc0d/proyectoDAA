@@ -4,6 +4,8 @@ import java.io.IOException;
 import java.io.Serializable;
 
 import javax.swing.JOptionPane;
+
+import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Turno;
 
 import proyecto_daa.Gestionadores.*;
@@ -187,8 +189,10 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         String especialidad = txtEspecialidad.getText();
         String turno = cbTurno.getSelectedItem().toString();
         Turno turno2 = new Turno(turno);
+
+        Medico medico = new Medico(nombre, apellido, numTel, contrasenia, especialidad, turno2);
          
-        arbolMedico.insertarMedico(nombre, apellido, numTel, contrasenia, especialidad, turno2);
+        arbolMedico.insertarMedico(medico);
         
         try {
             ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);

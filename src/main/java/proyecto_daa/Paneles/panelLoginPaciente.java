@@ -21,7 +21,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
     public panelLoginPaciente() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolpacientes.txt", arbolPaciente);
+        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
     }
 
     /**

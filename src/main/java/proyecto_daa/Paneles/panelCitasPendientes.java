@@ -65,7 +65,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerifyInputWhenFocusTarget(false);
 
-        jLabel2.setText("Médico:");
+        jLabel2.setText("Mï¿½dico:");
 
         btnBack.setText("Retornar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -163,16 +163,16 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
         txtMedicoActual.setText(medico.nombre + " " + medico.apellido);
         
-        // Obtener las citas pendientes del médico
+        // Obtener las citas pendientes del mï¿½dico
         List<NodoCitaMedica> citasPendientes = arbolCitaMedica.buscarTodosPorIdMedico(medico.getIdMedico());
 
         StringBuilder cadena = new StringBuilder();
         int i = 1;
         for (NodoCitaMedica nodo : citasPendientes) {
-            Paciente paciente = nodo.CitaMedica.getPaciente();
+            Paciente paciente = nodo.entidad.getPaciente();
             cadena.append(i++ + ". " + "Paciente: ").append(paciente.getNombre())
                     .append(" ").append(paciente.getApellido())
-                    .append(" - Horario: ").append(nodo.CitaMedica.getHorario())
+                    .append(" - Horario: ").append(nodo.entidad.getHorario())
                     .append("\n");
         }
         txtMedico.setText(cadena.toString());

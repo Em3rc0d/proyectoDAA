@@ -140,11 +140,11 @@ public class panelMostrarCita extends javax.swing.JFrame {
         StringBuilder cadena = new StringBuilder();
         int i = 1;
         for (NodoCitaMedica nodo : citasPendientes) {
-            Medico medico = nodo.CitaMedica.getMedico();
+            Medico medico = nodo.entidad.getMedico();
             System.out.println("ga" + medico);
             cadena.append(i++ + ". " + "Medico: ").append(medico.getNombre())
                     .append(" ").append(medico.getApellido())
-                    .append(" - Horario: ").append(nodo.CitaMedica.getHorario())
+                    .append(" - Horario: ").append(nodo.entidad.getHorario())
                     .append("\n");
         }
         txtCita.setText(cadena.toString());
