@@ -6,12 +6,14 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.UsuarioActual;
+import proyecto_daa.Gestionadores.GestionadorCitaMedica;
 import proyecto_daa.Gestionadores.GestionadorPaciente;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 
 public class panelAdminPaciente extends javax.swing.JFrame {
 
     GestionadorPaciente arbolPaciente = new GestionadorPaciente();
+    GestionadorCitaMedica arbolCitas = new GestionadorCitaMedica();
     Paciente pacienteActual;
     
     public panelAdminPaciente() {
@@ -98,15 +100,17 @@ public class panelAdminPaciente extends javax.swing.JFrame {
                                 .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(38, 38, 38)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnBack, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(lblNombrePaciente, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addComponent(btnModificar))
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnIngresar))
                 .addContainerGap(33, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addGap(149, 149, 149))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -147,12 +151,12 @@ public class panelAdminPaciente extends javax.swing.JFrame {
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
         if (pacienteActual != null) {
-            // Abrir el panel de modificación del paciente actual
+            // Abrir el panel de modificaciï¿½n del paciente actual
             new panelAdminPacienteModificar().setVisible(true);
             setVisible(false);
         } else {
             // Mostrar un mensaje de error si no hay paciente cargado
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID válido primero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID vï¿½lido primero", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -183,7 +187,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
             UsuarioActual.getInstance().setUsuarioActual(pacienteActual);
             lblNombrePaciente.setText(pacienteActual.getNombre() + " " + pacienteActual.getApellido());
         } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún paciente con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontrï¿½ ningï¿½n paciente con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 

@@ -141,6 +141,29 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica>{
         modificarPacienteR(nodo.derecha, idPaciente, nombre, apellido, numTelefono, historial);
     }
 
+    public void modificarMedico(int idMedico, String nombre, String apellido, int numTelefono){
+        modificarPacienteR(raiz, idMedico, nombre, apellido, numTelefono);
+    }
+
+    private void modificarPacienteR(NodoAVL<CitaMedica> nodo, int idMedico, String nombre, String apellido, int numTelefono){
+        if (nodo == null) {
+            return;
+        }
+
+        NodoCitaMedica nodoCitaMedica = (NodoCitaMedica) nodo;
+
+        // Verificar si el paciente de la cita coincide con el paciente buscado
+        if (nodoCitaMedica.entidad.getMedico().getIdMedico() == idMedico) {
+            nodoCitaMedica.entidad.getMedico().setNombre(nombre);
+            nodoCitaMedica.entidad.getMedico().setApellido(apellido);
+            nodoCitaMedica.entidad.getMedico().setNumTelefono(numTelefono);
+        }
+        // Buscar en el subárbol izquierdo
+        modificarPacienteR(nodo.izquierda, idMedico, nombre, apellido, numTelefono);
+        // Buscar en el subárbol derecho
+        modificarPacienteR(nodo.derecha, idMedico, nombre, apellido, numTelefono);
+    }
+
     public void eliminarNodoPorPaciente(int idPaciente){
         eliminarNodoPorPacienteR(raiz, idPaciente);
     }
@@ -159,7 +182,7 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica>{
         // Buscar en el subárbol izquierdo
         eliminarNodoPorPacienteR(nodo.izquierda, idPaciente);
         // Buscar en el subárbol derecho
-        eliminarNodoPorPacienteR(nodo.derecha, idPaciente);
+        eliminarNodoPorPacienteR(nodo.derecha, idPaciente); 
     }
 
     public void eliminarNodo(int idMedico){

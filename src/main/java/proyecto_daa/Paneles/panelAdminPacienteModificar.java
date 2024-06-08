@@ -12,17 +12,15 @@ import proyecto_daa.ManejadorAchivos.ManejoArchivos;
 public class panelAdminPacienteModificar extends javax.swing.JFrame {
 
     private Paciente pacienteActual;
-    private GestionadorPaciente arbolPaciente;
-    private GestionadorCitaMedica arbolCitaMedica;
+    private GestionadorPaciente arbolPaciente = new GestionadorPaciente();
+    private GestionadorCitaMedica arbolCitaMedica = new GestionadorCitaMedica();
     
     public panelAdminPacienteModificar() {
         initComponents();
         setLocationRelativeTo(null);
         pacienteActual = (Paciente) UsuarioActual.getInstance().getUsuarioActual();
         llenarDatos(pacienteActual);
-        arbolPaciente = new GestionadorPaciente();
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
-        arbolCitaMedica = new GestionadorCitaMedica();
         arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
     }
 
