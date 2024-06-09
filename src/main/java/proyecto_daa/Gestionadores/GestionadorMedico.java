@@ -105,13 +105,17 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
         NodoMedico nodoMedico = (NodoMedico) nodo;
 
         if (nodoMedico.entidad.getIdMedico() == idMedico) {
-            return nodoMedico;
-        } else if (idMedico < nodoMedico.entidad.getIdMedico()) {
-            return buscarMedicoPorIdRecursivo(nodoMedico.izquierda, idMedico);
-        } else {
-            return buscarMedicoPorIdRecursivo(nodoMedico.derecha, idMedico);
+            return nodoMedico; // Médico encontrado
         }
+
+        NodoMedico resultadoIzquierda = buscarMedicoPorIdRecursivo(nodoMedico.izquierda, idMedico);
+        if (resultadoIzquierda != null) {
+            return resultadoIzquierda;
+        }
+
+        return buscarMedicoPorIdRecursivo(nodoMedico.derecha, idMedico);
     }
+
 
     public void modificarMedico(int idMedico, String nombre, String apellido, int numTelefono){
         NodoMedico medicoAModificar = obtenerMedicoPorNodo(idMedico);

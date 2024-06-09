@@ -203,6 +203,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         }
 
         System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
+        System.out.println(arbolMedico.listarMedicos());
         new panelLoginMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnRegistrarMedicoActionPerformed

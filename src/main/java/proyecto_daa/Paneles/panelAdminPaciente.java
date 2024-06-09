@@ -169,7 +169,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         pacienteActual = (Paciente) UsuarioActual.getInstance().getUsuarioActual();
         if(pacienteActual!=null){
-            //arbolPaciente.eliminarNodoPorPaciente(pacienteActual.apellido);
+            arbolPaciente.eliminarNodoPorPaciente(pacienteActual.apellido);
             arbolCitas.eliminarNodoPorPaciente(pacienteActual.getIdPaciente());
             System.out.println("Se debio haber eliminado");
             System.out.println(arbolPaciente.listarPacientes());

@@ -193,11 +193,14 @@ public class GestionadorPaciente extends GestionadorAVL<Paciente> {
     
         if (nodoPaciente.entidad.getIdPaciente() == idPaciente) {
             return nodoPaciente;
-        } else if (idPaciente < nodoPaciente.entidad.getIdPaciente()) {
-            return buscarPacientePorIdRecursivo(nodoPaciente.izquierda, idPaciente);
-        } else {
-            return buscarPacientePorIdRecursivo(nodoPaciente.derecha, idPaciente);
+        } 
+        NodoPaciente resultadoIzquierda = buscarPacientePorIdRecursivo(nodoPaciente.izquierda, idPaciente);
+        if (resultadoIzquierda != null) {
+            return resultadoIzquierda;
         }
+
+        return buscarPacientePorIdRecursivo(nodoPaciente.derecha, idPaciente);       
+    
     }
     
 

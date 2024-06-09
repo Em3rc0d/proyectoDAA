@@ -3,8 +3,6 @@ package proyecto_daa.Paneles;
 import java.io.IOException;
 import java.util.List;
 
-import javax.swing.JLabel;
-
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.UsuarioActual;
@@ -24,6 +22,8 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
         arbolCita = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCita);
+
+        System.out.println(arbolCita.listarCita());
 
         UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
         paciente = (Paciente) usuarioActual.getUsuarioActual();
@@ -217,13 +217,14 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        System.out.println("AQUIVIENEEE!");
-        System.out.println(arbolCita.toString());
+        System.out.println("Citas registradas:");
+        System.out.println(arbolCita.listarCita());
     }
         
     private void cbMedicoActionPerformed(java.awt.event.ActionEvent evt) {
         cbHorarioD.removeAllItems();
         int idMedico = obtenerIdMedicoSeleccionado();
+        System.out.println("ID MEDICO A BUSCAS: "+idMedico);
         Medico medico = arbolMedico.obtenerMedicoPorId(idMedico);
         System.out.println(medico);
 

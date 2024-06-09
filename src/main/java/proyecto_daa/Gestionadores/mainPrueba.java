@@ -1,6 +1,5 @@
 package proyecto_daa.Gestionadores;
 
-import proyecto_daa.Entidades.CitaMedica;
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Entidades.Turno;
@@ -13,10 +12,10 @@ public class mainPrueba {
         GestionadorMedico arbolMedico = new GestionadorMedico();
         GestionadorCitaMedica arbolCitas = new GestionadorCitaMedica();
 
-        Paciente paciente1 = new Paciente("Alvaro", "Poma", 941619270, "gol");
-        Paciente paciente2 = new Paciente("ae", "Rivas", 941619270, "gol");
-        Paciente paciente3 = new Paciente("se", "Poma", 941619270, "gol");
-        Paciente paciente4 = new Paciente("sae", "Sarabia", 941619270, "gol");
+        Paciente paciente1 = new Paciente("1", "1", 1, "1");
+        Paciente paciente2 = new Paciente("2", "2", 2, "2");
+        Paciente paciente3 = new Paciente("3", "3", 3, "3");
+        Paciente paciente4 = new Paciente("4", "4", 4, "4");
 
         arbolPaciente.insertarPaciente(paciente1);
         arbolPaciente.insertarPaciente(paciente2);
@@ -28,10 +27,10 @@ public class mainPrueba {
         Turno tarde = new Turno("Tarde");
         Turno mañana = new Turno("Mañana");
 
-        Medico medico1 = new Medico("sdfa", "safd", 9840, "sfda", "asdf", tarde);
-        Medico medico2 = new Medico("sdfa", "2afd", 9840, "sfda", "asdf", mañana);
-        Medico medico3 = new Medico("sdfa", "safd", 9840, "sfda", "asdf", tarde);
-        Medico medico4 = new Medico("sdfa", "3afd", 9840, "sfda", "asdf", mañana);
+        Medico medico1 = new Medico("1", "1", 1, "1", "1", tarde);
+        Medico medico2 = new Medico("2", "2", 2, "2", "2", mañana);
+        Medico medico3 = new Medico("3", "3", 3, "3", "3", tarde);
+        Medico medico4 = new Medico("4", "4", 4, "4", "4", mañana);
 
         arbolMedico.insertarMedico(medico1);
         arbolMedico.insertarMedico(medico2);
@@ -40,13 +39,15 @@ public class mainPrueba {
 
         System.out.println(arbolMedico.listarMedicos());
 
-        //CitaMedica cita1 = new CitaMedica(paciente1, medico1, medico1.getListaHorarios().seleccionarHorariosDisponibles(1), null);
-        //CitaMedica cita2 = new CitaMedica(paciente1, medico1, medico1.getListaHorarios().seleccionarHorariosDisponibles(1), null);
-
         arbolCitas.insertarCitaMedica(paciente1, medico1, medico1.getListaHorarios().seleccionarHorariosDisponibles(1), null);
-        arbolCitas.insertarCitaMedica(paciente1, medico1, medico1.getListaHorarios().seleccionarHorariosDisponibles(2), null);
-        
+        arbolCitas.insertarCitaMedica(paciente1, medico2, medico1.getListaHorarios().seleccionarHorariosDisponibles(1), null);
+        arbolCitas.insertarCitaMedica(paciente1, medico1, medico2.getListaHorarios().seleccionarHorariosDisponibles(2), null);
         System.out.println(arbolCitas.listarCita());
+
+        // arbolCitas.eliminarNodoPorPaciente(paciente1.getIdPaciente());
+        // System.out.println("ELIMINACION");
+        // System.out.println(arbolCitas.listarCita());
+
 
     }
 

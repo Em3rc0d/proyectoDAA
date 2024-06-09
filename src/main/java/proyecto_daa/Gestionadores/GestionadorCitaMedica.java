@@ -30,18 +30,12 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
         } else {
 
             NodoCitaMedica nodoCitaMedica = (NodoCitaMedica) nodo;
-
-            if (cita.getMedico().getIdMedico() < nodoCitaMedica.entidad.getMedico().getIdMedico()) {
+            
+            if(cita.getIdCita() < nodoCitaMedica.entidad.getIdCita())
                 nodoCitaMedica.izquierda = insertarRecursivo(nodoCitaMedica.izquierda, cita);
-            } else if (cita.getMedico().getIdMedico() > nodoCitaMedica.entidad.getMedico().getIdMedico()) {
-                nodoCitaMedica.derecha = insertarRecursivo(nodoCitaMedica.derecha, cita);
-            } else {
-                if (cita.getIdCita() < nodoCitaMedica.entidad.getIdCita()) {
-                    nodoCitaMedica.izquierda = insertarRecursivo(nodoCitaMedica.izquierda, cita);
-                } else {
+            else 
+                if(cita.getIdCita() > nodoCitaMedica.entidad.getIdCita())
                     nodoCitaMedica.derecha = insertarRecursivo(nodoCitaMedica.derecha, cita);
-                }
-            }
 
             nodoCitaMedica.altura = 1 + Math.max(altura(nodoCitaMedica.izquierda), altura(nodoCitaMedica.derecha));
 
@@ -49,23 +43,23 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
 
             // Rotaci�n simple a la derecha
             if (balance > 1
-                    && cita.getMedico().getIdMedico() < nodoCitaMedica.izquierda.entidad.getMedico().getIdMedico()) {
+                    && cita.getIdCita() < nodoCitaMedica.izquierda.entidad.getIdCita()) {
                 return (NodoCitaMedica) rotarDerecha(nodoCitaMedica);
             }
 
             // Rotaci�n simple a la izquierda
-            if (balance < -1 && cita.getMedico().getIdMedico() > nodoCitaMedica.derecha.entidad.getMedico().getIdMedico()) {
+            if (balance < -1 && cita.getIdCita() > nodoCitaMedica.derecha.entidad.getIdCita()) {
                 return (NodoCitaMedica) rotarIzquierda(nodoCitaMedica);
             }
 
             // Rotaci�n doble a la izquierda
-            if (balance > 1 && cita.getMedico().getIdMedico() > nodoCitaMedica.izquierda.entidad.getMedico().getIdMedico()) {
+            if (balance > 1 && cita.getIdCita() > nodoCitaMedica.izquierda.entidad.getIdCita()) {
                 nodoCitaMedica.izquierda = rotarIzquierda(nodoCitaMedica.izquierda);
                 return (NodoCitaMedica) rotarDerecha(nodoCitaMedica);
             }
 
             // Rotaci�n doble a la derecha
-            if (balance < -1 && cita.getMedico().getIdMedico() < nodoCitaMedica.derecha.entidad.getMedico().getIdMedico()) {
+            if (balance < -1 && cita.getIdCita() < nodoCitaMedica.derecha.entidad.getIdCita()) {
                 nodoCitaMedica.derecha = rotarDerecha(nodoCitaMedica.derecha);
                 return (NodoCitaMedica) rotarIzquierda(nodoCitaMedica);
             }
@@ -91,10 +85,9 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
             resultados.add(nodoCitaMedica);
         }
 
-        if (nodoCitaMedica.entidad.getMedico().getIdMedico() < idMedico) {
-            buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.izquierda, idMedico, resultados);
-        } else
-            buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.derecha, idMedico, resultados);
+        buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.izquierda, idMedico, resultados);
+        // Buscar en el subárbol derecho
+        buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.derecha, idMedico, resultados);
 
     }
 
@@ -172,57 +165,51 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
         // Buscar en el subárbol derecho
         modificarPacienteR(nodoCitaMedica.derecha, idMedico, nombre, apellido, numTelefono);
     }
-
+    
     public void eliminarNodoPorPaciente(int idPaciente) {
-        eliminarNodoPorPacienteR(raiz, idPaciente);
+        raiz = eliminarNodoPorPacienteR(raiz, idPaciente);
     }
 
-    private void eliminarNodoPorPacienteR(NodoAVL<CitaMedica> nodo, int idPaciente) {
+    private NodoCitaMedica eliminarNodoPorPacienteR(NodoAVL<CitaMedica> nodo, int idPaciente) {
         if (nodo == null) {
-            return;
+            return null;
         }
 
         NodoCitaMedica nodoCitaMedica = (NodoCitaMedica) nodo;
 
-        // Verificar si el paciente de la cita coincide con el paciente buscado
+        nodoCitaMedica.izquierda = eliminarNodoPorPacienteR(nodoCitaMedica.izquierda, idPaciente);
+        nodoCitaMedica.derecha = eliminarNodoPorPacienteR(nodoCitaMedica.derecha, idPaciente);
+
         if (nodoCitaMedica.entidad.getPaciente().getIdPaciente() == idPaciente) {
-            eliminarNodo(nodoCitaMedica.entidad.getMedico().getIdMedico());
+            nodoCitaMedica = eliminarNodoPorCita(nodo, nodoCitaMedica.entidad.getIdCita());
         }
-        // Buscar en el subárbol izquierdo
-        eliminarNodoPorPacienteR(nodoCitaMedica.izquierda, idPaciente);
-        // Buscar en el subárbol derecho
-        eliminarNodoPorPacienteR(nodoCitaMedica.derecha, idPaciente);
+        return nodoCitaMedica;
     }
 
-    public void eliminarNodo(int idMedico) {
-        eliminarNodoR(raiz, idMedico);
-    }
-
-    private NodoCitaMedica eliminarNodoR(NodoAVL<CitaMedica> nodo, int idMedico) {
-        if (nodo == null)
+    private NodoCitaMedica eliminarNodoPorCita(NodoAVL<CitaMedica> nodo, int idCita) {
+        if (nodo == null) {
             return null;
+        }
 
         NodoCitaMedica nodoCitaMedica = (NodoCitaMedica) nodo;
 
-        if (idMedico < nodoCitaMedica.entidad.getMedico().getIdMedico()) {
-            nodoCitaMedica.izquierda = eliminarNodoR(nodoCitaMedica.izquierda, idMedico);
-        } else if (idMedico > nodoCitaMedica.entidad.getMedico().getIdMedico()) {
-            nodoCitaMedica.derecha = eliminarNodoR(nodoCitaMedica.derecha, idMedico);
+        if (idCita < nodoCitaMedica.entidad.getIdCita()) {
+            nodoCitaMedica.izquierda = eliminarNodoPorCita(nodoCitaMedica.izquierda, idCita);
+        } else if (idCita > nodoCitaMedica.entidad.getIdCita()) {
+            nodoCitaMedica.derecha = eliminarNodoPorCita(nodoCitaMedica.derecha, idCita);
         } else {
-            if (nodoCitaMedica.izquierda == null)
+            if (nodoCitaMedica.izquierda == null) {
                 return (NodoCitaMedica) nodoCitaMedica.derecha;
-            else if (nodoCitaMedica.derecha == null)
+            } else if (nodoCitaMedica.derecha == null) {
                 return (NodoCitaMedica) nodoCitaMedica.izquierda;
+            }
 
-            nodoCitaMedica.entidad = encontrarMenor(nodoCitaMedica.derecha).entidad;
-            nodoCitaMedica.derecha = eliminarNodoR(nodoCitaMedica.derecha,
-                    nodoCitaMedica.entidad.getMedico().getIdMedico());
+            NodoCitaMedica temp = encontrarMenor(nodoCitaMedica.derecha);
+            nodoCitaMedica.entidad = temp.entidad;
+            nodoCitaMedica.derecha = eliminarNodoPorCita(nodoCitaMedica.derecha, temp.entidad.getIdCita());
         }
 
-        if (nodoCitaMedica == null)
-            return null;
-
-        nodoCitaMedica.altura = max(altura(nodoCitaMedica.izquierda), altura(nodoCitaMedica.derecha)) + 1;
+        nodoCitaMedica.altura = Math.max(altura(nodoCitaMedica.izquierda), altura(nodoCitaMedica.derecha)) + 1;
 
         int balance = getBalance(nodoCitaMedica);
 
@@ -247,13 +234,14 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
         return nodoCitaMedica;
     }
 
-    private NodoCitaMedica encontrarMenor(NodoAVL<CitaMedica> node) {
-        NodoCitaMedica temp = (NodoCitaMedica) node;
-        while (temp.izquierda != null) {
-            temp = (NodoCitaMedica) temp.izquierda;
+    private NodoCitaMedica encontrarMenor(NodoAVL<CitaMedica> nodo) {
+        NodoCitaMedica actual = (NodoCitaMedica) nodo;
+        while (actual.izquierda != null) {
+            actual = (NodoCitaMedica) actual.izquierda;
         }
-        return temp;
+        return actual;
     }
+
 
     public String listarCita(){
         StringBuilder msj = new StringBuilder();
