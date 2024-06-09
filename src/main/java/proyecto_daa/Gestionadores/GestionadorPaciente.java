@@ -24,23 +24,22 @@ public class GestionadorPaciente extends GestionadorAVL<Paciente> {
 
         NodoPaciente nodoPaciente = (NodoPaciente) nodo;
 
-        if (paciente.getApellido().compareTo(nodoPaciente.entidad.getApellido()) < 0) {
+        int comparacionApellido = paciente.getApellido().compareTo(nodoPaciente.entidad.getApellido());
+        if (comparacionApellido < 0) {
             nodoPaciente.izquierda = insertarRecursivo(nodoPaciente.izquierda, paciente);
-        } else if (paciente.getApellido().compareTo(nodoPaciente.entidad.getApellido()) > 0){
+        } else if (comparacionApellido > 0) {
             nodoPaciente.derecha = insertarRecursivo(nodoPaciente.derecha, paciente);
-        } else{
-            if(nodoPaciente.derecha == null){
-                nodoPaciente.derecha = new NodoPaciente(paciente);
-            }else{
-                NodoPaciente temp = (NodoPaciente) nodoPaciente.derecha;
-                NodoPaciente nodoNuevo = new NodoPaciente(paciente);
-                nodoPaciente.derecha = nodoNuevo;
-                nodoNuevo = temp;
+        } else {
+            // Apellidos iguales, comparar por nombre
+            int comparacionNombre = paciente.getNombre().compareTo(nodoPaciente.entidad.getNombre());
+            if (comparacionNombre < 0) {
+                nodoPaciente.izquierda = insertarRecursivo(nodoPaciente.izquierda, paciente);
+            } else {
+                nodoPaciente.derecha = insertarRecursivo(nodoPaciente.derecha, paciente);
             }
         }
-            
-        
-        nodoPaciente.altura = 1 + max(altura(nodoPaciente.izquierda), altura(nodoPaciente.derecha));
+
+        nodoPaciente.altura = 1 + Math.max(altura(nodoPaciente.izquierda), altura(nodoPaciente.derecha));
 
         int balance = getBalance(nodoPaciente);
 

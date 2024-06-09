@@ -20,6 +20,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
+        arbolCitas = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitas);
     }
 
     /**
@@ -168,12 +169,14 @@ public class panelAdminPaciente extends javax.swing.JFrame {
     private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
         pacienteActual = (Paciente) UsuarioActual.getInstance().getUsuarioActual();
         if(pacienteActual!=null){
-            arbolPaciente.eliminarNodoPorPaciente(pacienteActual.apellido);
+            //arbolPaciente.eliminarNodoPorPaciente(pacienteActual.apellido);
+            arbolCitas.eliminarNodoPorPaciente(pacienteActual.getIdPaciente());
             System.out.println("Se debio haber eliminado");
             System.out.println(arbolPaciente.listarPacientes());
         }
         try {
             ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+            ManejoArchivos.guardar("arbolCitas.txt", arbolCitas);
         } catch (IOException ex) {
             Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }

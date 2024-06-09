@@ -153,7 +153,6 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 //            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horario: " + nodo.CitaMedica.getHorario() + "\n";
 //        }
 //        txtMedico.setText(cadena);
-
     }//GEN-LAST:event_btnShowActionPerformed
 
     private void mostrarCitas(){

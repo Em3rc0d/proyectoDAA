@@ -3,11 +3,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import proyecto_daa.Entidades.Medico;
-import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Nodos.NodoAVL;
 import proyecto_daa.Nodos.NodoMedico;
-import proyecto_daa.Nodos.NodoPaciente;
-import proyecto_daa.Paneles.panelAdminPacienteModificar;
 
 public class GestionadorMedico extends GestionadorAVL<Medico> {
 
@@ -30,8 +27,14 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
             nodoMedico.izquierda = insertarRecursivo(nodoMedico.izquierda, medico);
         } else if(medico.getApellido().compareTo(nodoMedico.entidad.getApellido()) > 0){
             nodoMedico.derecha = insertarRecursivo(nodoMedico.derecha, medico);
-        }else
-            return nodoMedico;
+        }else{
+            int comparacionNombre = medico.getNombre().compareTo(nodoMedico.entidad.getNombre());
+            if (comparacionNombre < 0) {
+                nodoMedico.izquierda = insertarRecursivo(nodoMedico.izquierda, medico);
+            } else {
+                nodoMedico.derecha = insertarRecursivo(nodoMedico.derecha, medico);
+            }
+        }
 
             nodoMedico.altura = 1 + max(altura(nodoMedico.izquierda), altura(nodoMedico.derecha));
 
