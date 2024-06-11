@@ -42,6 +42,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
         btnIngresar = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         lblNombrePaciente = new javax.swing.JLabel();
+        btnListado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -83,6 +84,13 @@ public class panelAdminPaciente extends javax.swing.JFrame {
 
         jLabel9.setText("Paciente:");
 
+        btnListado.setText("Ver listado");
+        btnListado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnListadoActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -106,8 +114,9 @@ public class panelAdminPaciente extends javax.swing.JFrame {
                 .addGap(25, 25, 25)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnEliminar, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(btnIngresar))
-                .addContainerGap(33, Short.MAX_VALUE))
+                    .addComponent(btnIngresar)
+                    .addComponent(btnListado))
+                .addContainerGap(21, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(btnBack)
@@ -123,11 +132,12 @@ public class panelAdminPaciente extends javax.swing.JFrame {
                     .addComponent(txtID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(btnIngresar))
-                .addGap(36, 36, 36)
+                .addGap(33, 33, 33)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(lblNombrePaciente))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                    .addComponent(lblNombrePaciente)
+                    .addComponent(btnListado))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 48, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnModificar)
                     .addComponent(btnEliminar))
@@ -194,6 +204,11 @@ public class panelAdminPaciente extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
+    private void btnListadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnListadoActionPerformed
+        new panelListadoPacientes().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnListadoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -233,6 +248,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
     private javax.swing.JButton btnBack;
     private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnListado;
     private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel8;
