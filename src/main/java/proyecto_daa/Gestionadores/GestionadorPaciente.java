@@ -1,9 +1,11 @@
 package proyecto_daa.Gestionadores;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Nodos.ListaEnlazada;
 import proyecto_daa.Nodos.NodoAVL;
 import proyecto_daa.Nodos.NodoPaciente;
 
@@ -203,5 +205,19 @@ public class GestionadorPaciente extends GestionadorAVL<Paciente> {
     
     }
     
+    public ListaEnlazada<Paciente> getListaPacienteId(){
+        ListaEnlazada<Paciente> listaPacientes = new ListaEnlazada<>();
+        getListaPacienteIdRec(raiz, listaPacientes);
+        return listaPacientes;
+    }
+
+    private void getListaPacienteIdRec(NodoAVL<Paciente> raiz, ListaEnlazada<Paciente> listaPacientes) {
+        //NodoPaciente nodoPaciente = (NodoPaciente) raiz;
+        if (raiz != null) {
+            getListaPacienteIdRec(raiz.izquierda, listaPacientes);
+            listaPacientes.insertarOrdenado(raiz.entidad, Comparator.comparingInt(Paciente::getIdPaciente));
+            getListaPacienteIdRec(raiz.derecha, listaPacientes);
+        }
+    }
 
 }
