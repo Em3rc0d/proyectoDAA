@@ -170,11 +170,13 @@ public class panelAdminMedico extends javax.swing.JFrame {
         medicoActual = (Medico) UsuarioActual.getInstance().getUsuarioActual();
         if(medicoActual!=null){
             arbolMedico.eliminarNodoPorMedico(medicoActual.apellido);
+            arbolCitas.eliminarNodoPorPaciente(medicoActual.getIdMedico());
             System.out.println("Se debio haber eliminado");
             System.out.println(arbolMedico.listarMedicos());
         }
         try {
-            ManejoArchivos.guardar("arbolPacientes.txt", arbolMedico);
+            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
+            ManejoArchivos.guardar("arbolCitas.txt", arbolCitas);
         } catch (IOException ex) {
             Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }

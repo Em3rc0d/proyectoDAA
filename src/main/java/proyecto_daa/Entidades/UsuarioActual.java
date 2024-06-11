@@ -22,5 +22,8 @@ public class UsuarioActual<T> {
         this.usuarioActual = usuarioActual;
     }   
     
+    public void clearUsuarioActual() {
+        this.usuarioActual = null;
+    }
     
 }

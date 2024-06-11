@@ -1,10 +1,13 @@
 package proyecto_daa.Paneles;
 
+import proyecto_daa.Entidades.UsuarioActual;
+
 public class panelInicial extends javax.swing.JFrame {
     
     public panelInicial() {
         initComponents();
         setLocationRelativeTo(null);
+        UsuarioActual.getInstance().clearUsuarioActual();
     }
     
     /**
