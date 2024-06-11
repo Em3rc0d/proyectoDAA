@@ -61,8 +61,6 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
             return nodoMedico;
     }
 
-
-//    Nuevo método para obtener una lista de todos los médicos
     public List<Medico> getListaMedicos() {
         List<Medico> medicos = new ArrayList<>();
         agregarMedicosALista(raiz, medicos);
@@ -115,7 +113,6 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
 
         return buscarMedicoPorIdRecursivo(nodoMedico.derecha, idMedico);
     }
-
 
     public void modificarMedico(int idMedico, String nombre, String apellido, int numTelefono){
         NodoMedico medicoAModificar = obtenerMedicoPorNodo(idMedico);
@@ -202,51 +199,3 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
     }
 
 }
-
-//        public String listarMedicos() {
-//        StringBuilder msj = new StringBuilder();
-//        listarRecursivo(raiz, msj);
-//        return msj.toString();
-//    }
-
-//    private void listarRecursivo(NodoMedico nodo, StringBuilder msj) {
-//        if (nodo != null) {
-//            listarRecursivo(nodo.izquierda, msj);
-//            msj.append(nodo.medico.toString()).append("\n");
-//            listarRecursivo(nodo.derecha, msj);
-//        }
-//    }
-
-//     public Medico obtenerMedico(int idMedico) {
-//         return obtenerRecursivo(raiz, idMedico);
-//     }
-
-//     private Medico obtenerRecursivo(NodoMedico nodo, int idMedico) {
-//         if (nodo == null) {
-//             return null;
-//         }
-//         if (idMedico == nodo.medico.getIdMedico()) {
-//             return nodo.medico;
-//         }
-//         if (idMedico < nodo.medico.getIdMedico()) {
-//             return obtenerRecursivo(nodo.izquierda, idMedico);
-//         }
-//         return obtenerRecursivo(nodo.derecha, idMedico);
-//     }
-
-//     public Medico obtenerMedicoPorId(int idMedico) {
-//         return obtenerRecursivoPorId(raiz, idMedico);
-//     }
-    
-//     private Medico obtenerRecursivoPorId(NodoMedico nodo, int idMedico) {
-//         if (nodo == null) {
-//             return null;
-//         }
-//         if (idMedico == nodo.medico.getIdMedico()) {
-//             return nodo.medico;
-//         }
-//         if (idMedico < nodo.medico.getIdMedico()) {
-//             return obtenerRecursivoPorId(nodo.izquierda, idMedico);
-//         }
-//         return obtenerRecursivoPorId(nodo.derecha, idMedico);
-//     }  

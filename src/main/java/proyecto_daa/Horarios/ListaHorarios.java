@@ -46,18 +46,6 @@ public class ListaHorarios implements Serializable{
         return cabeza;
     }
 
-    // public NodoHorario seleccionarHorariosDisponibles(int index){
-    //     NodoHorario temp = cabeza;
-
-    //     for(int i = 0; i<index; i++){
-    //         temp = temp.getSiguiente();
-    //         if(temp.isDisponible()){
-    //             i--;
-    //         }
-    //     }
-    //     return temp;
-    // }
-
     public NodoHorario seleccionarHorariosDisponibles(int index){
         NodoHorario temp = cabeza;
         int currentIndex = -1;
