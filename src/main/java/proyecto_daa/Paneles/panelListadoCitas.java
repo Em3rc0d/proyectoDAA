@@ -27,7 +27,7 @@ public class panelListadoCitas extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         arbolCitasMedicas = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitasMedicas);
         modelo = (DefaultTableModel) tblListado.getModel();
-        listarCitasMedicasPorApellidoPaciente();
+        listarCitasMedicasPorIdCita();
     }
 
     /**
@@ -185,13 +185,13 @@ public class panelListadoCitas extends javax.swing.JFrame {
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         limpiarTabla();
         if (cbCriterio.getSelectedIndex() == 0) {
-             listarCitasMedicasPorApellidoPaciente();
+             listarCitasMedicasPorIdCita();
         } else {
             ListaEnlazada<CitaMedica> listaCita = arbolCitasMedicas.getListaCitasId();
             NodoAVL<CitaMedica> temp = listaCita.getInicio();
 
             while (temp != null) {
-                Object[] rowData = {temp.entidad.getIdCita(), temp.entidad.getPaciente().getNombre() + temp.entidad.getPaciente().getApellido() , temp.entidad.getMedico().getNombre() + temp.entidad.getMedico().getApellido(), temp.entidad.getMedico().getEspecialidad(), temp.entidad.getHorario()};
+                Object[] rowData = {temp.entidad.getIdCita(), temp.entidad.getPaciente().getNombre() +" " +temp.entidad.getPaciente().getApellido() , temp.entidad.getMedico().getNombre() + " " +temp.entidad.getMedico().getApellido(), temp.entidad.getMedico().getEspecialidad(), temp.entidad.getHorario()};
                 modelo.addRow(rowData);
                 System.out.println(temp.toString());
                 temp = temp.derecha;
@@ -203,7 +203,7 @@ public class panelListadoCitas extends javax.swing.JFrame {
         modelo.setRowCount(0);
     }   
     
-    public void listarCitasMedicasPorApellidoPaciente(){
+    public void listarCitasMedicasPorIdCita(){
         List <CitaMedica> listaCitasMedicas = arbolCitasMedicas.getListaCitas();
         limpiarTabla();
         for (CitaMedica c : listaCitasMedicas) {

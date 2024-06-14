@@ -28,7 +28,7 @@ public class panelListadoMedicos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
         modelo = (DefaultTableModel) tblListado.getModel();
-        listarMedicosPorApellido();
+        listarMedicosPorId();
     }
 
     /**
@@ -185,8 +185,9 @@ public class panelListadoMedicos extends javax.swing.JFrame {
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         limpiarTabla();
         if (cbCriterio.getSelectedIndex() == 0) {
-            listarMedicosPorApellido();
+            listarMedicosPorId();
         } else {
+          
             ListaEnlazada<Medico> listaMedicos = arbolMedico.getListaMedicoId();
             NodoAVL<Medico> temp = listaMedicos.getInicio();
 
@@ -203,7 +204,7 @@ public class panelListadoMedicos extends javax.swing.JFrame {
         modelo.setRowCount(0);
     }    
     
-    public void listarMedicosPorApellido(){
+    public void listarMedicosPorId(){
         List <Medico> listaMedicos = arbolMedico.getListaMedicos();
         limpiarTabla();
 

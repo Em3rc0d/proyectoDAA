@@ -18,7 +18,7 @@ public class panelListadoPacientes extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
         modelo = (DefaultTableModel) tblListado.getModel();
-        ListarPacientesApellido();
+        ListarPacientesPorId();
         
     }
 
@@ -176,7 +176,7 @@ public class panelListadoPacientes extends javax.swing.JFrame {
     private void btnFiltrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnFiltrarActionPerformed
         limpiarTabla();
         if(cbCriterio.getSelectedIndex()==0){
-            ListarPacientesApellido();
+            ListarPacientesPorId();
         }else{
             ListaEnlazada<Paciente> listaPacientes = arbolPaciente.getListaPacienteId();
             NodoAVL<Paciente> temp = listaPacientes.getInicio();
@@ -194,7 +194,7 @@ public class panelListadoPacientes extends javax.swing.JFrame {
         modelo.setRowCount(0);
     }
     
-    public void ListarPacientesApellido() {
+    public void ListarPacientesPorId() {
         List<Paciente> listadoPacientes = arbolPaciente.getListaPacientes();
 
         limpiarTabla();
