@@ -5,6 +5,8 @@ import java.util.List;
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Nodos.NodoAVL;
 import proyecto_daa.Nodos.NodoMedico;
+import java.util.Comparator;
+import proyecto_daa.Nodos.ListaEnlazada;
 
 public class GestionadorMedico extends GestionadorAVL<Medico> {
 
@@ -64,6 +66,7 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
     public List<Medico> getListaMedicos() {
         List<Medico> medicos = new ArrayList<>();
         agregarMedicosALista(raiz, medicos);
+        medicos.sort(Comparator.comparingInt(Medico::getIdMedico));
         return medicos;
     }
 
@@ -197,5 +200,19 @@ public class GestionadorMedico extends GestionadorAVL<Medico> {
             listarRecursivo(nodoMedico.derecha, msj);
         }
     }
+    public ListaEnlazada<Medico> getListaMedicoId(){
+    ListaEnlazada<Medico> listaMedicos = new ListaEnlazada<>();
+    getListaMedicoIdRec(raiz, listaMedicos);
+    return listaMedicos;
+}
+
+private void getListaMedicoIdRec(NodoAVL<Medico> raiz, ListaEnlazada<Medico> listaMedicos) {
+    if (raiz != null) {
+        getListaMedicoIdRec(raiz.izquierda, listaMedicos);
+        listaMedicos.insertarOrdenado(raiz.entidad, Comparator.comparingInt(Medico::getIdMedico));
+        getListaMedicoIdRec(raiz.derecha, listaMedicos);
+    }
+}
+
 
 }

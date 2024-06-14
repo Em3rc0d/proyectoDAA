@@ -162,7 +162,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
         txtMedicoActual.setText(medico.nombre + " " + medico.apellido);
         
-        // Obtener las citas pendientes del m�dico
+        // Obtener las citas pendientes del medico
         List<NodoCitaMedica> citasPendientes = arbolCitaMedica.buscarTodosPorIdMedico(medico.getIdMedico());
 
         StringBuilder cadena = new StringBuilder();

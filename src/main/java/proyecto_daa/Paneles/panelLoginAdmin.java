@@ -41,9 +41,9 @@ public class panelLoginAdmin extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(192, 206, 161));
 
-        jLabel1.setText("Código:");
+        jLabel1.setText("Codigo:");
 
-        jLabel2.setText("Contraseña: ");
+        jLabel2.setText("Contrasena: ");
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {

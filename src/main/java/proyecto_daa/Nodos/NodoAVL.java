@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class NodoAVL<T> implements Serializable {
     public NodoAVL<T> izquierda, derecha;
-    public int altura;
+    public int altura;    //Esto lo usaremos para el arbol
     public T entidad;
 
     public NodoAVL(T entidad) {

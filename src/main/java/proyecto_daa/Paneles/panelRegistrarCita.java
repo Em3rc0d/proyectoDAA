@@ -2,6 +2,7 @@ package proyecto_daa.Paneles;
 
 import java.io.IOException;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
@@ -23,16 +24,18 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
         arbolCita = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCita);
 
-        System.out.println(arbolCita.listarCita());
-
         UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
-        paciente = (Paciente) usuarioActual.getUsuarioActual();
-        
-        txtPacienteActual.setText(paciente.nombre + paciente.apellido + paciente.getIdPaciente());
-        
-        agregarMedicosALista();
-        //agregarPacientesALista();
-        cbHorarioD.removeAllItems();
+        Object usuario = usuarioActual.getUsuarioActual();
+
+        if (usuario instanceof Paciente) {
+            paciente = (Paciente) usuario;
+            txtPacienteActual.setText(paciente.nombre + " " + paciente.apellido + " " + paciente.getIdPaciente());
+            agregarMedicosALista();
+            cbHorarioD.removeAllItems();
+        } else {
+            JOptionPane.showMessageDialog(this, "No hay un paciente registrado actualmente.");
+            // Manejar el caso en que no hay un paciente actual
+        }
     }
 
     /**
@@ -229,7 +232,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         System.out.println(medico);
 
         if (medico == null) {
-            cbHorarioD.addItem("Seleccione un médico");
+            cbHorarioD.addItem("Seleccione un medico");
         } else {
             NodoHorario actual = medico.getListaHorarios().getCabeza();
             int i = 0;
@@ -284,51 +287,42 @@ public class panelRegistrarCita extends javax.swing.JFrame {
 //        }
 //    }
 
-    private int obtenerIdMedicoSeleccionado() {
-        // Obtener el objeto seleccionado del JComboBox
-        Object selectedMedico = cbMedico.getSelectedItem();
-    
-        // Verificar si el objeto seleccionado es del tipo esperado
-        if (selectedMedico instanceof String) {
-            // Obtener el idMedico del String seleccionado en el formato "idMedico Nombre Apellido"
-            String selectedMedicoString = (String) selectedMedico;
-            int idMedico = Integer.parseInt(selectedMedicoString.split(" ")[0]);
-            return idMedico;
-        } else {
-            // Manejar el caso en que el objeto seleccionado no sea del tipo esperado
-            System.out.println("El objeto seleccionado no es del tipo esperado.");
-            return -1; // Retornar un valor predeterminado en caso de error
-        }
+private int obtenerIdMedicoSeleccionado() {
+    Object selectedItem = cbMedico.getSelectedItem();
+    if (selectedItem == null) {
+        JOptionPane.showMessageDialog(this, "Por favor, seleccione un medico.");
+        return -1; // Devuelve un valor especial o lanza una excepción apropiada
     }
+    String selectedMedico = selectedItem.toString();
+    String[] medicoInfo = selectedMedico.split(" ");
+    return Integer.parseInt(medicoInfo[0]);
+}
     
 
-    public void agregarMedicosALista() {
-        // Limpiar los elementos existentes en el JComboBox
-        cbMedico.removeAllItems();
-
-        // Obtener la lista de médicos como objetos Medico
-        List<Medico> listaMedicos = arbolMedico.getListaMedicos();
-
-        if (!listaMedicos.isEmpty()) {
-            // Agregar cada médico (solo nombre, apellido y especialidad) al JComboBox
-            for (Medico medico : listaMedicos) {
-                try {
-                    int idMedico = medico.getIdMedico();
-                    String nombre = medico.getNombre();
-                    String apellido = medico.getApellido();
-                    String especialidad = medico.getEspecialidad();
-                    String turno = medico.getTurno().getCategoria();
-                    // Agregar el nombre, apellido y especialidad al JComboBox
-                    cbMedico.addItem(idMedico + " " + nombre + " " + apellido + " - " + especialidad + " - " + turno);
-                } catch (Exception e) {
-                    System.out.println("Error parsing medico: " + medico);
-                    e.printStackTrace();
-                }
+public void agregarMedicosALista() {
+    cbMedico.removeAllItems();
+    List<Medico> listaMedicos = arbolMedico.getListaMedicos();
+    
+    if (!listaMedicos.isEmpty()) {
+        for (Medico medico : listaMedicos) {
+            try {
+                int idMedico = medico.getIdMedico();
+                String nombre = medico.getNombre();
+                String apellido = medico.getApellido();
+                String especialidad = medico.getEspecialidad();
+                String turno = medico.getTurno().getCategoria();
+                cbMedico.addItem(idMedico + " " + nombre + " " + apellido + " - " + especialidad + " - " + turno);
+            } catch (Exception e) {
+                System.out.println("Error parsing medico: " + medico);
+                e.printStackTrace();
             }
-        } else {
-            cbMedico.addItem("No contamos con médicos registrados");
         }
+    } else {
+        System.out.println("No se encontraron médicos en el archivo.");
+        cbMedico.addItem("No contamos con medicos registrados");
     }
+}
+
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:
         new panelPaciente().setVisible(true);

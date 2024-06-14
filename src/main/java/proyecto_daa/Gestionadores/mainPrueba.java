@@ -25,12 +25,12 @@ public class mainPrueba {
         System.out.println(arbolPaciente.listarPacientes());
 
         Turno tarde = new Turno("Tarde");
-        Turno mañana = new Turno("Mañana");
+        Turno maniana = new Turno("Ma�ana");
 
         Medico medico1 = new Medico("1", "1", 1, "1", "1", tarde);
-        Medico medico2 = new Medico("2", "2", 2, "2", "2", mañana);
+        Medico medico2 = new Medico("2", "2", 2, "2", "2", maniana);
         Medico medico3 = new Medico("3", "3", 3, "3", "3", tarde);
-        Medico medico4 = new Medico("4", "4", 4, "4", "4", mañana);
+        Medico medico4 = new Medico("4", "4", 4, "4", "4", maniana);
 
         arbolMedico.insertarMedico(medico1);
         arbolMedico.insertarMedico(medico2);

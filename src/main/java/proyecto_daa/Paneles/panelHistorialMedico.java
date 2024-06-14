@@ -205,20 +205,21 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
     
         try {
             ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
-            System.out.println("�?rbol de pacientes guardado con éxito.");
+            System.out.println("El arbol de pacientes fue guardado con exito.");
         } catch (IOException e) {
-            System.out.println("Error al guardar el árbol de pacientes.");
+            System.out.println("Error al guardar el arbol de pacientes.");
             e.printStackTrace();
         }
     
         // Mostrar un mensaje de confirmación
-        JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
+        JOptionPane.showMessageDialog(this, "Historial medico registrado para el paciente: " + paciente.getNombre());
         setVisible(false);
     
         System.out.println(arbolPaciente.listarPacientes());
 
         // Mostrar el formulario para registrar un nuevo paciente
         //System.out.println(arbolPaciente.listarPacientes());
+        JOptionPane.showMessageDialog(this,"Sus credenciales de acceso son: "+ "\n" + "Usuario: " + this.paciente.getIdPaciente() + "\n" + "Contra: " + this.paciente.getContrasenia());
         new panelLoginPaciente().setVisible(true);
     }
                                                 

@@ -50,9 +50,9 @@ public class panelLoginPaciente extends javax.swing.JFrame {
 
         jPanel1.setBackground(new java.awt.Color(192, 206, 161));
 
-        jLabel1.setText("C�digo:");
+        jLabel1.setText("Codigo:");
 
-        jLabel2.setText("Contrase�a: ");
+        jLabel2.setText("Contrasena: ");
 
         btnIngresar.setText("INGRESAR");
         btnIngresar.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +65,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
 
         btnRegistrar.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnRegistrar.setForeground(new java.awt.Color(0, 0, 255));
-        btnRegistrar.setText("aqu�");
+        btnRegistrar.setText("aqui");
         btnRegistrar.setToolTipText("");
         btnRegistrar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         btnRegistrar.setBorderPainted(false);
@@ -113,7 +113,6 @@ public class panelLoginPaciente extends javax.swing.JFrame {
                                         .addContainerGap()
                                         .addComponent(jLabel3)
                                         .addGap(46, 46, 46)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnRegistrar)))
                         .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
@@ -179,7 +178,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
                     new panelPaciente().setVisible(true);
                     setVisible(false);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error",
+                    JOptionPane.showMessageDialog(null, "Contrasenia incorrecta", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else {
@@ -187,7 +186,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Código no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Codigo no valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
 

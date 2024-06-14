@@ -154,6 +154,7 @@ public class GestionadorPaciente extends GestionadorAVL<Paciente> {
     public List<Paciente> getListaPacientes() {
         List<Paciente> pacientes = new ArrayList<>();
         agregarPacientesALista(raiz, pacientes);
+         pacientes.sort(Comparator.comparingInt(Paciente::getIdPaciente));
         return pacientes;
     }
     

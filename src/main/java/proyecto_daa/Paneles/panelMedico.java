@@ -91,11 +91,6 @@ public class panelMedico extends javax.swing.JFrame {
         setVisible(false);
     }// GEN-LAST:event_btnCitasPendientesActionPerformed
 
-    private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnRegistrarMedicoActionPerformed
-        // TODO add your handling code here:
-        new panelRegistrarMedico().setVisible(true);
-        setVisible(false);
-    }// GEN-LAST:event_btnRegistrarMedicoActionPerformed
 
     private void btnBackActionPerformed(java.awt.event.ActionEvent evt) {// GEN-FIRST:event_btnBackActionPerformed
         // TODO add your handling code here:

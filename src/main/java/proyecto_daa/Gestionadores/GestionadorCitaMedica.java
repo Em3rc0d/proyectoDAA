@@ -1,12 +1,14 @@
 package proyecto_daa.Gestionadores;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 import proyecto_daa.Entidades.CitaMedica;
 import proyecto_daa.Entidades.HistorialMedico;
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Paciente;
+import proyecto_daa.Nodos.ListaEnlazada;
 import proyecto_daa.Nodos.NodoAVL;
 import proyecto_daa.Nodos.NodoCitaMedica;
 import proyecto_daa.Nodos.NodoHorario;
@@ -41,24 +43,24 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
 
             int balance = getBalance(nodoCitaMedica);
 
-            // Rotaci�n simple a la derecha
+            // Rotacion simple a la derecha
             if (balance > 1
                     && cita.getIdCita() < nodoCitaMedica.izquierda.entidad.getIdCita()) {
                 return (NodoCitaMedica) rotarDerecha(nodoCitaMedica);
             }
 
-            // Rotaci�n simple a la izquierda
+            // Rotacion simple a la izquierda
             if (balance < -1 && cita.getIdCita() > nodoCitaMedica.derecha.entidad.getIdCita()) {
                 return (NodoCitaMedica) rotarIzquierda(nodoCitaMedica);
             }
 
-            // Rotaci�n doble a la izquierda
+            // Rotacion doble a la izquierda
             if (balance > 1 && cita.getIdCita() > nodoCitaMedica.izquierda.entidad.getIdCita()) {
                 nodoCitaMedica.izquierda = rotarIzquierda(nodoCitaMedica.izquierda);
                 return (NodoCitaMedica) rotarDerecha(nodoCitaMedica);
             }
 
-            // Rotaci�n doble a la derecha
+            // Rotacion doble a la derecha
             if (balance < -1 && cita.getIdCita() < nodoCitaMedica.derecha.entidad.getIdCita()) {
                 nodoCitaMedica.derecha = rotarDerecha(nodoCitaMedica.derecha);
                 return (NodoCitaMedica) rotarIzquierda(nodoCitaMedica);
@@ -86,7 +88,7 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
         }
 
         buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.izquierda, idMedico, resultados);
-        // Buscar en el subárbol derecho
+        // Buscar en el subarbol derecho
         buscarTodosPorIdMedicoRecursivo(nodoCitaMedica.derecha, idMedico, resultados);
 
     }
@@ -109,9 +111,9 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
         if (nodoCitaMedica.entidad.getPaciente().getIdPaciente() == idPaciente) {
             resultados.add(nodoCitaMedica);
         }
-        // Buscar en el subárbol izquierdo
+        // Buscar en el subarbol izquierdo
         buscarTodosPorPacienteRecursivo(nodoCitaMedica.izquierda, idPaciente, resultados);
-        // Buscar en el subárbol derecho
+        // Buscar en el subarbol derecho
         buscarTodosPorPacienteRecursivo(nodoCitaMedica.derecha, idPaciente, resultados);
     }
 
@@ -136,9 +138,9 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
             nodoCitaMedica.entidad.getPaciente().setHistorialMedico(historial);
 
         }
-        // Buscar en el subárbol izquierdo
+        // Buscar en el subarbol izquierdo
         modificarPacienteR(nodoCitaMedica.izquierda, idPaciente, nombre, apellido, numTelefono, historial);
-        // Buscar en el subárbol derecho
+        // Buscar en el subarbol derecho
         modificarPacienteR(nodoCitaMedica.derecha, idPaciente, nombre, apellido, numTelefono, historial);
     }
 
@@ -160,9 +162,9 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
             nodoCitaMedica.entidad.getMedico().setApellido(apellido);
             nodoCitaMedica.entidad.getMedico().setNumTelefono(numTelefono);
         }
-        // Buscar en el subárbol izquierdo
+        // Buscar en el subarbol izquierdo
         modificarPacienteR(nodoCitaMedica.izquierda, idMedico, nombre, apellido, numTelefono);
-        // Buscar en el subárbol derecho
+        // Buscar en el subarbol derecho
         modificarPacienteR(nodoCitaMedica.derecha, idMedico, nombre, apellido, numTelefono);
     }
     
@@ -255,6 +257,36 @@ public class GestionadorCitaMedica extends GestionadorAVL<CitaMedica> {
             listarRecursivo(nodoCita.izquierda, msj);
             msj.append(nodoCita.entidad.toString()).append("\n");
             listarRecursivo(nodoCita.derecha, msj);
+        }
+    }
+    
+    public ListaEnlazada<CitaMedica> getListaCitasId(){
+        ListaEnlazada<CitaMedica> listaCitasMedicas = new ListaEnlazada<>();
+        getListaCitaIdRec(raiz, listaCitasMedicas);
+        return listaCitasMedicas;
+    }
+
+    private void getListaCitaIdRec(NodoAVL<CitaMedica> raiz, ListaEnlazada<CitaMedica> listaCitasMedicas) {
+        //NodoPaciente nodoPaciente = (NodoPaciente) raiz;
+        if (raiz != null) {
+            getListaCitaIdRec(raiz.izquierda, listaCitasMedicas);
+            listaCitasMedicas.insertarOrdenado(raiz.entidad, Comparator.comparingInt(CitaMedica::getIdCita));
+            getListaCitaIdRec(raiz.derecha, listaCitasMedicas);
+        }
+    }
+    
+        public List<CitaMedica> getListaCitas() {
+        List<CitaMedica> listaCitasMedicas = new ArrayList<>();
+        getListaCitasRec1(raiz, listaCitasMedicas);
+        listaCitasMedicas.sort(Comparator.comparingInt(CitaMedica::getIdCita)); // Ordena por ID de cita
+        return listaCitasMedicas;
+    }
+
+    private void getListaCitasRec1(NodoAVL<CitaMedica> raiz, List<CitaMedica> listaCitasMedicas) {
+        if (raiz != null) {
+            getListaCitasRec1(raiz.izquierda, listaCitasMedicas);
+            listaCitasMedicas.add(raiz.entidad);
+            getListaCitasRec1(raiz.derecha, listaCitasMedicas);
         }
     }
 

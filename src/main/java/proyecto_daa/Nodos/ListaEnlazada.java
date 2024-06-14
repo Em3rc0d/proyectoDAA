@@ -13,18 +13,18 @@ public class ListaEnlazada<T> {
         return inicio;
     }
 
-    public void insertar(T entidad) {
-        NodoAVL<T> nuevoNodo = new NodoAVL<>(entidad);
-        if (inicio == null) {
-            inicio = nuevoNodo;
-        } else {
-            NodoAVL<T> temp = inicio;
-            while (temp.derecha != null) {
-                temp = temp.derecha;
-            }
-            temp.derecha = nuevoNodo;
-        }
-    }
+    // public void insertar(T entidad) {
+    //     NodoAVL<T> nuevoNodo = new NodoAVL<>(entidad);
+    //     if (inicio == null) {
+    //         inicio = nuevoNodo;
+    //     } else {
+    //         NodoAVL<T> temp = inicio;
+    //         while (temp.derecha != null) {
+    //             temp = temp.derecha;
+    //         }
+    //         temp.derecha = nuevoNodo;
+    //     }
+    // }
 
     public void insertarOrdenado(T entidad, Comparator<T> comparador) {
         NodoAVL<T> nuevoNodo = new NodoAVL<>(entidad);

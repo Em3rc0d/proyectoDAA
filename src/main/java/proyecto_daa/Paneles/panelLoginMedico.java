@@ -178,7 +178,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
                     new panelMedico().setVisible(true);
                     setVisible(false);
                 } else {
-                    JOptionPane.showMessageDialog(null, "Contraseña incorrecta", "Error",
+                    JOptionPane.showMessageDialog(null, "Contraseniaa incorrecta", "Error",
                             JOptionPane.ERROR_MESSAGE);
                 }
             } else {
@@ -186,7 +186,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
                         JOptionPane.ERROR_MESSAGE);
             }
         } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(null, "Código no válido", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Codigo no valido", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }// GEN-LAST:event_btnIngresarActionPerformed
 

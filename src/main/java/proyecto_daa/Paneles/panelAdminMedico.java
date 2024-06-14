@@ -157,7 +157,7 @@ public class panelAdminMedico extends javax.swing.JFrame {
             setVisible(false);
         } else {
             // Mostrar un mensaje de error si no hay paciente cargado
-            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID válido primero", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Por favor, ingrese un ID valido primero", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnModificarActionPerformed
 
@@ -190,7 +190,7 @@ public class panelAdminMedico extends javax.swing.JFrame {
             UsuarioActual.getInstance().setUsuarioActual(medicoActual);
             lblNombrePaciente.setText(medicoActual.getNombre() + " " + medicoActual.getApellido());
         } else {
-            JOptionPane.showMessageDialog(this, "No se encontró ningún médico con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "No se encontrara ningun medico con el ID especificado", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btnIngresarActionPerformed
 
