@@ -49,7 +49,7 @@ public class panelInicial extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Bienvenido al Sistema del Hospital Cayetano Heredia");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/HCH.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/HCH.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         btnAdmin.setText("Admin");

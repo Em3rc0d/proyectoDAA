@@ -68,7 +68,7 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registroPaciente.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registroPaciente.png"))); // NOI18N
         jLabel6.setText("jLabel6");
 
         jLabel7.setText("Contraseña:");

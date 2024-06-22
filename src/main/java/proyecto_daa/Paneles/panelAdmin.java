@@ -22,6 +22,7 @@ public class panelAdmin extends javax.swing.JFrame {
         btnBack = new javax.swing.JButton();
         btnMedicos = new javax.swing.JButton();
         btnReportes = new javax.swing.JButton();
+        btnEspecialidades = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -59,6 +60,13 @@ public class panelAdmin extends javax.swing.JFrame {
             }
         });
 
+        btnEspecialidades.setText("Especialidades");
+        btnEspecialidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEspecialidadesActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -70,7 +78,8 @@ public class panelAdmin extends javax.swing.JFrame {
                     .addComponent(btnMedicos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnBack, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnReportes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, 102, Short.MAX_VALUE))
+                    .addComponent(btnPacientes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnEspecialidades, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(148, 148, 148))
         );
         jPanel1Layout.setVerticalGroup(
@@ -80,11 +89,13 @@ public class panelAdmin extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(btnPacientes)
-                .addGap(38, 38, 38)
+                .addGap(18, 18, 18)
                 .addComponent(btnMedicos)
-                .addGap(28, 28, 28)
+                .addGap(18, 18, 18)
                 .addComponent(btnReportes)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(btnEspecialidades)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 22, Short.MAX_VALUE)
                 .addComponent(btnBack)
                 .addGap(40, 40, 40))
         );
@@ -124,6 +135,12 @@ public class panelAdmin extends javax.swing.JFrame {
         setVisible(false);
     }//GEN-LAST:event_btnReportesActionPerformed
 
+    private void btnEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEspecialidadesActionPerformed
+        // TODO add your handling code here:
+        new panelAdminEspecialidades().setVisible(true);
+        setVisible(false);
+    }//GEN-LAST:event_btnEspecialidadesActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -161,6 +178,7 @@ public class panelAdmin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
+    private javax.swing.JButton btnEspecialidades;
     private javax.swing.JButton btnMedicos;
     private javax.swing.JButton btnPacientes;
     private javax.swing.JButton btnReportes;

@@ -7,9 +7,10 @@ import javax.swing.JOptionPane;
 
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.Turno;
-
+import proyecto_daa.Especialidades.ListaEspecialidades;
 import proyecto_daa.Gestionadores.*;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
+import proyecto_daa.Nodos.NodoEspecialidad;
 
 public class panelRegistrarMedico extends javax.swing.JFrame implements Serializable{
 
@@ -20,7 +21,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         setLocationRelativeTo(null);
 
         arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
-
+        cargarEspecialidades();
     }
 
     @SuppressWarnings("unchecked")
@@ -34,7 +35,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        txtEspecialidad = new javax.swing.JTextField();
         txtNumTel = new javax.swing.JTextField();
         txtApellido = new javax.swing.JTextField();
         txtNombre = new javax.swing.JTextField();
@@ -44,6 +44,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         cbTurno = new javax.swing.JComboBox<>();
         txtContrasenia = new javax.swing.JPasswordField();
         jLabel6 = new javax.swing.JLabel();
+        cbEspecialidades = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,12 +62,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
 
         jLabel5.setText("Especialidad:");
 
-        txtEspecialidad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEspecialidadActionPerformed(evt);
-            }
-        });
-
         btnRegistrarMedico.setText("Registrar Médico");
         btnRegistrarMedico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,7 +69,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registrarMedico.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/registrarMedico.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel8.setText("Turno:");
@@ -82,6 +77,13 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         cbTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Mañana", "Tarde" }));
 
         jLabel6.setText("Contraseña:");
+
+        cbEspecialidades.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { }));
+        cbEspecialidades.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEspecialidadesActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -113,11 +115,11 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
                                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel8))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 39, Short.MAX_VALUE)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(btnRegistrarMedico)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addComponent(txtEspecialidad)
-                                        .addComponent(cbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(btnRegistrarMedico)
+                                        .addComponent(cbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addComponent(cbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, 166, javax.swing.GroupLayout.PREFERRED_SIZE))))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 61, Short.MAX_VALUE)
                         .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(33, 33, 33))
@@ -151,16 +153,16 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(txtEspecialidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
+                                .addComponent(cbEspecialidades, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(cbTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
+                                .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel8)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnRegistrarMedico, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(17, Short.MAX_VALUE))
+                .addContainerGap(25, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -177,16 +179,17 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtEspecialidadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEspecialidadActionPerformed
+    private void cbEspecialidadesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEspecialidadesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEspecialidadActionPerformed
+    }//GEN-LAST:event_cbEspecialidadesActionPerformed
 
-    private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicoActionPerformed
+    private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {                                                   
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String numTelText = txtNumTel.getText();
         String contrasenia = txtContrasenia.getText();
-        String especialidad = txtEspecialidad.getText();
+        String especialidad = cbEspecialidades.getSelectedItem().toString();
+    
         String turno = cbTurno.getSelectedItem().toString();
     
         // Validar que el campo de número de teléfono contenga solo números
@@ -226,6 +229,15 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         }
     }
     
+    private void cargarEspecialidades() {
+        ListaEspecialidades listaEspecialidades = new ListaEspecialidades();
+        NodoEspecialidad actual = listaEspecialidades.getCabeza();
+    
+        while (actual != null) {
+            cbEspecialidades.addItem(actual.getEspecialidadMedica());
+            actual = actual.getSiguiente();
+        }
+    }
 
     /**
      * @param args the command line arguments
@@ -260,6 +272,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRegistrarMedico;
+    private javax.swing.JComboBox<String> cbEspecialidades;
     private javax.swing.JComboBox<String> cbTurno;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -273,7 +286,6 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField txtApellido;
     private javax.swing.JPasswordField txtContrasenia;
-    private javax.swing.JTextField txtEspecialidad;
     private javax.swing.JTextField txtNombre;
     private javax.swing.JTextField txtNumTel;
     // End of variables declaration//GEN-END:variables
