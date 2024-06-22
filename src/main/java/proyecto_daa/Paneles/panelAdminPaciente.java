@@ -181,6 +181,7 @@ public class panelAdminPaciente extends javax.swing.JFrame {
             ManejoArchivos.guardar("arbolCitas.txt", arbolCitas);
         } catch (IOException ex) {
             Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
         }
         UsuarioActual.getInstance().setUsuarioActual(null);
     }//GEN-LAST:event_btnEliminarActionPerformed

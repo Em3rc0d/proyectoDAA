@@ -1,11 +1,14 @@
-package proyecto_daa.Paneles;
 
 import java.io.IOException;
+
+import javax.swing.JOptionPane;
+
 import proyecto_daa.Entidades.Medico;
 import proyecto_daa.Entidades.UsuarioActual;
 import proyecto_daa.Gestionadores.GestionadorCitaMedica;
 import proyecto_daa.Gestionadores.GestionadorMedico;
 import proyecto_daa.ManejadorAchivos.ManejoArchivos;
+import proyecto_daa.Paneles.panelAdminMedico;
 
 public class panelAdminMedicoModificar extends javax.swing.JFrame {
 
@@ -50,7 +53,7 @@ public class panelAdminMedicoModificar extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Médico");
+        jLabel1.setText("Mï¿½dico");
 
         btnBack.setText("Retornar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
@@ -178,6 +181,7 @@ public class panelAdminMedicoModificar extends javax.swing.JFrame {
             ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
             ManejoArchivos.guardar("arbolCitas.txt", arbolCita);
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             // TODO Auto-generated catch block
             e.printStackTrace();
         }

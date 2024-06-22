@@ -198,10 +198,11 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
             ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
             System.out.println("Arbol de medicos guardado con exito.");
         } catch (IOException e) {
-            System.out.println("Error al guardar el Arrbol de medico.");
+            JOptionPane.showMessageDialog(this, "Error al guardar el Árbol de médicos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            System.out.println("Error al guardar el arbol de medico.");
             e.printStackTrace();
         }
-
+        
         System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
         System.out.println(arbolMedico.listarMedicos());
         JOptionPane.showMessageDialog(this,"Sus credenciales de acceso son: "+ "\n" + "Usuario: " + medico.getIdMedico() + "\n" + "Contra: " + medico.getContrasenia());

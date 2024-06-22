@@ -218,6 +218,7 @@ public class panelRegistrarCita extends javax.swing.JFrame {
             ManejoArchivos.guardar("arbolCitas.txt", arbolCita);
         } catch (IOException e) {
             // TODO Auto-generated catch block
+            JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
         System.out.println("Citas registradas:");
@@ -313,12 +314,13 @@ public void agregarMedicosALista() {
                 String turno = medico.getTurno().getCategoria();
                 cbMedico.addItem(idMedico + " " + nombre + " " + apellido + " - " + especialidad + " - " + turno);
             } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, "Error al procesar el médico: " + medico.getNombre() + " " + medico.getApellido(), "Error", JOptionPane.ERROR_MESSAGE);
                 System.out.println("Error parsing medico: " + medico);
                 e.printStackTrace();
             }
         }
     } else {
-        System.out.println("No se encontraron médicos en el archivo.");
+        JOptionPane.showMessageDialog(this, "No se encontraron médicos en el archivo.", "Información", JOptionPane.INFORMATION_MESSAGE);
         cbMedico.addItem("No contamos con medicos registrados");
     }
 }

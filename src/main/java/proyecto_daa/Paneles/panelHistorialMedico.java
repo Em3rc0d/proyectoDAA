@@ -207,6 +207,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
             ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
             System.out.println("El arbol de pacientes fue guardado con exito.");
         } catch (IOException e) {
+            JOptionPane.showMessageDialog(this, "Error al guardar el arbol de pacientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             System.out.println("Error al guardar el arbol de pacientes.");
             e.printStackTrace();
         }
