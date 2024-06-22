@@ -74,7 +74,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
             }
         });
 
-        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registrarMedico.png"))); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registrarMedico.png"))); // NOI18N
         jLabel7.setText("jLabel7");
 
         jLabel8.setText("Turno:");
@@ -184,32 +184,48 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
     private void btnRegistrarMedicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarMedicoActionPerformed
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
-        int numTel = Integer.parseInt(txtNumTel.getText());
+        String numTelText = txtNumTel.getText();
         String contrasenia = txtContrasenia.getText();
         String especialidad = txtEspecialidad.getText();
         String turno = cbTurno.getSelectedItem().toString();
-        Turno turno2 = new Turno(turno);
-
-        Medico medico = new Medico(nombre, apellido, numTel, contrasenia, especialidad, turno2);
-         
-        arbolMedico.insertarMedico(medico);
-        
+    
+        // Validar que el campo de número de teléfono contenga solo números
         try {
-            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
-            System.out.println("Arbol de medicos guardado con exito.");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar el Árbol de médicos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Error al guardar el arbol de medico.");
-            e.printStackTrace();
+            int numTel = Integer.parseInt(numTelText);
+    
+            // Validar que el número de teléfono sea positivo y tenga al menos 9 dígitos
+            if (numTel <= 0 || numTelText.length() < 9) {
+                JOptionPane.showMessageDialog(this, "Ingrese un número de teléfono válido (al menos 9 dígitos y positivo).", "Error", JOptionPane.ERROR_MESSAGE);
+                return; // Detener el proceso si hay un error
+            }
+    
+            Turno turno2 = new Turno(turno);
+    
+            Medico medico = new Medico(nombre, apellido, numTel, contrasenia, especialidad, turno2);
+    
+            arbolMedico.insertarMedico(medico);
+    
+            try {
+                ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
+                System.out.println("Árbol de médicos guardado con éxito.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al guardar el Árbol de médicos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Error al guardar el árbol de médicos.");
+                e.printStackTrace();
+            }
+    
+            System.out.println("Médico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
+            System.out.println(arbolMedico.listarMedicos());
+            JOptionPane.showMessageDialog(this, "Sus credenciales de acceso son:\nUsuario: " + medico.getIdMedico() + "\nContraseña: " + medico.getContrasenia());
+    
+            new panelLoginMedico().setVisible(true);
+            setVisible(false);
+    
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número de teléfono válido (solo números).", "Error", JOptionPane.ERROR_MESSAGE);
         }
-        
-        System.out.println("Medico insertado: " + nombre + " " + apellido + " " + numTel + " " + especialidad);
-        System.out.println(arbolMedico.listarMedicos());
-        JOptionPane.showMessageDialog(this,"Sus credenciales de acceso son: "+ "\n" + "Usuario: " + medico.getIdMedico() + "\n" + "Contra: " + medico.getContrasenia());
-
-        new panelLoginMedico().setVisible(true);
-        setVisible(false);
-    }//GEN-LAST:event_btnRegistrarMedicoActionPerformed
+    }
+    
 
     /**
      * @param args the command line arguments

@@ -49,7 +49,7 @@ public class panelInicial extends javax.swing.JFrame {
         titulo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         titulo.setText("Bienvenido al Sistema del Hospital Cayetano Heredia");
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/HCH.jpg"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/HCH.jpg"))); // NOI18N
         jLabel1.setText("jLabel1");
 
         btnAdmin.setText("Admin");
@@ -106,7 +106,7 @@ public class panelInicial extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 

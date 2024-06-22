@@ -97,7 +97,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
             }
         });
 
-        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registrarHistorialMedico.png"))); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registrarHistorialMedico.png"))); // NOI18N
         jLabel8.setText("jLabel8");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -191,38 +191,50 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
 
     private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) throws ClassNotFoundException, IOException {
         String tipoSangre = cbTipoSangre.getSelectedItem().toString();
-        int contactoEmerg = Integer.parseInt(txtContacEmerg.getText());
+        String contactoEmergText = txtContacEmerg.getText();
         String antecedentesMedicos = txtAntecMedic.getText();
         String alergias = txtAlergias.getText();
         String medicamentos = txtMedicamentos.getText();
         String tratAnteriores = txtTratAnteriores.getText();
     
-        HistorialMedico historialMedico = new HistorialMedico(tipoSangre, contactoEmerg, antecedentesMedicos, alergias, medicamentos, tratAnteriores);
-    
-        paciente.setHistorialMedico(historialMedico);
-    
-        arbolPaciente.insertarPaciente(paciente);
-    
         try {
-            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
-            System.out.println("El arbol de pacientes fue guardado con exito.");
-        } catch (IOException e) {
-            JOptionPane.showMessageDialog(this, "Error al guardar el arbol de pacientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            System.out.println("Error al guardar el arbol de pacientes.");
-            e.printStackTrace();
+            int contactoEmerg = Integer.parseInt(contactoEmergText);
+    
+            // Crear el objeto HistorialMedico
+            HistorialMedico historialMedico = new HistorialMedico(tipoSangre, contactoEmerg, antecedentesMedicos, alergias, medicamentos, tratAnteriores);
+    
+            // Asignar el historial médico al paciente
+            paciente.setHistorialMedico(historialMedico);
+    
+            // Insertar el paciente en el árbol de pacientes
+            arbolPaciente.insertarPaciente(paciente);
+    
+            // Guardar el árbol de pacientes en archivo
+            try {
+                ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+                System.out.println("El árbol de pacientes fue guardado con éxito.");
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(this, "Error al guardar el árbol de pacientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+                System.out.println("Error al guardar el árbol de pacientes.");
+                e.printStackTrace();
+            }
+    
+            // Mostrar mensajes de confirmación y cerrar la ventana actual
+            JOptionPane.showMessageDialog(this, "Historial médico registrado para el paciente: " + paciente.getNombre());
+            setVisible(false);
+    
+            // Mostrar las credenciales de acceso del paciente
+            JOptionPane.showMessageDialog(this, "Sus credenciales de acceso son:\nUsuario: " + this.paciente.getIdPaciente() + "\nContraseña: " + this.paciente.getContrasenia());
+    
+            // Mostrar la ventana de login para un nuevo paciente
+            new panelLoginPaciente().setVisible(true);
+    
+        } catch (NumberFormatException e) {
+            // Capturar excepción si el contacto de emergencia no es un número válido
+            JOptionPane.showMessageDialog(this, "Ingrese un número válido para el contacto de emergencia.", "Error", JOptionPane.ERROR_MESSAGE);
         }
-    
-        // Mostrar un mensaje de confirmación
-        JOptionPane.showMessageDialog(this, "Historial medico registrado para el paciente: " + paciente.getNombre());
-        setVisible(false);
-    
-        System.out.println(arbolPaciente.listarPacientes());
-
-        // Mostrar el formulario para registrar un nuevo paciente
-        //System.out.println(arbolPaciente.listarPacientes());
-        JOptionPane.showMessageDialog(this,"Sus credenciales de acceso son: "+ "\n" + "Usuario: " + this.paciente.getIdPaciente() + "\n" + "Contra: " + this.paciente.getContrasenia());
-        new panelLoginPaciente().setVisible(true);
     }
+    
                                                 
 
     /**

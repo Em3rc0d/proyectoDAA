@@ -1,5 +1,7 @@
 package proyecto_daa.Paneles;
 
+import javax.swing.JOptionPane;
+
 import proyecto_daa.Entidades.Paciente;
 import proyecto_daa.Gestionadores.*;
 
@@ -66,7 +68,7 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Paneles/registroPaciente.png"))); // NOI18N
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/proyecto_daa/Imagenes/registroPaciente.png"))); // NOI18N
         jLabel6.setText("jLabel6");
 
         jLabel7.setText("Contraseña:");
@@ -170,9 +172,18 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
 
     private void btnRegistrarPacienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarPacienteActionPerformed
         String nombre = txtNombre.getText();
-        String apellido = txtApellido.getText();
-        int numTel = Integer.parseInt(txtNumTel.getText());
-        String contrasenia = txtContrasenia.getText();
+    String apellido = txtApellido.getText();
+    String numTelText = txtNumTel.getText();
+    String contrasenia = txtContrasenia.getText();
+
+    try {
+        int numTel = Integer.parseInt(numTelText);
+
+        // Validar que el número de teléfono sea positivo y tenga al menos 9 dígitos
+        if (numTel <= 0 || numTelText.length() < 9) {
+            JOptionPane.showMessageDialog(this, "Ingrese un número de teléfono válido (al menos 9 dígitos y positivo).", "Error", JOptionPane.ERROR_MESSAGE);
+            return; // Detener el proceso si hay un error
+        }
 
         // Crear un nuevo objeto Paciente
         Paciente nuevoPaciente = new Paciente(nombre, apellido, numTel, contrasenia);
@@ -180,6 +191,10 @@ public class panelRegistrarPaciente extends javax.swing.JFrame {
         // Mostrar el panel del historial médico y pasarle el paciente
         new panelHistorialMedico(nuevoPaciente).setVisible(true);
         setVisible(false);
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Ingrese un número de teléfono válido (solo números).", "Error", JOptionPane.ERROR_MESSAGE);
+    }
     }//GEN-LAST:event_btnRegistrarPacienteActionPerformed
 
     /**

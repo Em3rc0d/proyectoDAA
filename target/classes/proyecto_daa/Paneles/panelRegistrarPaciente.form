@@ -183,7 +183,7 @@
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/proyecto_daa/Paneles/registroPaciente.png"/>
+              <Image iconType="3" name="/proyecto_daa/Imagenes/registroPaciente.png"/>
             </Property>
             <Property name="text" type="java.lang.String" value="jLabel6"/>
           </Properties>

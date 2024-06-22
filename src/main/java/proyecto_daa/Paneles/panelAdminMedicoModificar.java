@@ -1,3 +1,4 @@
+package proyecto_daa.Paneles;
 
 import java.io.IOException;
 

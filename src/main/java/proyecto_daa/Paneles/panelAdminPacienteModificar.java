@@ -265,7 +265,7 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
             ManejoArchivos.guardar("arbolCitas.txt", arbolCitaMedica);
         } catch (IOException e) {
             // TODO Auto-generated catch block
-            JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
             e.printStackTrace();
         }
     }//GEN-LAST:event_btnModificarActionPerformed
