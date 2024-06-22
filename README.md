@@ -10,7 +10,6 @@ El **Sistema de Gestión de Citas Médicas** es una solución integral diseñada
 - **Agendamiento de Citas**: Facilita la programación, modificación y cancelación de citas médicas con múltiples especialistas.
 - **Gestión de Médicos**: Administra los perfiles de los médicos, incluyendo sus especialidades y horarios disponibles.
 - **Historial Médico**: Almacena el historial médico completo de los pacientes, accesible para consultas y seguimiento.
-- **Notificaciones**: Envía recordatorios automáticos de citas a los pacientes vía correo electrónico o SMS.
 - **Interfaz Amigable**: Diseñada para ser intuitiva tanto para pacientes como para el personal del centro de salud.
 
 ## Estructura del Proyecto
