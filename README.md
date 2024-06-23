@@ -81,4 +81,4 @@ Este proyecto está licenciado bajo la Licencia MIT. Para más detalles, consult
 
 - **Integrante**: Merino Cordova, Eduardo Farid
 - **Integrante**: Poma Alegre, Alvaro Rimbaud
-- **Integrante**: Ventura Rengifo, Hans Von Kilmer Belizario
+- **Integrante**: Ventura Rengifo, Hans Von 
