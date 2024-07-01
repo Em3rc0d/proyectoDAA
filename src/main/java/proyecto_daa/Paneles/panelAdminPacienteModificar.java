@@ -22,8 +22,8 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
         pacienteActual = (Paciente) UsuarioActual.getInstance().getUsuarioActual();
         llenarDatos(pacienteActual);
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
-        arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
+        arbolPaciente = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
+        arbolCitaMedica = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitaMedica);
     }
 
     /**
@@ -261,8 +261,8 @@ public class panelAdminPacienteModificar extends javax.swing.JFrame {
         arbolPaciente.modificarPaciente(pacienteActual.getIdPaciente(), nombre, apellido, numTelf, historial);
         arbolCitaMedica.modificarPaciente(pacienteActual.getIdPaciente(), nombre, apellido, numTelf, historial);
         try {
-            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
-            ManejoArchivos.guardar("arbolCitas.txt", arbolCitaMedica);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitaMedica);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

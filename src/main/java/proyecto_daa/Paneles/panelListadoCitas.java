@@ -25,7 +25,7 @@ public class panelListadoCitas extends javax.swing.JFrame {
     public panelListadoCitas() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolCitasMedicas = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitasMedicas);
+        arbolCitasMedicas = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitasMedicas);
         modelo = (DefaultTableModel) tblListado.getModel();
         listarCitasMedicasPorIdCita();
     }

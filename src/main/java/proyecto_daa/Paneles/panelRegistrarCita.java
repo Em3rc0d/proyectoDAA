@@ -21,8 +21,8 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
 
-        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
-        arbolCita = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCita);
+        arbolMedico = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
+        arbolCita = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCita);
 
         UsuarioActual<?> usuarioActual = UsuarioActual.getInstance();
         Object usuario = usuarioActual.getUsuarioActual();
@@ -214,8 +214,8 @@ public class panelRegistrarCita extends javax.swing.JFrame {
         arbolCita.insertarCitaMedica(paciente, medico, horarioSeleccionado, descripcion);
 
         try {
-            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
-            ManejoArchivos.guardar("arbolCitas.txt", arbolCita);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolCitas.txt", arbolCita);
         } catch (IOException e) {
             // TODO Auto-generated catch block
             JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

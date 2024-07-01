@@ -46,6 +46,7 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
         tblEspecialidades = new javax.swing.JTable();
         btnAgregar = new javax.swing.JButton();
         btnEliminar = new javax.swing.JButton();
+        btnRetornar = new javax.swing.JButton(); // Añadir el botón Retornar
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +83,13 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
             }
         });
 
+        btnRetornar.setText("Retornar"); // Configurar el botón Retornar
+        btnRetornar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetornarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -92,8 +100,10 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 376, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(btnAgregar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnEliminar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnEliminar)))
+                        .addComponent(btnRetornar))) // Añadir el botón Retornar al layout
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -104,7 +114,8 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnAgregar)
-                    .addComponent(btnEliminar))
+                    .addComponent(btnEliminar)
+                    .addComponent(btnRetornar)) // Añadir el botón Retornar al layout
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -145,6 +156,12 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
         }
     }                                           
 
+    private void btnRetornarActionPerformed(java.awt.event.ActionEvent evt) {
+        // Volver al panelAdmin
+        new panelAdmin().setVisible(true);
+        this.dispose(); // Cerrar el panelAdminEspecialidades
+    }
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -180,6 +197,7 @@ public class panelAdminEspecialidades extends javax.swing.JFrame {
     // Variables declaration - do not modify                     
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton btnEliminar;
+    private javax.swing.JButton btnRetornar; // Declarar el botón Retornar
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable tblEspecialidades;
     // End of variables declaration                   

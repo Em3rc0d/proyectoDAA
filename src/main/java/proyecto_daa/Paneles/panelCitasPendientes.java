@@ -25,9 +25,7 @@ public class panelCitasPendientes extends javax.swing.JFrame {
     public panelCitasPendientes() {
         initComponents();
         setLocationRelativeTo(null);
-        //arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
-        arbolCitaMedica = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitaMedica);
-        //agregarMedicosALista();
+        arbolCitaMedica = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitaMedica);
         mostrarCitas();
     }
 
@@ -46,7 +44,6 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         btnBack = new javax.swing.JButton();
-        btnShow = new javax.swing.JButton();
         txtMedicoActual = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -65,19 +62,12 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerifyInputWhenFocusTarget(false);
 
-        jLabel2.setText("M�dico:");
+        jLabel2.setText("Médico:");
 
         btnBack.setText("Retornar");
         btnBack.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBackActionPerformed(evt);
-            }
-        });
-
-        btnShow.setText("Mostrar");
-        btnShow.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnShowActionPerformed(evt);
             }
         });
 
@@ -97,20 +87,16 @@ public class panelCitasPendientes extends javax.swing.JFrame {
                         .addGap(77, 77, 77))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnBack)
-                    .addComponent(btnShow))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(btnBack)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(btnBack))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 12, Short.MAX_VALUE)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtMedicoActual))
@@ -120,8 +106,8 @@ public class panelCitasPendientes extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 212, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(8, 8, 8))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(btnShow)
-                        .addGap(111, 111, 111))))
+                        .addComponent(btnBack)
+                        .addGap(116, 116, 116))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -143,17 +129,6 @@ public class panelCitasPendientes extends javax.swing.JFrame {
         new panelMedico().setVisible(true);
         setVisible(false);
     }//GEN-LAST:event_btnBackActionPerformed
-
-    private void btnShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnShowActionPerformed
-//        int idMedico = obtenerIdMedicoSeleccionado();
-//        List<NodoCitaMedica> resultados = arbolCitaMedica.buscarTodosPorIdMedico(idMedico);
-//        String cadena = "";
-//        for (NodoCitaMedica nodo : resultados) {
-//            Paciente paciente = nodo.CitaMedica.getPaciente();
-//            cadena += paciente.getNombre() + " " + paciente.getApellido() + " - Horario: " + nodo.CitaMedica.getHorario() + "\n";
-//        }
-//        txtMedico.setText(cadena);
-    }//GEN-LAST:event_btnShowActionPerformed
 
     private void mostrarCitas(){
         // Obtener el usuario actual desde el singleton
@@ -262,7 +237,6 @@ public class panelCitasPendientes extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBack;
-    private javax.swing.JButton btnShow;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;

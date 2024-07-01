@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 public class GeneradorID {
-    private static final String FILE_PATH = "id_counter.txt";
+    private static final String FILE_PATH = "proyectoDAA/src/main/files/id_counter.txt";
     private static int contadorMedico = 0;
     private static int contadorPaciente = 0;
     private static int contadorCita = 0;

@@ -25,7 +25,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
     public panelLoginMedico() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
+        arbolMedico = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
     }
 
     /**
@@ -94,10 +94,6 @@ public class panelLoginMedico extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(117, 117, 117)
-                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 165, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(50, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -118,6 +114,10 @@ public class panelLoginMedico extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(btnBack)
                         .addContainerGap())))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(152, 152, 152)
+                .addComponent(btnIngresar)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -169,7 +169,7 @@ public class panelLoginMedico extends javax.swing.JFrame {
             String password = contrasenia.getText(); // Obtener la contraseña ingresada
             // Buscar al paciente por el código
             Medico medico = arbolMedico.obtenerMedicoPorId(code);
-            ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
+            ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
 
             if (medico != null) { // Si se encontró al paciente
                 if (medico.getContrasenia().equals(password)) { // Verificar la contraseña

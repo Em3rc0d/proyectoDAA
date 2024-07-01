@@ -19,8 +19,8 @@ public class panelAdminMedico extends javax.swing.JFrame {
     public panelAdminMedico() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
-        arbolCitas = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitas);
+        arbolMedico = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
+        arbolCitas = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitas);
     }
 
     /**
@@ -175,8 +175,8 @@ public class panelAdminMedico extends javax.swing.JFrame {
             System.out.println(arbolMedico.listarMedicos());
         }
         try {
-            ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
-            ManejoArchivos.guardar("arbolCitas.txt", arbolCitas);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitas);
         } catch (IOException ex) {
             Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
         }

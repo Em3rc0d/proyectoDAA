@@ -16,7 +16,7 @@ public class panelListadoPacientes extends javax.swing.JFrame {
     public panelListadoPacientes() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
+        arbolPaciente = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
         modelo = (DefaultTableModel) tblListado.getModel();
         ListarPacientesPorId();
         

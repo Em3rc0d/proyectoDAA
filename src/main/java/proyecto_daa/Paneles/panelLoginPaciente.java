@@ -21,7 +21,7 @@ public class panelLoginPaciente extends javax.swing.JFrame {
     public panelLoginPaciente() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
+        arbolPaciente = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
     }
 
     /**
@@ -107,12 +107,12 @@ public class panelLoginPaciente extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(33, 33, 33)
+                                        .addComponent(jLabel3))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(142, 142, 142)
-                                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addContainerGap()
-                                        .addComponent(jLabel3)
-                                        .addGap(46, 46, 46)))
+                                        .addComponent(btnIngresar)))
+                                .addGap(7, 7, 7)
                                 .addComponent(btnRegistrar)))
                         .addGap(0, 45, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()

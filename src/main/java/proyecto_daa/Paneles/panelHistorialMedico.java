@@ -32,7 +32,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
         setLocationRelativeTo(null);
         this.paciente = paciente;
 
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
+        arbolPaciente = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
     }
     
 
@@ -210,7 +210,7 @@ public class panelHistorialMedico extends javax.swing.JFrame implements Serializ
     
             // Guardar el árbol de pacientes en archivo
             try {
-                ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
+                ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
                 System.out.println("El árbol de pacientes fue guardado con éxito.");
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar el árbol de pacientes: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

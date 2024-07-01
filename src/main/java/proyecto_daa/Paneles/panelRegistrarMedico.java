@@ -20,7 +20,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
         initComponents();
         setLocationRelativeTo(null);
 
-        arbolMedico = ManejoArchivos.cargarArbol("arbolMedicos.txt", arbolMedico);
+        arbolMedico = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
         cargarEspecialidades();
     }
 
@@ -209,7 +209,7 @@ public class panelRegistrarMedico extends javax.swing.JFrame implements Serializ
             arbolMedico.insertarMedico(medico);
     
             try {
-                ManejoArchivos.guardar("arbolMedicos.txt", arbolMedico);
+                ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolMedicos.txt", arbolMedico);
                 System.out.println("Árbol de médicos guardado con éxito.");
             } catch (IOException e) {
                 JOptionPane.showMessageDialog(this, "Error al guardar el Árbol de médicos: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);

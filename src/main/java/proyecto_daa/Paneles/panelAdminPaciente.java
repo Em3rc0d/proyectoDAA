@@ -19,8 +19,8 @@ public class panelAdminPaciente extends javax.swing.JFrame {
     public panelAdminPaciente() {
         initComponents();
         setLocationRelativeTo(null);
-        arbolPaciente = ManejoArchivos.cargarArbol("arbolPacientes.txt", arbolPaciente);
-        arbolCitas = ManejoArchivos.cargarArbol("arbolCitas.txt", arbolCitas);
+        arbolPaciente = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
+        arbolCitas = ManejoArchivos.cargarArbol("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitas);
     }
 
     /**
@@ -177,8 +177,8 @@ public class panelAdminPaciente extends javax.swing.JFrame {
             System.out.println(arbolPaciente.listarPacientes());
         }
         try {
-            ManejoArchivos.guardar("arbolPacientes.txt", arbolPaciente);
-            ManejoArchivos.guardar("arbolCitas.txt", arbolCitas);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolPacientes.txt", arbolPaciente);
+            ManejoArchivos.guardar("proyectoDAA/src/main/files/arbolCitas.txt", arbolCitas);
         } catch (IOException ex) {
             Logger.getLogger(panelAdminPaciente.class.getName()).log(Level.SEVERE, null, ex);
             JOptionPane.showMessageDialog(this, "Error al guardar los cambios: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
